@@ -1540,7 +1540,16 @@ ul.activity-list > li {
   background-color: #ff4500 !important; }
   .reddit-bg:hover, .reddit-bg:focus {
     background-color: #e63e00 !important; }
-
+.img-cover{
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+}
+.navbar-brand{
+  float: left;
+  padding: 0;
+  background-color: #fff;
+}
 .rss-bg {
   background-color: #f26522 !important; }
   .rss-bg:hover, .rss-bg:focus {
