@@ -108,55 +108,7 @@ head
             </li>
   // END NAVBAR
   // LEFT SIDEBAR
-  #sidebar-nav.sidebar
-    .sidebar-scroll
-      nav
-        ul.nav
-          li
-            a(href='index.html')
-              i.lnr.lnr-home
-              span Dashboard
-          li
-            a(href='elements.html')
-              i.lnr.lnr-code
-              span Elements
-          li
-            a(href='charts.html')
-              i.lnr.lnr-chart-bars
-              span Charts
-          li
-            a(href='panels.html')
-              i.lnr.lnr-cog
-              span Panels
-          li
-            a(href='notifications.html')
-              i.lnr.lnr-alarm
-              span Notifications
-          li
-            a.collapsed(href='#subPages' data-toggle='collapse')
-              i.lnr.lnr-file-empty
-              span Pages
-              i.icon-submenu.lnr.lnr-chevron-left
-            #subPages.collapse
-              ul.nav
-                li
-                  a(href='page-profile.html') Profile
-                li
-                  a(href='page-login.html') Login
-                li
-                  a(href='page-lockscreen.html') Lockscreen
-          li
-            a(href='tables.html')
-              i.lnr.lnr-dice
-              span Tables
-          li
-            a.active(href='typography.html')
-              i.lnr.lnr-text-format
-              span Typography
-          li
-            a(href='icons.html')
-              i.lnr.lnr-linearicons
-              span Icons
+  include ./includes/menu.pug
   // END LEFT SIDEBAR
   // MAIN
   .main
