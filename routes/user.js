@@ -7,5 +7,15 @@ router.get('/index',userController.getIndex);
 router.get('/',userController.getLogin);
 
 router.get('/reset-password',userController.getResetPassword);
-
+router.get('/elements',userController.getElements);
+router.get('/charts',userController.getCharts);
+router.get('/panels',userController.getPanels);
+router.get('/notifications',userController.getNotifications);
+router.get('/pages',userController.getPages);
+router.get('/page-profile',userController.getProfile);
+router.get('/page-login',userController.getLoginScreen);
+router.get('/lock-screen',userController.getLockScreen);
+router.get('/tables',userController.getTables);
+router.get('/typography',userController.getTypography);
+router.get('/icons',userController.getIcons);
 module.exports = router;
