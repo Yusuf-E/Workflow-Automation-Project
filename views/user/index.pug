@@ -1,0 +1,50 @@
+<!doctype html>
+html(lang="en")
+  include ../includes/head.pug
+
+// WRAPPER
+#wrapper
+  include ../includes/navbar.pug
+  include ../includes/menu.pug
+  // END LEFT SIDEBAR
+  // MAIN
+  .main
+    // MAIN CONTENT
+    .main-content
+      .container-fluid
+        .row 
+            .alert.alert-warning.alert-dismissible(role='alert')
+                button.close(type='button' data-dismiss='alert' aria-label='Close')
+                    span(aria-hidden='true')              
+                .text-center 
+                    i.fa.fa-info-circle(style='font-size:24px;float:left;')  
+                    |5 Adet Onaylanmayı Bekleyen Göreviniz var
+        .row.justify-content-around
+            .alert.bg-primary.col-sm-4(role='alert' style='height:100px;')
+                .col-sm-4 
+                    i.fa.fa-envelope(style='font-size:48px;')
+                .text-center.col-sm-6
+                    span Gelen Mesajlar:
+                    span 6 
+            .alert.alert-success.col-sm-4(role='alert' style='height:100px;')
+                .col-sm-4 
+                    i.fa.fa-file(style='font-size:48px;')
+                .text-center.col-sm-6
+                    span Departman Bilgileri:
+                    span  Mühendislik Fak./Yazılım Mühendisliği
+            .alert.alert-info.col-sm-4(role='alert' style='height:100px;')
+                .col-sm-4 
+                    i.fa.fa-database(style='font-size:48px;')
+                .text-center.col-sm-6
+                    span Kayıt Tarihi: 
+                    span 16.04.2021
+            
+
+    // END MAIN CONTENT
+  // END MAIN
+  .clearfix
+  footer
+    .container-fluid
+      p.copyright
+
+// END WRAPPER

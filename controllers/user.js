@@ -1,8 +1,13 @@
 const express = require('express');
 const app = express();
 
+module.exports.getIndex1= (req,res,next)=>{
+    res.render('index1',
+   {title:'Home',
+    path:'/index'});
+}
 module.exports.getIndex= (req,res,next)=>{
-    res.render('index',
+    res.render('user/index',
    {title:'Home',
     path:'/index'});
 }
@@ -42,7 +47,7 @@ module.exports.getPages = (req,res,next)=>{
     path:'/pages'});
 }
 module.exports.getProfile = (req,res,next)=>{
-    res.render('page-profile',
+    res.render('user/profile',
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     path:'/page-profile'});
 }
