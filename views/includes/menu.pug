@@ -9,6 +9,19 @@ div
               span AnaSayfa 
           li
           li
+            a.collapsed(href='#subPages' data-toggle='collapse')
+              i.lnr.lnr-file-empty
+              span Yetkili İşlemleri
+              i.icon-submenu.lnr.lnr-chevron-left
+            #subPages.collapse
+              ul.nav
+                li
+                  a(href='register') Kullanıcı Ekle
+                li
+                  a(href='page-login') Kullanıcı Sil
+                li
+                  a(href='page-lockscreen') Lockscreen
+          li
             a(href='profile')
               i.lnr.lnr-user
               span Profil 
@@ -34,11 +47,11 @@ div
               i.lnr.lnr-alarm
               span Notifications
           li
-            a.collapsed(href='#subPages' data-toggle='collapse')
+            a.collapsed(href='#sPages' data-toggle='collapse')
               i.lnr.lnr-file-empty
               span Pages
               i.icon-submenu.lnr.lnr-chevron-left
-            #subPages.collapse
+            #sPages.collapse
               ul.nav
                 li
                   a(href='page-profile') Profile

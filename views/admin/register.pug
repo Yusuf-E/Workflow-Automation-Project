@@ -1,0 +1,46 @@
+<!doctype html>
+html(lang="en")
+  include ../includes/head.pug
+// WRAPPER
+#wrapper
+  .vertical-align-wrap
+    .vertical-align-middle
+      .auth-box(style='height:600px;')
+        .left.text-center 
+          .content
+            .header
+              .logo.text-center
+                img(src='assets/img/uni_logo.gif' alt='Logo' style='width:72px; heigth:72px;')
+            form.form-auth-small(action='/index')
+              .form-group
+                select.form-control.input
+                  option(value='-1') Fakülte Seçiniz
+                  option(value='mushrooms') Mimarlık
+                  option(value='tomatoes') Mühendislik
+                  option(value='mozarella') Teknoloji
+              .form-group
+                select.form-control.input
+                  option(value='-1') Bölüm Seçiniz
+                  option(value='mushrooms') Bilgisayar Müh.
+                  option(value='tomatoes') Elektrik Müh.
+                  option(value='mozarella') Yazılım Müh
+              .form-group
+                label.control-label.sr-only(for='signin-name') İsim
+                input#signin-name.form-control(type='text' value='' placeholder='İsim')
+              .form-group
+                label.control-label.sr-only(for='signin-lastname') Soyisim
+                input#signin-lastname.form-control(type='text' value='' placeholder='Soyisim')
+              .form-group
+                label.control-label.sr-only(for='signin-phone') Telefon
+                input#signin-phone.form-control(type='tel' value='' placeholder='Telefon')
+              .form-group
+                label.control-label.sr-only(for='signin-email') Email
+                input#signin-email.form-control(type='email' value='' placeholder='Email')
+              .form-group
+                label.control-label.sr-only(for='signin-password') Şifre
+                input#signin-password.form-control(type='password' value='itsalreadyexist' placeholder='Şifre' disabled)
+              .form-group.clearfix
+              button.btn.btn-primary.btn-lg.btn-block(type='submit') KAYDET
+
+        .clearfix
+// END WRAPPER

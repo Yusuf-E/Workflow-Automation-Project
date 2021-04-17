@@ -18,4 +18,5 @@ router.get('/lock-screen',userController.getLockScreen);
 router.get('/tables',userController.getTables);
 router.get('/typography',userController.getTypography);
 router.get('/icons',userController.getIcons);
+router.get('/register',userController.getRegister);
 module.exports = router;

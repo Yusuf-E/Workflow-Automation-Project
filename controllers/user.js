@@ -76,3 +76,9 @@ module.exports.getIcons = (req,res,next)=>{
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     path:'/icons'});
 }
+module.exports.getRegister = (req,res,next)=>{
+    res.render('admin/register',
+    {title:'Reset | İş Akışları Otomasyon Sistemi',
+    path:'/register'});
+}
+
