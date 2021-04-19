@@ -19,4 +19,5 @@ router.get('/tables',userController.getTables);
 router.get('/typography',userController.getTypography);
 router.get('/icons',userController.getIcons);
 router.get('/register',userController.getRegister);
+router.get('/delete',userController.getDelete);
 module.exports = router;

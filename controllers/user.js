@@ -81,4 +81,9 @@ module.exports.getRegister = (req,res,next)=>{
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     path:'/register'});
 }
+module.exports.getDelete = (req,res,next)=>{
+    res.render('admin/delete',
+    {title:'Reset | İş Akışları Otomasyon Sistemi',
+    path:'/delete'});
+}
 

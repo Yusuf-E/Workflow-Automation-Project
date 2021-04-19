@@ -1770,4 +1770,32 @@ ul.activity-timeline > li {
     width: 22px;
     border: 1px solid #CCC; }
 
+.rediconcolor{
+  color: red;
+}
+.float-right{
+  float:right;
+}
+
+
+.user-form {
+  padding: 15px;
+  border: 0; }
+  .user-form input[type="text"] {
+    min-width: 200px; }
+  @media screen and (max-width: 767px) {
+    .user-form {
+      float: left;
+      width: 70%;
+      margin-left: 5px;
+      margin-right: 5px;
+      padding-left: 0;
+      padding-right: 0; }
+      .user-form .input-group {
+        width: 70%; }
+      .user-form input[type="text"] {
+        min-width: 150px; } }
+
+
+
 /*# sourceMappingURL=main.css.map */
