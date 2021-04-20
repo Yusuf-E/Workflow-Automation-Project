@@ -1,0 +1,17 @@
+<!doctype html>
+html(lang="en")
+  include ../includes/head.pug
+// WRAPPER
+#wrapper
+  .vertical-align-wrap
+    .vertical-align-middle
+      .auth-box.lockscreen.clearfix
+        .content
+          .logo.text-center
+            i.fa.fa-university(style="font-size:100px;")
+          form(action='index.html')
+            .input-group
+              input.form-control(type='text' placeholder='Fakülte Adını giriniz')
+              span.input-group-btn
+                button.btn.btn-primary(type='submit') Kaydet      
+// END WRAPPER
