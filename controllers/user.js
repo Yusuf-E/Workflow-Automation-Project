@@ -81,10 +81,10 @@ module.exports.getAddUser = (req,res,next)=>{
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     path:'/add-user'});
 }
-module.exports.getDeleteUser = (req,res,next)=>{
-    res.render('admin/delete-user',
+module.exports.getUsers = (req,res,next)=>{
+    res.render('admin/users',
     {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/delete-user'});
+    path:'/users'});
 }
 module.exports.getAddFaculty = (req,res,next)=>{
     res.render('admin/add-faculty',
@@ -109,5 +109,10 @@ module.exports.getDeleteDepartment = (req,res,next)=>{
 module.exports.getFaculties = (req,res,next)=>{
     res.render('admin/faculties',
     {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/faculty-transactions'});
+    path:'/faculties'});
+}
+module.exports.getDepartments = (req,res,next)=>{
+    res.render('admin/departments',
+    {title:'Reset | İş Akışları Otomasyon Sistemi',
+    path:'/departments'});
 }

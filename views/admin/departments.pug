@@ -1,0 +1,82 @@
+<!doctype html>
+html(lang="en")
+  include ../includes/head.pug
+// WRAPPER
+#wrapper
+  include ../includes/navbar.pug
+  // END NAVBAR
+  // LEFT SIDEBAR
+  include ../includes/menu.pug
+  // END LEFT SIDEBAR
+  // MAIN
+  .main
+    // MAIN CONTENT
+    .main-content
+      .container-fluid
+        .row
+          .col-sm-12
+            .row(style="height:60px;")
+              .col-sm-6
+                    .form-group
+                        select.form-control.input
+                            option(value='-1') Fakülte Seçiniz
+                            option(value='mushrooms') Mimarlık
+                            option(value='tomatoes') Mühendislik
+                            option(value='mozarella') Teknoloji
+              .col-sm-6 
+                .btn-group(role='group').float-right
+                    a(href="add-user").btn.btn-primary
+                      i.fa.fa-plus-circle  
+                      span &nbsp; Yeni Bölüm Ekle  
+        .row
+          .col
+            // TABLE STRIPED
+            .panel
+              .panel-heading
+                h3.panel-title Bölümler 
+              .panel-body
+                table.table.table-striped.table-hover
+                  thead
+                    tr
+                      th #
+                      th 
+                      th Bölüm 
+                      th Fakülte   
+                      th İşlem 
+
+                  tbody
+                    tr
+                      td 1
+                      td 
+                        i.fa.fa-building(style="font-size:48px;")
+                      td Bilgisayar 
+                      td  Mühendislik
+                      td 
+                        a(href="")  &nbsp;                            &nbsp;
+                          i.delete.fa.fa-times-circle.rediconcolor 
+                    tr
+                      td 2
+                      td 
+                        i.fa.fa-building(style="font-size:48px;")
+                      td Elektrik Elektronik 
+                      td  Teknoloji 
+                      td 
+                        a(href="")  &nbsp;                            &nbsp;
+                          i.delete.fa.fa-times-circle.rediconcolor 
+                    tr
+                      td 3
+                      td 
+                        i.fa.fa-building(style="font-size:48px;")
+                      td Yazılım 
+                      td  Mühendislik
+                      td 
+                        a(href="")  &nbsp;                            &nbsp;
+                          i.delete.fa.fa-times-circle.rediconcolor 
+            // END TABLE STRIPED
+    // END MAIN CONTENT
+  // END MAIN
+  .clearfix
+  footer
+    .container-fluid
+// END WRAPPER
+// Javascript
