@@ -76,14 +76,33 @@ module.exports.getIcons = (req,res,next)=>{
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     path:'/icons'});
 }
-module.exports.getRegister = (req,res,next)=>{
-    res.render('admin/register',
+module.exports.getAddUser = (req,res,next)=>{
+    res.render('admin/add-user',
     {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/register'});
+    path:'/add-user'});
 }
-module.exports.getDelete = (req,res,next)=>{
-    res.render('admin/delete',
+module.exports.getDeleteUser = (req,res,next)=>{
+    res.render('admin/delete-user',
     {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/delete'});
+    path:'/delete-user'});
 }
-
+module.exports.getAddFaculty = (req,res,next)=>{
+    res.render('admin/add-faculty',
+    {title:'Reset | İş Akışları Otomasyon Sistemi',
+    path:'/add-faculty'});
+}
+module.exports.getDeleteFaculty = (req,res,next)=>{
+    res.render('admin/delete-faculty',
+    {title:'Reset | İş Akışları Otomasyon Sistemi',
+    path:'/delete-faculty'});
+}
+module.exports.getAddDepartment = (req,res,next)=>{
+    res.render('admin/add-department',
+    {title:'Reset | İş Akışları Otomasyon Sistemi',
+    path:'/add-department'});
+}
+module.exports.getDeleteDepartment = (req,res,next)=>{
+    res.render('admin/delete-department',
+    {title:'Reset | İş Akışları Otomasyon Sistemi',
+    path:'/delete-department'});
+}
