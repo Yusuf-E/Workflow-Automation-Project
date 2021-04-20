@@ -24,4 +24,5 @@ router.get('/add-faculty',userController.getAddFaculty);
 router.get('/delete-faculty',userController.getDeleteFaculty);
 router.get('/add-department',userController.getAddDepartment);
 router.get('/delete-department',userController.getDeleteDepartment);
+router.get('/faculties',userController.getFaculties);
 module.exports = router;

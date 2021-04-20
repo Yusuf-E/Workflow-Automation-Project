@@ -106,3 +106,8 @@ module.exports.getDeleteDepartment = (req,res,next)=>{
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     path:'/delete-department'});
 }
+module.exports.getFaculties = (req,res,next)=>{
+    res.render('admin/faculties',
+    {title:'Reset | İş Akışları Otomasyon Sistemi',
+    path:'/faculty-transactions'});
+}
