@@ -1,0 +1,25 @@
+<!doctype html>
+html(lang="en")
+  include ../includes/head.pug
+// WRAPPER
+#wrapper
+  .vertical-align-wrap
+    .vertical-align-middle
+      .auth-box.lockscreen.clearfix
+        .content
+          .logo.text-center
+            i.fa.fa-building(style="font-size:100px;")
+            .row(style="height:60px;margin-top:20px;")
+                    .form-group
+                        select.form-control.input
+                            option(value='-1') Fakülte Seçiniz
+                            option(value='mushrooms') Mimarlık
+                            option(value='tomatoes') Mühendislik
+                            option(value='mozarella') Teknoloji
+            .row 
+                form(action='index.html')
+                  .input-group
+                    input.form-control(type='text' placeholder='Bölüm Adını giriniz')
+                    span.input-group-btn
+                      button.btn.btn-primary(type='submit') Kaydet      
+// END WRAPPER
