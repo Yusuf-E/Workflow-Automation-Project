@@ -116,3 +116,8 @@ module.exports.getDepartments = (req,res,next)=>{
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     path:'/departments'});
 }
+module.exports.getFormBuilder = (req,res,next)=>{
+    res.render('user/form',
+    {title:'Reset | İş Akışları Otomasyon Sistemi',
+    path:'/form-builder'});
+}

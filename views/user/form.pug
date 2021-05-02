@@ -1,0 +1,38 @@
+<!doctype html>
+html(lang="en")
+  include ../includes/head.pug
+
+// WRAPPER
+#wrapper
+  include ../includes/navbar.pug
+  include ../includes/menu.pug
+  // END LEFT SIDEBAR
+  // MAIN
+  .main
+    // MAIN CONTENT
+    .main-content
+      .container-fluid
+        .row 
+            .vertical-align-wrap
+                .vertical-align-middle
+                    .auth-box
+                        .left
+                            .content
+                                form.form-auth-small(action='/index')
+                                    .form-group
+                                        label.control-label.sr-only(for='signin-email') Email
+                                        input#form-file.form-control(type='file' value='' placeholder='Email')
+                                    .form-group
+                                        label.control-label.sr-only(for='signin-email') Email
+                                        input#form-num.form-control(type='text' value='' placeholder='Onaylayacak Kişi Sayısını Giriniz')
+                                        
+                                    .form-group.clearfix
+                                    button.btn.btn-primary.btn-lg.btn-block(type='submit') Kaydet 
+
+                        .clearfix  
+  .clearfix
+  footer
+    .container-fluid
+      p.copyright
+
+// END WRAPPER
