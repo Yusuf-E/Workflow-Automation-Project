@@ -121,3 +121,8 @@ module.exports.getFormBuilder = (req,res,next)=>{
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     path:'/form-builder'});
 }
+module.exports.getFormPage = (req,res,next)=>{
+    res.render('user/form-page',
+    {title:'Form',
+        path:'/form-page'})
+}

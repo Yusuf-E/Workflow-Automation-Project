@@ -27,4 +27,5 @@ router.get('/departments',userController.getDepartments);
 router.get('/delete-department',userController.getDeleteDepartment);
 router.get('/faculties',userController.getFaculties);
 router.get('/form-builder',userController.getFormBuilder);
+router.get('/form-page',userController.getFormPage);
 module.exports = router;

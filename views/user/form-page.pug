@@ -1,0 +1,43 @@
+<!doctype html>
+include ../mixins/create-recipient.pug
+html(lang="en")
+  include ../includes/head.pug
+
+// WRAPPER
+#wrapper
+  include ../includes/navbar.pug
+  include ../includes/menu.pug
+  // END LEFT SIDEBAR
+  // MAIN
+  .main
+    // MAIN CONTENT
+    .main-content
+      .container-fluid
+        #hidden(style='z-index:9999;display:none;background-color:#fff;position:fixed;height:100%;width:100%;left: 0px;top: 0px;text-align: center;')
+          p
+           img.cancel.center(src="assets/img/Biçimsel diller düzeltilmiş dilekçe.jpg"  alt="" style='width:50%; height:700px;')
+        .row(style='height:400px;')
+          .img-container-inline
+            a#imgzoom(href='#' target='_blank') 
+              img(src="assets/img/Biçimsel diller düzeltilmiş dilekçe.jpg"  alt="" style='height:400px; width:300px; cursor: zoom-in;')
+        +createRecipient()
+        +createRecipient()
+        .row 
+          button.btn.btn-primary(type='submit' style='float:right;') Gönder      
+    // END MAIN CONTENT
+  // END MAIN
+  .clearfix
+  footer
+    .container-fluid
+      p.copyright
+
+script(type="text/javascript").
+  $(document).ready(function() {
+    $('#imgzoom').click( function(e) {
+        e.preventDefault();
+        $("#hidden").show();
+    });
+    $('.cancel').click(function(){
+        $("#hidden").hide();
+    })
+  });
