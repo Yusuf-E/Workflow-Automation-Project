@@ -126,3 +126,8 @@ module.exports.getFormPage = (req,res,next)=>{
     {title:'Form',
         path:'/form-page'})
 }
+module.exports.getTasks = (req,res,next)=>{
+    res.render('user/tasks',
+    {title:'Form',
+        path:'/tasks'})
+}
