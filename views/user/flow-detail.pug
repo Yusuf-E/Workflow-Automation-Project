@@ -1,0 +1,42 @@
+<!doctype html>
+include ../mixins/create-approver.pug
+html(lang="en")
+  include ../includes/head.pug
+
+// WRAPPER
+#wrapper
+  include ../includes/navbar.pug
+  include ../includes/menu.pug
+  // END LEFT SIDEBAR
+  // MAIN
+  .main
+    // MAIN CONTENT
+    .main-content
+      .container-fluid
+        .row(style='height:500px;')
+            .img-container-inline(style='float:left; display:inline-block;')
+                img(src="assets/img/Biçimsel diller düzeltilmiş dilekçe.jpg"  alt="" style='height:500px; width:400px;')
+            div(style='float:right;').col-sm-7
+                .row 
+                    table.table.table-striped.table-hover
+                        thead
+                            tr
+                                th #
+                                th İsim
+                                th.text-center Durum
+                                th.text-center   
+                                    span Açıklama 
+
+                        tbody
+                          +createApprover()
+                          +createApprover()
+                          +createApprover()
+
+
+              
+    // END MAIN CONTENT
+  // END MAIN
+  .clearfix
+  footer
+    .container-fluid
+      p.copyright

@@ -1,5 +1,5 @@
 <!doctype html>
-include ../mixins/create-task
+include ../mixins/create-flow.pug
 html(lang="en")
   include ../includes/head.pug
 // WRAPPER
@@ -15,11 +15,21 @@ html(lang="en")
     .main-content
       .container-fluid
         .row
+          .col-sm-12
+            .row(style="height:60px;")
+              .col-sm-6
+                #adv-search.input-group
+                  input.form-control(type='text' placeholder='Kullanıcının Adını Yazınız')
+                  .input-group-btn
+                    .btn-group(role='group')
+                      button.btn.btn-primary(type='button')
+                        i.fa.fa-search 
+        .row
           .col
             // TABLE STRIPED
             .panel
               .panel-heading
-                h3.panel-title Görevler 
+                h3.panel-title Akışlar 
               .panel-body
                 table.table.table-striped.table-hover
                   thead
@@ -29,13 +39,13 @@ html(lang="en")
                       th FormSahibi  
                       th Tarih 
                       th.text-center Açıklama
+                      th.text-center Görüntüle
                       th.text-center   
-                         span Görüntüle 
+                         span Durum 
 
                   tbody
-                    +createTask()
-                    +createTask()
-                    +createTask()
+                    +createFlow()
+                    +createFlow()
             // END TABLE STRIPED
     // END MAIN CONTENT
   // END MAIN

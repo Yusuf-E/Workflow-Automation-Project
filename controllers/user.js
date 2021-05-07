@@ -131,3 +131,17 @@ module.exports.getTasks = (req,res,next)=>{
     {title:'Form',
         path:'/tasks'})
 }
+module.exports.getTask = (req,res,next)=>{
+    res.render('user/task-detail',
+   { title:'Task',path:'/task-detail'})
+}
+module.exports.getFlows = (req,res,next)=>{
+    res.render('user/flows',{
+        title:'Flows',path:'/flows'
+    })
+}
+module.exports.getFlow = (req,res,next)=>{
+    res.render('user/flow-detail',{
+        title:'Flows',path:'/flow'
+    })
+}

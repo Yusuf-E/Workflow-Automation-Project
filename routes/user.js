@@ -29,4 +29,7 @@ router.get('/faculties',userController.getFaculties);
 router.get('/form-builder',userController.getFormBuilder);
 router.get('/form-page',userController.getFormPage);
 router.get('/tasks',userController.getTasks);
+router.get('/task-detail',userController.getTask);
+router.get('/flows',userController.getFlows);
+router.get('/flow-detail',userController.getFlow);
 module.exports = router;
