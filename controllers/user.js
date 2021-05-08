@@ -82,7 +82,7 @@ module.exports.getIcons = (req,res,next)=>{
 module.exports.getAddUser = (req,res,next)=>{
     res.render('admin/add-user',
     {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/add-user'});
+    path:'/user/add-user'});
 }
 module.exports.getUsers = (req,res,next)=>{
     res.render('admin/users',
@@ -132,7 +132,7 @@ module.exports.postFlowBuilder = (req,res,next)=>{
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     approvercount:approvercount,
     file:file,
-    path:'/flow-builder'});
+    path:'/form-page'});
 }
 module.exports.getFormPage = (req,res,next)=>{
     res.render('user/form-page',

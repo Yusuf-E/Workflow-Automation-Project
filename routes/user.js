@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/index',userController.getIndex);
-router.get('/',userController.getLogin);
+
 
 router.get('/reset-password',userController.getResetPassword);
 router.get('/elements',userController.getElements);
@@ -20,7 +20,7 @@ router.get('/lock-screen',userController.getLockScreen);
 router.get('/tables',userController.getTables);
 router.get('/typography',userController.getTypography);
 router.get('/icons',userController.getIcons);
-router.get('/add-user',userController.getAddUser);
+router.get('/user/add-user',userController.getAddUser);
 router.get('/users',userController.getUsers);
 router.get('/add-faculty',userController.getAddFaculty);
 router.get('/delete-faculty',userController.getDeleteFaculty);
@@ -35,4 +35,5 @@ router.get('/tasks',userController.getTasks);
 router.get('/task-detail',userController.getTask);
 router.get('/flows',userController.getFlows);
 router.get('/flow-detail',userController.getFlow);
+router.get('/',userController.getLogin);
 module.exports = router;
