@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user');
+const bodyParser = require('body-parser');
 
+router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/index',userController.getIndex);
 router.get('/',userController.getLogin);
@@ -26,8 +28,9 @@ router.get('/add-department',userController.getAddDepartment);
 router.get('/departments',userController.getDepartments);
 router.get('/delete-department',userController.getDeleteDepartment);
 router.get('/faculties',userController.getFaculties);
-router.get('/form-builder',userController.getFormBuilder);
+router.get('/flow-builder',userController.getFlowBuilder);
 router.get('/form-page',userController.getFormPage);
+router.post('/flow-builder',userController.postFlowBuilder);
 router.get('/tasks',userController.getTasks);
 router.get('/task-detail',userController.getTask);
 router.get('/flows',userController.getFlows);

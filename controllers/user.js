@@ -1,5 +1,8 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 module.exports.getIndex1= (req,res,next)=>{
     res.render('index1',
@@ -116,10 +119,20 @@ module.exports.getDepartments = (req,res,next)=>{
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     path:'/departments'});
 }
-module.exports.getFormBuilder = (req,res,next)=>{
+module.exports.getFlowBuilder = (req,res,next)=>{
     res.render('user/form',
     {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/form-builder'});
+    path:'/flow-builder'});
+}
+module.exports.postFlowBuilder = (req,res,next)=>{
+    const approvercount = req.body.approvercount;
+    const file = req.body.formfile;
+    console.log(approvercount+file);
+    res.render('user/form-page',
+    {title:'Reset | İş Akışları Otomasyon Sistemi',
+    approvercount:approvercount,
+    file:file,
+    path:'/flow-builder'});
 }
 module.exports.getFormPage = (req,res,next)=>{
     res.render('user/form-page',
