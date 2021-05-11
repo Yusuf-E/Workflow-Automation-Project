@@ -8,6 +8,7 @@ const viewmw = require('../middleware/viewmiddleware');
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/add-user', adminController.getAddUser);
+router.post('/add-user', adminController.postAddUser);
 
 module.exports = router;
 

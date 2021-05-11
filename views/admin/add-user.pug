@@ -6,46 +6,49 @@ block content
   #wrapper
     .vertical-align-wrap
       .vertical-align-middle
-        .auth-box(style='height:600px;')
+        .auth-box(style='height:100%;')
           .left.text-center 
             .content
               .header
                 .logo.text-center
                   img(src='/assets/img/uni_logo.gif' alt='Logo' style='width:72px; heigth:72px;')
-              form.form-auth-small(action='admin/add-user' method='POST')
+              form.form-auth-small(action='/admin/add-user' method='POST')
                 .form-group
-                  select.form-control.input#signin-faculty
+                  select.form-control.input#signinfaculty(name='signinfaculty')
                     option(value='-1') Fakülte Seçiniz
-                    option(value='mushrooms') Mimarlık
-                    option(value='tomatoes') Mühendislik
-                    option(value='mozarella') Teknoloji
+                    option(value='Mimarlık') Mimarlık
+                    option(value='Mühendislik') Mühendislik
+                    option(value='Teknoloji') Teknoloji
                 .form-group
-                  select.form-control.input#signin-department
+                  select.form-control.input#signindepartment(name='signindepartment')
                     option(value='-1') Bölüm Seçiniz
-                    option(value='mushrooms') Bilgisayar Müh.
-                    option(value='tomatoes') Elektrik Müh.
-                    option(value='mozarella') Yazılım Müh
+                    option(value='Bilgisayar Müh.') Bilgisayar Müh.
+                    option(value='Elektrik Müh.') Elektrik Müh.
+                    option(value='Yazılım Müh') Yazılım Müh
                 .form-group
-                  select.form-control.input#signin-program
+                  select.form-control.input#signinprogram(name='signinprogram')
                     option(value='-1') Program Seçiniz
-                    option(value='mushrooms') Bilgisayar Müh.
-                    option(value='tomatoes') Elektrik Müh.
-                    option(value='mozarella') Yazılım Müh
+                    option(value='Bilgisayar Müh.') Bilgisayar Müh.
+                    option(value='Elektrik Müh.') Elektrik Müh.
+                    option(value='Yazılım Müh') Yazılım Müh
                 .form-group
-                  label.control-label.sr-only(for='signin-name') İsim
-                  input#signin-name.form-control(type='text' value='' placeholder='İsim')
+                  label.control-label.sr-only(for='signinpersonnelId') PersonnelId
+                  input.form-control#signinpersonnelId(type='text' placeholder='Personel Numarası' name='signinpersonnelId')
                 .form-group
-                  label.control-label.sr-only(for='signin-lastname') Soyisim
-                  input#signin-lastname.form-control(type='text' value='' placeholder='Soyisim')
+                  label.control-label.sr-only(for='signinname') İsim
+                  input.form-control#signinname(type='text' value='' placeholder='İsim' name='signinname')
                 .form-group
-                  label.control-label.sr-only(for='signin-phone') Telefon
-                  input#signin-phone.form-control(type='tel' value='' placeholder='Telefon')
+                  label.control-label.sr-only(for='signinlastname') Soyisim
+                  input.form-control#signinlastname(type='text' value='' placeholder='Soyisim' name='signinlastname')
                 .form-group
-                  label.control-label.sr-only(for='signin-email') Email
-                  input#signin-email.form-control(type='email' value='' placeholder='Email')
+                  label.control-label.sr-only(for='signinphone') Telefon
+                  input.form-control#signinphone(type='tel' value='' placeholder='Telefon' name='signinphone')
                 .form-group
-                  label.control-label.sr-only(for='signin-password') Şifre
-                  input#signin-password.form-control(type='password' value='itsalreadyexist' placeholder='Şifre' disabled)
+                  label.control-label.sr-only(for='signinemail') Email
+                  input.form-control#signinemail(type='email' value='' placeholder='Email' name='signinemail')
+                .form-group
+                  label.control-label.sr-only(for='signinpassword') Şifre
+                  input.form-control#signinpassword(type='password' value='itsalreadyexist' placeholder='Şifre' readonly='true' name='signinpassword')
                 .form-group.clearfix
                 button.btn.btn-primary.btn-lg.btn-block(type='submit') KAYDET
 

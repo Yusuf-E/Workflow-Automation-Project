@@ -32,13 +32,7 @@ sequelize
     }).catch(function (err) {
         console.log(err);
     })
-app.get('/admin/add-user',(req,res,next)=>{
-    res.render('admin/add-user', {
-        title: 'Admin Products',
-        path: '/admin/add-user',
-
-    })
-})
+    app.use('/admin',adminRoutes);
 
     app.use(userRoutes);
 
