@@ -21,7 +21,6 @@ router.get('/tables',userController.getTables);
 router.get('/typography',userController.getTypography);
 router.get('/icons',userController.getIcons);
 router.get('/user/add-user',userController.getAddUser);
-router.get('/users',userController.getUsers);
 router.get('/add-faculty',userController.getAddFaculty);
 router.get('/delete-faculty',userController.getDeleteFaculty);
 router.get('/add-department',userController.getAddDepartment);

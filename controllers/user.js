@@ -84,11 +84,6 @@ module.exports.getAddUser = (req,res,next)=>{
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     path:'/user/add-user'});
 }
-module.exports.getUsers = (req,res,next)=>{
-    res.render('admin/users',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/users'});
-}
 module.exports.getAddFaculty = (req,res,next)=>{
     res.render('admin/add-faculty',
     {title:'Reset | İş Akışları Otomasyon Sistemi',

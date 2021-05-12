@@ -1,4 +1,5 @@
 <!doctype html>
+include ../mixins/create-user.pug
 html(lang="en")
   include ../includes/head.pug
 // WRAPPER
@@ -25,7 +26,7 @@ html(lang="en")
                         i.fa.fa-search 
               .col-sm-6 
                 .btn-group(role='group').float-right
-                    a(href="add-user").btn.btn-primary
+                    a(href="/admin/add-user").btn.btn-primary
                       i.fa.fa-plus-circle  
                       span &nbsp; Yeni Kullanıcı Ekle  
         .row
@@ -39,56 +40,17 @@ html(lang="en")
                   thead
                     tr
                       th #
-                      th İsim
-                      th Soyisim 
-                      th Kayıt Tarihi 
-                      th Fakülte 
-                      th Bölüm 
-                      th İşlem 
+                      th.text-center İsim
+                      th.text-center Soyisim 
+                      th.text-center Kayıt Tarihi 
+                      th.text-center Fakülte 
+                      th.text-center Bölüm 
+                      th.text-center İşlem 
 
                   tbody
-                    tr
-                      td 1
-                      td 
-                        img(src='assets/img/default-user-image.png', alt="" style='width:48px;heigth:48px;')
-                        span  &nbsp;  &nbsp; Yusuf
-                      td Efe
-                      td 17.04.2021
-                      td Mühendislik 
-                      td Yazılım 
-                      td 
-                        a(href="")                           
-                          i.fa.fa-cog.primary  
-                        a(href="")  &nbsp;                            &nbsp;
-                          i.delete.fa.fa-times-circle.rediconcolor 
-                    tr
-                      td 2
-                      td 
-                        img(src='assets/img/default-user-image.png', alt="" style='width:48px;heigth:48px;')
-                        span  &nbsp;  &nbsp; Yusuf
-                      td Efe
-                      td 17.04.2021
-                      td Mühendislik 
-                      td Yazılım 
-                      td
-                        a(href="")                           
-                          i.fa.fa-cog.primary  
-                        a(href="")  &nbsp;                            &nbsp;
-                          i.delete.fa.fa-times-circle.rediconcolor 
-                    tr
-                      td 3
-                      td 
-                        img(src='assets/img/default-user-image.png', alt="" style='width:48px;heigth:48px;')
-                        span  &nbsp;  &nbsp; Yusuf
-                      td Efe
-                      td 17.04.2021
-                      td Mühendislik 
-                      td Yazılım 
-                      td 
-                        a(href="")                           
-                          i.fa.fa-cog.primary  
-                        a(href="")  &nbsp;                            &nbsp;
-                          i.delete.fa.fa-times-circle.rediconcolor 
+                    if users.length > 0
+                      each user in users 
+                        +createUser(user)
             // END TABLE STRIPED
     // END MAIN CONTENT
   // END MAIN

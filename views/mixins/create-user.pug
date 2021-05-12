@@ -1,0 +1,27 @@
+mixin createUser(user)
+    tr
+        td 1
+        td 
+            img(src='/assets/img/default-user-image.png', alt="" style='width:48px;height:48px;')
+            span  &nbsp;  &nbsp; #{user.name}
+        td 
+            img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;')
+            span  &nbsp;  &nbsp; #{user.surname}
+        td 
+            img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;')
+            span  &nbsp;  &nbsp; #{user.createdAt}
+  
+        td
+            img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;')
+            span  &nbsp;  &nbsp; #{user.faculty} 
+
+        td
+            img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;')
+            span  &nbsp;  &nbsp; #{user.department} 
+        
+        td
+            img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;') 
+            a(href="")                           
+                i.fa.fa-cog.primary  
+            a(href="")  &nbsp;                            &nbsp;
+                i.delete.fa.fa-times-circle.rediconcolor 
