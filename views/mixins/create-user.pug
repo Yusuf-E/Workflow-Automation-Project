@@ -1,6 +1,7 @@
 mixin createUser(user)
     tr
-        td 1
+        td 
+            span #{user.id}
         td 
             img(src='/assets/img/default-user-image.png', alt="" style='width:48px;height:48px;')
             span  &nbsp;  &nbsp; #{user.name}
