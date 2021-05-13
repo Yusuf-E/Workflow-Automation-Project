@@ -9,14 +9,21 @@ const Faculty = require('../models/faculty');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 module.exports.getAddUser = (req, res, next) => {
-    res.render('admin/add-user', {
-        title: 'Add-User',
-        path: '/admin/add-user',
+    Faculty.findAll()
+        .then((faculties) => {
+            res.render('admin/add-user', {
+                title: 'Add-User',
+                faculties: faculties,
+                path: '/admin/add-user',
 
-    })
+            })
+        }).catch((err) => {
+            console.log(err)
+        })
+
 }
 module.exports.postAddUser = (req, res, next) => {
-    const faculty = req.body.signinfaculty;
+    const facultyid = req.body.signinfaculty;
     const department = req.body.signindepartment;
     const program = req.body.signinprogram;
     const personnelId = req.body.signinpersonnelId;
@@ -38,22 +45,27 @@ module.exports.postAddUser = (req, res, next) => {
                         console.log('Bu personel sisteme kayıtlı');
                         return res.redirect('/admin/add-user')
                     }
-                    return User.create({ personnelId: personnelId, name: name, surname: surname, email: email, password: password, faculty: faculty, department: department, program: program, phone: phoneNumber });
+                    return User.create({ personnelId: personnelId, name: name, surname: surname, email: email, password: password, facultyId: facultyid, department: department, program: program, phone: phoneNumber });
                 })
                 .then(() => {
                     console.log('Kullanıcı Oluşturuldu.');
-                    return res.redirect('/index')
+                    return res.redirect('/admin/users')
                 })
         })
 }
 module.exports.getUserList = (req, res, next) => {
     User.findAll()
         .then((users) => {
-            res.render('admin/users', {
-                title: 'Kullanıcılar',
-                users: users,
-                path: '/admin/users'
-            })
+            let _users = users;
+            Faculty.findAll()
+                .then((faculties) => {
+                    res.render('admin/users', {
+                        title: 'Kullanıcılar',
+                        users: _users,
+                        faculties: faculties,
+                        path: '/admin/users'
+                    })
+                })
         }).catch((err) => {
             console.log(err);
         })
@@ -76,7 +88,7 @@ module.exports.postAddFaculty = (req, res, next) => {
             return Faculty.create({ name: facultyname })
         })
         .then(() => {
-            res.redirect('/index',);
+            res.redirect('/admin/faculties',);
         })
 }
 module.exports.getFacultyList = (req, res, next) => {

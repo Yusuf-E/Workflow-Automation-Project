@@ -22,19 +22,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname , 'public')));
 
+app.use('/admin',adminRoutes);
 
+app.use(userRoutes);
+
+User.belongsTo(Faculty, {
+    foreignKey: {
+        allowNull: false
+    }
+});
+Faculty.hasMany(User);
 
 sequelize
-    //.sync({ force: true })
+   //.sync({ force: true })
     .sync()
     .then( ()=> {
 
     }).catch(function (err) {
         console.log(err);
     })
-    app.use('/admin',adminRoutes);
 
-    app.use(userRoutes);
 
 app.listen(3000, function () {
     console.log("Port 3000 listening");

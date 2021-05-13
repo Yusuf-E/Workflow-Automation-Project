@@ -30,10 +30,6 @@ const User = sequelize.define('user', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    faculty: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
     department: {
         type: Sequelize.STRING,
         allowNull: false

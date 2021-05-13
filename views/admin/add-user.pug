@@ -16,9 +16,9 @@ block content
                 .form-group
                   select.form-control.input#signinfaculty(name='signinfaculty')
                     option(value='-1') Fakülte Seçiniz
-                    option(value='Mimarlık') Mimarlık
-                    option(value='Mühendislik') Mühendislik
-                    option(value='Teknoloji') Teknoloji
+                    each faculty in faculties 
+                      option(value=`${faculty.id}`) #{faculty.name}
+
                 .form-group
                   select.form-control.input#signindepartment(name='signindepartment')
                     option(value='-1') Bölüm Seçiniz
