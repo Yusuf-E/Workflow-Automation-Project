@@ -20,8 +20,6 @@ router.get('/lock-screen',userController.getLockScreen);
 router.get('/tables',userController.getTables);
 router.get('/typography',userController.getTypography);
 router.get('/icons',userController.getIcons);
-router.get('/user/add-user',userController.getAddUser);
-router.get('/add-faculty',userController.getAddFaculty);
 router.get('/delete-faculty',userController.getDeleteFaculty);
 router.get('/add-department',userController.getAddDepartment);
 router.get('/departments',userController.getDepartments);

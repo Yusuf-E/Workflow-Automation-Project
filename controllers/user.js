@@ -79,16 +79,6 @@ module.exports.getIcons = (req,res,next)=>{
     {title:'Reset | İş Akışları Otomasyon Sistemi',
     path:'/icons'});
 }
-module.exports.getAddUser = (req,res,next)=>{
-    res.render('admin/add-user',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/user/add-user'});
-}
-module.exports.getAddFaculty = (req,res,next)=>{
-    res.render('admin/add-faculty',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/add-faculty'});
-}
 module.exports.getDeleteFaculty = (req,res,next)=>{
     res.render('admin/delete-faculty',
     {title:'Reset | İş Akışları Otomasyon Sistemi',

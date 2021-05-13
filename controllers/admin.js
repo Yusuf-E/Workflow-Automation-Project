@@ -79,3 +79,15 @@ module.exports.postAddFaculty = (req, res, next) => {
             res.redirect('/index',);
         })
 }
+module.exports.getFacultyList = (req, res, next) => {
+    Faculty.findAll()
+        .then((faculties) => {
+            res.render('admin/faculties', {
+                title: 'Kurumlar/Fakülteler',
+                faculties: faculties,
+                path: '/admin/faculties'
+            })
+        }).catch((err) => {
+            console.log(err);
+        })
+}

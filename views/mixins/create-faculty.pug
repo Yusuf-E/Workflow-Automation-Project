@@ -1,0 +1,13 @@
+mixin createFaculty(faculty)
+    tr
+        td 1
+        td 
+            i.fa.fa-university(style="font-size:48px")
+        span  &nbsp;  &nbsp;
+        td 
+            img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;')
+            span  &nbsp;  &nbsp; #{faculty.name}
+        td
+            img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;') 
+            a(href="")  &nbsp;                            &nbsp;
+                i.delete.fa.fa-times-circle.rediconcolor 

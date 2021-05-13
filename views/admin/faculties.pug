@@ -1,4 +1,5 @@
 <!doctype html>
+include ../mixins/create-faculty.pug
 html(lang="en")
   include ../includes/head.pug
 // WRAPPER
@@ -32,36 +33,13 @@ html(lang="en")
                     tr
                       th #
                       th 
-                      th Fakülte 
+                      th 
+                        span(style='margin-left:30px;')  Fakülte 
                       th İşlem 
                   tbody
-                    tr
-                      td 1
-                      td 
-                        i.fa.fa-university(style="font-size:48px")
-                        span  &nbsp;  &nbsp;
-                      td Fen 
-                      td 
-                        a(href="")  &nbsp;                            &nbsp;
-                          i.delete.fa.fa-times-circle.rediconcolor 
-                    tr
-                      td 2
-                      td 
-                        i.fa.fa-university(style="font-size:48px")
-                        span  &nbsp;  &nbsp;
-                      td Mühendislik 
-                      td 
-                        a(href="")  &nbsp;                            &nbsp;
-                          i.delete.fa.fa-times-circle.rediconcolor 
-                    tr
-                      td 3
-                      td 
-                        i.fa.fa-university(style="font-size:48px")
-                        span  &nbsp;  &nbsp;
-                      td Teknoloji 
-                      td 
-                        a(href="")  &nbsp;                            &nbsp;
-                          i.delete.fa.fa-times-circle.rediconcolor 
+                    if faculties.length > 0 
+                      each faculty in faculties
+                        +createFaculty(faculty)
             // END TABLE STRIPED
     // END MAIN CONTENT
   // END MAIN
