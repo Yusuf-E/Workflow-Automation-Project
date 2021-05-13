@@ -4,6 +4,7 @@ const app = express();
 const sequelize = require('../utility/database');
 const path = require('path');
 const User = require('../models/user')
+const Faculty = require('../models/faculty');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -55,5 +56,26 @@ module.exports.getUserList = (req, res, next) => {
             })
         }).catch((err) => {
             console.log(err);
+        })
+}
+module.exports.getAddFaculty = (req, res, next) => {
+    res.render('admin/add-faculty',
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/admin/add-faculty'
+        });
+}
+module.exports.postAddFaculty = (req, res, next) => {
+    const facultyname = req.body.facultyname;
+    Faculty.findOne({ where: { name: facultyname } })
+        .then((faculty) => {
+            if (faculty) {
+                console.log('Bu personel sisteme kayıtlı');
+                return res.redirect('/admin/add-faculty')
+            }
+            return Faculty.create({ name: facultyname })
+        })
+        .then(() => {
+            res.redirect('/index',);
         })
 }

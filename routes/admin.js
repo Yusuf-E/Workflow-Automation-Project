@@ -12,5 +12,8 @@ router.post('/add-user', adminController.postAddUser);
 
 router.get('/users',adminController.getUserList);
 
+router.get('/add-faculty',adminController.getAddFaculty);
+router.post('/add-faculty',adminController.postAddFaculty);
+
 module.exports = router;
 

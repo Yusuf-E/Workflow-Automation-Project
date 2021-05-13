@@ -9,7 +9,7 @@ const path = require('path');
 
 const sequelize = require('./utility/database');
 
-
+const Faculty = require('./models/faculty');
 const User = require('./models/user');
 
 app.set('view engine', 'pug');
