@@ -22,7 +22,7 @@ router.get('/typography',userController.getTypography);
 router.get('/icons',userController.getIcons);
 router.get('/delete-faculty',userController.getDeleteFaculty);
 router.get('/add-department',userController.getAddDepartment);
-router.get('/departments',userController.getDepartments);
+
 router.get('/delete-department',userController.getDeleteDepartment);
 router.get('/faculties',userController.getFaculties);
 router.get('/flow-builder',userController.getFlowBuilder);

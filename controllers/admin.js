@@ -5,18 +5,25 @@ const sequelize = require('../utility/database');
 const path = require('path');
 const User = require('../models/user')
 const Faculty = require('../models/faculty');
+const Department = require('../models/department');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 module.exports.getAddUser = (req, res, next) => {
+    let faculties;
     Faculty.findAll()
-        .then((faculties) => {
-            res.render('admin/add-user', {
-                title: 'Add-User',
-                faculties: faculties,
-                path: '/admin/add-user',
-
-            })
+        .then((_faculties) => {
+            faculties=_faculties;
+            Department.findAll()
+                .then((departments)=>{
+                    res.render('admin/add-user', {
+                        title: 'Add-User',
+                        departments:departments,
+                        faculties:faculties,
+                        path: '/admin/add-user',
+        
+                    })
+                })
         }).catch((err) => {
             console.log(err)
         })
@@ -45,7 +52,7 @@ module.exports.postAddUser = (req, res, next) => {
                         console.log('Bu personel sisteme kayıtlı');
                         return res.redirect('/admin/add-user')
                     }
-                    return User.create({ personnelId: personnelId, name: name, surname: surname, email: email, password: password, facultyId: facultyid, department: department, program: program, phone: phoneNumber });
+                    return User.create({ personnelId: personnelId, name: name, surname: surname, email: email, password: password, facultyId: facultyid, departmentId: department, program: program, phone: phoneNumber });
                 })
                 .then(() => {
                     console.log('Kullanıcı Oluşturuldu.');
@@ -59,12 +66,17 @@ module.exports.getUserList = (req, res, next) => {
             let _users = users;
             Faculty.findAll()
                 .then((faculties) => {
-                    res.render('admin/users', {
-                        title: 'Kullanıcılar',
-                        users: _users,
-                        faculties: faculties,
-                        path: '/admin/users'
-                    })
+                    let _faculties=faculties;
+                    Department.findAll()
+                        .then((departments)=>{
+                            res.render('admin/users', {
+                                title: 'Kullanıcılar',
+                                users: _users,
+                                departments:departments,
+                                faculties: _faculties,
+                                path: '/admin/users'
+                            })
+                        })
                 })
         }).catch((err) => {
             console.log(err);
@@ -98,6 +110,45 @@ module.exports.getFacultyList = (req, res, next) => {
                 title: 'Kurumlar/Fakülteler',
                 faculties: faculties,
                 path: '/admin/faculties'
+            })
+        }).catch((err) => {
+            console.log(err);
+        })
+}
+module.exports.getAddDepartment = (req, res, next) => {
+    Faculty.findAll()
+        .then((faculties)=>{
+            res.render('admin/add-department',
+            {
+                title: 'Bölüm Ekle',
+                faculties:faculties,
+                path: '/admin/add-department'
+            });
+        })
+
+}
+module.exports.postAddDepartment = (req, res, next) => {
+    const facultyid = req.body.facultyname;
+    const departmentname = req.body.departmentname;
+    Department.findOne({ where: { name: departmentname } })
+        .then((department) => {
+            if (department) {
+                console.log('Bu departman sistemde kayıtlı');
+                return res.redirect('/admin/add-department')
+            }
+            return Department.create({ name: departmentname,facultyId:facultyid })
+        })
+        .then(() => {
+            res.redirect('/admin/departments',);
+        })
+}
+module.exports.getDepartmentList = (req, res, next) => {
+    Faculty.findAll()
+        .then((faculties) => {
+            res.render('admin/departments', {
+                title: 'Kurumlar/Fakülteler',
+                faculties: faculties,
+                path: '/admin/departments'
             })
         }).catch((err) => {
             console.log(err);

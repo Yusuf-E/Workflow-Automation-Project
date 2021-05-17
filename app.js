@@ -11,6 +11,7 @@ const sequelize = require('./utility/database');
 
 const Faculty = require('./models/faculty');
 const User = require('./models/user');
+const Department = require('./models/department');
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -32,6 +33,16 @@ User.belongsTo(Faculty, {
     }
 });
 Faculty.hasMany(User);
+
+Faculty.hasMany(Department);
+Department.belongsTo(Faculty);
+
+User.belongsTo(Department,{
+    foreignKey:{
+        allowNull:false
+    }
+});
+Department.hasMany(User);
 
 sequelize
    //.sync({ force: true })

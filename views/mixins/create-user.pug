@@ -1,4 +1,4 @@
-mixin createUser(user,faculties)
+mixin createUser(user,faculties,departments)
     tr
         td 
             span #{user.id}
@@ -20,7 +20,9 @@ mixin createUser(user,faculties)
 
         td
             img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;')
-            span  &nbsp;  &nbsp; #{user.department} 
+            each department in departments 
+                if department.id === user.departmentId
+                    span  &nbsp;  &nbsp; #{department.name} 
         
         td
             img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;') 

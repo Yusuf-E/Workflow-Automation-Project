@@ -9,17 +9,16 @@ html(lang="en")
         .content
           .logo.text-center
             i.fa.fa-building(style="font-size:100px;")
+          form(action='/admin/add-department' method='POST')
             .row(style="height:60px;margin-top:20px;")
                     .form-group
-                        select.form-control.input
-                            option(value='-1') Fakülte Seçiniz
-                            option(value='mushrooms') Mimarlık
-                            option(value='tomatoes') Mühendislik
-                            option(value='mozarella') Teknoloji
+                      select.form-control.input#facultyname(name='facultyname')
+                        option(value='-1') Fakülte Seçiniz
+                        each faculty in faculties 
+                          option(value=`${faculty.id}`) #{faculty.name}
             .row 
-                form(action='index.html')
-                  .input-group
-                    input.form-control(type='text' placeholder='Bölüm Adını giriniz')
-                    span.input-group-btn
-                      button.btn.btn-primary(type='submit') Kaydet      
+                .input-group
+                  input.form-control#departmentname(type='text' placeholder='Bölüm Adını giriniz' name='departmentname')
+                  span.input-group-btn
+                    button.btn.btn-primary(type='submit') Kaydet      
 // END WRAPPER

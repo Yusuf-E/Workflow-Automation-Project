@@ -22,9 +22,8 @@ block content
                 .form-group
                   select.form-control.input#signindepartment(name='signindepartment')
                     option(value='-1') Bölüm Seçiniz
-                    option(value='Bilgisayar Müh.') Bilgisayar Müh.
-                    option(value='Elektrik Müh.') Elektrik Müh.
-                    option(value='Yazılım Müh') Yazılım Müh
+                    each department in departments 
+                      option(value=`${department.id}`) #{department.name}
                 .form-group
                   select.form-control.input#signinprogram(name='signinprogram')
                     option(value='-1') Program Seçiniz
