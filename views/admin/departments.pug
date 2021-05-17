@@ -1,4 +1,5 @@
 <!doctype html>
+include ../mixins/create-department.pug
 html(lang="en")
   include ../includes/head.pug
 // WRAPPER
@@ -18,11 +19,10 @@ html(lang="en")
             .row(style="height:60px;")
               .col-sm-6
                     .form-group
-                        select.form-control.input
-                            option(value='-1') Fakülte Seçiniz
-                            option(value='mushrooms') Mimarlık
-                            option(value='tomatoes') Mühendislik
-                            option(value='mozarella') Teknoloji
+                      select.form-control.input#filterfaculty(name='filterfaculty')
+                        option(value='-1') Fakülte Seçiniz
+                        each faculty in faculties 
+                          option(value=`${faculty.id}`) #{faculty.name}
               .col-sm-6 
                 .btn-group(role='group').float-right
                     a(href="/admin/add-department").btn.btn-primary
@@ -45,33 +45,9 @@ html(lang="en")
                       th İşlem 
 
                   tbody
-                    tr
-                      td 1
-                      td 
-                        i.fa.fa-building(style="font-size:48px;")
-                      td Bilgisayar 
-                      td  Mühendislik
-                      td 
-                        a(href="")  &nbsp;                            &nbsp;
-                          i.delete.fa.fa-times-circle.rediconcolor 
-                    tr
-                      td 2
-                      td 
-                        i.fa.fa-building(style="font-size:48px;")
-                      td Elektrik Elektronik 
-                      td  Teknoloji 
-                      td 
-                        a(href="")  &nbsp;                            &nbsp;
-                          i.delete.fa.fa-times-circle.rediconcolor 
-                    tr
-                      td 3
-                      td 
-                        i.fa.fa-building(style="font-size:48px;")
-                      td Yazılım 
-                      td  Mühendislik
-                      td 
-                        a(href="")  &nbsp;                            &nbsp;
-                          i.delete.fa.fa-times-circle.rediconcolor 
+                    if departments.length > 0 
+                      each department in departments
+                        +createDepartment(department,faculties)
             // END TABLE STRIPED
     // END MAIN CONTENT
   // END MAIN

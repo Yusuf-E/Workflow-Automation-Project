@@ -1,0 +1,13 @@
+mixin createDepartment(department,faculties)
+    tr
+        td 1
+        td 
+            i.fa.fa-building(style="font-size:48px;")
+        td #{department.name} 
+        td  
+            each faculty in faculties 
+                if faculty.id === department.facultyId
+                    span  &nbsp;  &nbsp; #{faculty.name} 
+        td 
+            a(href="")  &nbsp;                            &nbsp;
+                i.delete.fa.fa-times-circle.rediconcolor 

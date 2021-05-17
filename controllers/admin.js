@@ -13,15 +13,15 @@ module.exports.getAddUser = (req, res, next) => {
     let faculties;
     Faculty.findAll()
         .then((_faculties) => {
-            faculties=_faculties;
+            faculties = _faculties;
             Department.findAll()
-                .then((departments)=>{
+                .then((departments) => {
                     res.render('admin/add-user', {
                         title: 'Add-User',
-                        departments:departments,
-                        faculties:faculties,
+                        departments: departments,
+                        faculties: faculties,
                         path: '/admin/add-user',
-        
+
                     })
                 })
         }).catch((err) => {
@@ -66,13 +66,13 @@ module.exports.getUserList = (req, res, next) => {
             let _users = users;
             Faculty.findAll()
                 .then((faculties) => {
-                    let _faculties=faculties;
+                    let _faculties = faculties;
                     Department.findAll()
-                        .then((departments)=>{
+                        .then((departments) => {
                             res.render('admin/users', {
                                 title: 'Kullanıcılar',
                                 users: _users,
-                                departments:departments,
+                                departments: departments,
                                 faculties: _faculties,
                                 path: '/admin/users'
                             })
@@ -117,13 +117,13 @@ module.exports.getFacultyList = (req, res, next) => {
 }
 module.exports.getAddDepartment = (req, res, next) => {
     Faculty.findAll()
-        .then((faculties)=>{
+        .then((faculties) => {
             res.render('admin/add-department',
-            {
-                title: 'Bölüm Ekle',
-                faculties:faculties,
-                path: '/admin/add-department'
-            });
+                {
+                    title: 'Bölüm Ekle',
+                    faculties: faculties,
+                    path: '/admin/add-department'
+                });
         })
 
 }
@@ -136,7 +136,7 @@ module.exports.postAddDepartment = (req, res, next) => {
                 console.log('Bu departman sistemde kayıtlı');
                 return res.redirect('/admin/add-department')
             }
-            return Department.create({ name: departmentname,facultyId:facultyid })
+            return Department.create({ name: departmentname, facultyId: facultyid })
         })
         .then(() => {
             res.redirect('/admin/departments',);
@@ -145,11 +145,16 @@ module.exports.postAddDepartment = (req, res, next) => {
 module.exports.getDepartmentList = (req, res, next) => {
     Faculty.findAll()
         .then((faculties) => {
-            res.render('admin/departments', {
-                title: 'Kurumlar/Fakülteler',
-                faculties: faculties,
-                path: '/admin/departments'
-            })
+            let _faculties=faculties;
+            Department.findAll()
+                .then((departments) => {
+                    res.render('admin/departments', {
+                        title: 'Kurumlar/Fakülteler',
+                        departments: departments,
+                        faculties: _faculties,
+                        path: '/admin/departments'
+                    })
+                })
         }).catch((err) => {
             console.log(err);
         })
