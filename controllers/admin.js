@@ -130,7 +130,7 @@ module.exports.getAddDepartment = (req, res, next) => {
 module.exports.postAddDepartment = (req, res, next) => {
     const facultyid = req.body.facultyname;
     const departmentname = req.body.departmentname;
-    Department.findOne({ where: { name: departmentname } })
+    Department.findOne({ where: { name: departmentname, facultyId:facultyid } })
         .then((department) => {
             if (department) {
                 console.log('Bu departman sistemde kayıtlı');
