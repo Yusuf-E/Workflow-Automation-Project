@@ -22,5 +22,6 @@ router.get('/departments',adminController.getDepartmentList);
 router.get('/add-department',adminController.getAddDepartment);
 router.post('/add-department',adminController.postAddDepartment);
 
+router.post('/search-department',adminController.postSearchDepartment);
 module.exports = router;
 

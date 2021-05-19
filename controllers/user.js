@@ -1,6 +1,9 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
+const User = require('../models/user')
+const Faculty = require('../models/faculty');
+const Department = require('../models/department');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -52,6 +55,7 @@ module.exports.getPages = (req,res,next)=>{
 module.exports.getProfile = (req,res,next)=>{
     res.render('user/profile',
     {title:'Reset | İş Akışları Otomasyon Sistemi',
+
     path:'/page-profile'});
 }
 module.exports.getLoginScreen = (req,res,next)=>{

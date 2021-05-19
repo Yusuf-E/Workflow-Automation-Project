@@ -8,7 +8,6 @@ const Faculty = require('../models/faculty');
 const Department = require('../models/department');
 
 app.use(bodyParser.urlencoded({ extended: true }));
-
 module.exports.getAddUser = (req, res, next) => {
     let faculties;
     Faculty.findAll()
@@ -147,15 +146,37 @@ module.exports.getDepartmentList = (req, res, next) => {
         .then((faculties) => {
             let _faculties=faculties;
             Department.findAll()
+             
                 .then((departments) => {
                     res.render('admin/departments', {
                         title: 'Kurumlar/Fakülteler',
                         departments: departments,
                         faculties: _faculties,
+                        deps:JSON.stringify(departments),
                         path: '/admin/departments'
                     })
                 })
         }).catch((err) => {
             console.log(err);
         })
+}
+module.exports.postSearchDepartment = (req,res,next)=>{
+    const departmentName = req.body.searchBar;
+    console.log(departmentName);
+    Faculty.findAll()
+    .then((faculties) => {
+        let _faculties=faculties;
+        Department.findAll({where:{name:departmentName}})
+         
+            .then((departments) => {
+                res.render('admin/departments', {
+                    title: 'Kurumlar/Fakülteler',
+                    departments: departments,
+                    faculties: _faculties,
+                    path: '/admin/departments'
+                })
+            })
+    }).catch((err) => {
+        console.log(err);
+    })
 }
