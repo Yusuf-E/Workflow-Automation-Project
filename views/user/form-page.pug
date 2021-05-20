@@ -20,9 +20,11 @@ html(lang="en")
           .img-container-inline
             a#imgzoom(href='#' target='_blank') 
               img(src="assets/img/Biçimsel diller düzeltilmiş dilekçe.jpg"  alt="" style='height:400px; width:300px; cursor: zoom-in;')
-        -for (var i = 0 ;i<approvercount;++i){
-          +createRecipient()
-        - }
+        .row 
+          form(action="/index" method="POST")
+          -for (var i = 0 ;i<approvercount;++i){
+            +createRecipient(i,users,departments,faculties)
+          - }
         .row 
           button.btn.btn-primary(type='submit' style='float:right;') Gönder      
     // END MAIN CONTENT

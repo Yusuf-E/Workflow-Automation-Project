@@ -4,146 +4,213 @@ const app = express();
 const User = require('../models/user')
 const Faculty = require('../models/faculty');
 const Department = require('../models/department');
+const Sequelize = require('sequelize');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-module.exports.getIndex1= (req,res,next)=>{
+module.exports.getIndex1 = (req, res, next) => {
     res.render('index1',
-   {title:'Home',
-    path:'/index'});
+        {
+            title: 'Home',
+            path: '/index'
+        });
 }
-module.exports.getIndex= (req,res,next)=>{
+module.exports.getIndex = (req, res, next) => {
     res.render('user/index',
-   {title:'Home',
-    path:'/index'});
+        {
+            title: 'Home',
+            path: '/index'
+        });
 }
-module.exports.getLogin= (req,res,next)=>{
+module.exports.getLogin = (req, res, next) => {
     res.render('account/page-login',
-   {title:'Giriş | İş Akışları Otomasyon Sistemi',
-    path:'/'});
+        {
+            title: 'Giriş | İş Akışları Otomasyon Sistemi',
+            path: '/'
+        });
 }
-module.exports.getResetPassword = (req,res,next)=>{
+module.exports.getResetPassword = (req, res, next) => {
     res.render('account/page-reset-password',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/reset-password'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/reset-password'
+        });
 }
-module.exports.getElements = (req,res,next)=>{
+module.exports.getElements = (req, res, next) => {
     res.render('elements',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/elements'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/elements'
+        });
 }
-module.exports.getCharts = (req,res,next)=>{
+module.exports.getCharts = (req, res, next) => {
     res.render('charts',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/charts'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/charts'
+        });
 }
-module.exports.getPanels = (req,res,next)=>{
+module.exports.getPanels = (req, res, next) => {
     res.render('panels',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/panels'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/panels'
+        });
 }
-module.exports.getNotifications = (req,res,next)=>{
+module.exports.getNotifications = (req, res, next) => {
     res.render('notifications',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/notifications'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/notifications'
+        });
 }
-module.exports.getPages = (req,res,next)=>{
+module.exports.getPages = (req, res, next) => {
     res.render('pages',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/pages'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/pages'
+        });
 }
-module.exports.getProfile = (req,res,next)=>{
+module.exports.getProfile = (req, res, next) => {
     res.render('user/profile',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
 
-    path:'/page-profile'});
+            path: '/page-profile'
+        });
 }
-module.exports.getLoginScreen = (req,res,next)=>{
+module.exports.getLoginScreen = (req, res, next) => {
     res.render('page-login',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/page-login'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/page-login'
+        });
 }
-module.exports.getLockScreen = (req,res,next)=>{
+module.exports.getLockScreen = (req, res, next) => {
     res.render('lock-screen',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/lock-screen'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/lock-screen'
+        });
 }
-module.exports.getTables = (req,res,next)=>{
+module.exports.getTables = (req, res, next) => {
     res.render('tables',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/tables'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/tables'
+        });
 }
-module.exports.getTypography = (req,res,next)=>{
+module.exports.getTypography = (req, res, next) => {
     res.render('typography',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/typography'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/typography'
+        });
 }
-module.exports.getIcons = (req,res,next)=>{
+module.exports.getIcons = (req, res, next) => {
     res.render('icons',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/icons'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/icons'
+        });
 }
-module.exports.getDeleteFaculty = (req,res,next)=>{
+module.exports.getDeleteFaculty = (req, res, next) => {
     res.render('admin/delete-faculty',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/delete-faculty'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/delete-faculty'
+        });
 }
-module.exports.getAddDepartment = (req,res,next)=>{
+module.exports.getAddDepartment = (req, res, next) => {
     res.render('admin/add-department',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/add-department'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/add-department'
+        });
 }
-module.exports.getDeleteDepartment = (req,res,next)=>{
+module.exports.getDeleteDepartment = (req, res, next) => {
     res.render('admin/delete-department',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/delete-department'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/delete-department'
+        });
 }
-module.exports.getFaculties = (req,res,next)=>{
+module.exports.getFaculties = (req, res, next) => {
     res.render('admin/faculties',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/faculties'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/faculties'
+        });
 }
-module.exports.getDepartments = (req,res,next)=>{
+module.exports.getDepartments = (req, res, next) => {
     res.render('admin/departments',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/departments'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/departments'
+        });
 }
-module.exports.getFlowBuilder = (req,res,next)=>{
+module.exports.getFlowBuilder = (req, res, next) => {
     res.render('user/form',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    path:'/flow-builder'});
+        {
+            title: 'Reset | İş Akışları Otomasyon Sistemi',
+            path: '/flow-builder'
+        });
 }
-module.exports.postFlowBuilder = (req,res,next)=>{
+module.exports.postFlowBuilder = (req, res, next) => {
     const approvercount = req.body.approvercount;
     const file = req.body.formfile;
-    console.log(approvercount+file);
-    res.render('user/form-page',
-    {title:'Reset | İş Akışları Otomasyon Sistemi',
-    approvercount:approvercount,
-    file:file,
-    path:'/form-page'});
+
+    Faculty.findAll({ order: [['name', 'ASC']] })
+        .then((faculties) => {
+            let _faculties = faculties;
+            Department.findAll({ order: [['name', 'ASC']], attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('name')), 'name'],] })
+                .then((departments) => {
+                    let _departments = departments;
+                    console.log(departments);
+                    User.findAll({ order: [['name', 'ASC']] })
+                        .then((users) => {
+                            res.render('user/form-page', {
+                                title: 'Kurumlar/Fakülteler',
+                                departments: _departments,
+                                faculties: _faculties,
+                                users: users,
+                                approvercount: approvercount,
+                                path: '/flow-builder'
+                            })
+                        })
+                })
+        }).catch((err) => {
+            console.log(err);
+        })
+
+
+
 }
-module.exports.getFormPage = (req,res,next)=>{
+module.exports.getFormPage = (req, res, next) => {
     res.render('user/form-page',
-    {title:'Form',
-        path:'/form-page'})
+        {
+            title: 'Form',
+            path: '/form-page'
+        })
 }
-module.exports.getTasks = (req,res,next)=>{
+module.exports.getTasks = (req, res, next) => {
     res.render('user/tasks',
-    {title:'Form',
-        path:'/tasks'})
+        {
+            title: 'Form',
+            path: '/tasks'
+        })
 }
-module.exports.getTask = (req,res,next)=>{
+module.exports.getTask = (req, res, next) => {
     res.render('user/task-detail',
-   { title:'Task',path:'/task-detail'})
+        { title: 'Task', path: '/task-detail' })
 }
-module.exports.getFlows = (req,res,next)=>{
-    res.render('user/flows',{
-        title:'Flows',path:'/flows'
+module.exports.getFlows = (req, res, next) => {
+    res.render('user/flows', {
+        title: 'Flows', path: '/flows'
     })
 }
-module.exports.getFlow = (req,res,next)=>{
-    res.render('user/flow-detail',{
-        title:'Flows',path:'/flow'
+module.exports.getFlow = (req, res, next) => {
+    res.render('user/flow-detail', {
+        title: 'Flows', path: '/flow'
     })
 }
