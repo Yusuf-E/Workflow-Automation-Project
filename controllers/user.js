@@ -8,25 +8,12 @@ const Sequelize = require('sequelize');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-module.exports.getIndex1 = (req, res, next) => {
-    res.render('index1',
-        {
-            title: 'Home',
-            path: '/index'
-        });
-}
 module.exports.getIndex = (req, res, next) => {
     res.render('user/index',
         {
             title: 'Home',
-            path: '/index'
-        });
-}
-module.exports.getLogin = (req, res, next) => {
-    res.render('account/page-login',
-        {
-            title: 'Giriş | İş Akışları Otomasyon Sistemi',
-            path: '/'
+            path: '/index',
+            isAuthenticated:req.isAuthenticated
         });
 }
 module.exports.getResetPassword = (req, res, next) => {
@@ -79,13 +66,7 @@ module.exports.getProfile = (req, res, next) => {
             path: '/page-profile'
         });
 }
-module.exports.getLoginScreen = (req, res, next) => {
-    res.render('page-login',
-        {
-            title: 'Reset | İş Akışları Otomasyon Sistemi',
-            path: '/page-login'
-        });
-}
+
 module.exports.getLockScreen = (req, res, next) => {
     res.render('lock-screen',
         {

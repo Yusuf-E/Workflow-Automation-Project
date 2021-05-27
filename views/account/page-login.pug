@@ -12,13 +12,13 @@ html(lang="en")
               .logo.text-center
                 img(src='assets/img/uni_logo.gif' alt='Logo')
               p.lead Hesabınıza Giriş Yapın
-            form.form-auth-small(action='/index')
+            form.form-auth-small(action='/login' method='POST')
               .form-group
-                label.control-label.sr-only(for='signin-email') Email
-                input#signin-email.form-control(type='email' value='' placeholder='Email')
+                label.control-label.sr-only(for='email') Email
+                input#email.form-control(type='email' value='' placeholder='Email' name='email')
               .form-group
-                label.control-label.sr-only(for='signin-password') Şifre
-                input#signin-password.form-control(type='password' value='' placeholder='Şifre')
+                label.control-label.sr-only(for='password') Şifre
+                input#password.form-control(type='password' value='' placeholder='Şifre' name='password')
               .form-group.clearfix
               button.btn.btn-primary.btn-lg.btn-block(type='submit') GİRİŞ
               .bottom

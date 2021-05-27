@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
-
+const session = require('express-session');
+const multer = require('multer');
 
 
 
@@ -18,14 +19,15 @@ app.set('views', './views');
 
 const adminRoutes = require('./routes/admin');
 const userRoutes = require('./routes/user');
+const accountRoutes = require('./routes/account');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(multer().single('formfile'));
 app.use(express.static(path.join(__dirname , 'public')));
 
 app.use('/admin',adminRoutes);
-
 app.use(userRoutes);
+app.use(accountRoutes);
 
 User.belongsTo(Faculty, {
     foreignKey: {
