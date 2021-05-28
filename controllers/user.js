@@ -9,11 +9,12 @@ const Sequelize = require('sequelize');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 module.exports.getIndex = (req, res, next) => {
+    console.log(req.session.isAuthenticated)
     res.render('user/index',
         {
             title: 'Home',
             path: '/index',
-            isAuthenticated:req.isAuthenticated
+            isAuthenticated:req.session.isAuthenticated
         });
 }
 module.exports.getResetPassword = (req, res, next) => {

@@ -15,11 +15,11 @@ module.exports.postLogin = (req,res,next)=>{
     const password = req.body.password;
     console.log(email+password);
     if((email == 'email@gmail.com')&&(password=='1234')){
-        req.isAuthenticated= true;
+        req.session.isAuthenticated= true;
         res.redirect('/index');
     }
     else{
-        req.isAuthenticated=false;
+        req.session.isAuthenticated=false;
         res.redirect('/')
     }
 }
