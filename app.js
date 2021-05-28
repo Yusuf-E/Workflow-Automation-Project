@@ -13,6 +13,8 @@ const sequelize = require('./utility/database');
 const Faculty = require('./models/faculty');
 const User = require('./models/user');
 const Department = require('./models/department');
+const Flow = require('./models/flow');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'pug');
@@ -43,11 +45,11 @@ const accountRoutes = require('./routes/account');
 
 
 app.use(multer().single('formfile'));
-app.use(express.static(path.join(__dirname , 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.use('/admin',adminRoutes);
+app.use('/admin', adminRoutes);
 app.use(userRoutes);
 app.use(accountRoutes);
 
@@ -64,17 +66,17 @@ Faculty.hasMany(User);
 Faculty.hasMany(Department);
 Department.belongsTo(Faculty);
 
-User.belongsTo(Department,{
-    foreignKey:{
-        allowNull:false
+User.belongsTo(Department, {
+    foreignKey: {
+        allowNull: false
     }
 });
 Department.hasMany(User);
 
 sequelize
-   //.sync({ force: true })
+    //.sync({ force: true })
     .sync()
-    .then( ()=> {
+    .then(() => {
 
     }).catch(function (err) {
         console.log(err);
