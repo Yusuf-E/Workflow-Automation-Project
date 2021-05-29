@@ -14,7 +14,7 @@ module.exports.getIndex = (req, res, next) => {
         {
             title: 'Home',
             path: '/index',
-            isAuthenticated:req.session.isAuthenticated
+            isAuthenticated: req.session.isAuthenticated
         });
 }
 module.exports.getResetPassword = (req, res, next) => {
@@ -157,7 +157,7 @@ module.exports.postFlowBuilder = (req, res, next) => {
                                 departments: _departments,
                                 faculties: _faculties,
                                 users: users,
-                                image:file,
+                                image: file,
                                 approvercount: approvercount,
                                 path: '/flow-builder'
                             })
@@ -166,8 +166,6 @@ module.exports.postFlowBuilder = (req, res, next) => {
         }).catch((err) => {
             console.log(err);
         })
-
-
 
 }
 module.exports.getFormPage = (req, res, next) => {

@@ -14,6 +14,8 @@ const Faculty = require('./models/faculty');
 const User = require('./models/user');
 const Department = require('./models/department');
 const Flow = require('./models/flow');
+const Task = require('./models/task');
+const TaskItem = require('./models/taskitem');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -44,18 +46,18 @@ const userRoutes = require('./routes/user');
 const accountRoutes = require('./routes/account');
 
 const storage = multer.diskStorage({
-    destination: function(req,file,cb){
-        cb(null,'./public/assets/fileimg')
+    destination: function (req, file, cb) {
+        cb(null, './public/assets/fileimg')
     },
-    filename: function(req,file,cb){
-        cb(null,file.fieldname+'-'+Date.now()+path.extname(file.originalname));
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 })
 
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(multer({storage:storage}).single('formfile'));
+app.use(multer({ storage: storage }).single('formfile'));
 
 app.use('/admin', adminRoutes);
 app.use(userRoutes);
