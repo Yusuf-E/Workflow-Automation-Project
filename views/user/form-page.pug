@@ -15,11 +15,11 @@ html(lang="en")
       .container-fluid
         #hidden(style='z-index:9999;display:none;background-color:#fff;position:fixed;height:100%;width:100%;left: 0px;top: 0px;text-align: center;')
           p
-           img.cancel.center(src="assets/img/Biçimsel diller düzeltilmiş dilekçe.jpg"  alt="" style='width:50%; height:700px;')
+           img.cancel.center(src=`assets/fileimg/${image.filename}`  alt="" style='width:50%; height:700px;')
         .row(style='height:400px;')
           .img-container-inline
             a#imgzoom(href='#' target='_blank') 
-              img(src="assets/img/Biçimsel diller düzeltilmiş dilekçe.jpg"  alt="" style='height:400px; width:300px; cursor: zoom-in;')
+              img(src=`assets/fileimg/${image.filename}`   alt="" style='height:400px; width:300px; cursor: zoom-in;')
         .row 
           form(action="/index" method="POST")
           -for (var i = 0 ;i<approvercount;++i){

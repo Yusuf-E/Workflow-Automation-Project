@@ -140,8 +140,9 @@ module.exports.getFlowBuilder = (req, res, next) => {
 }
 module.exports.postFlowBuilder = (req, res, next) => {
     const approvercount = req.body.approvercount;
-    const file = req.body.formfile;
-
+    const file = req.file;
+    console.log(file)
+    console.log(file.filename)
     Faculty.findAll({ order: [['name', 'ASC']] })
         .then((faculties) => {
             let _faculties = faculties;
@@ -156,6 +157,7 @@ module.exports.postFlowBuilder = (req, res, next) => {
                                 departments: _departments,
                                 faculties: _faculties,
                                 users: users,
+                                image:file,
                                 approvercount: approvercount,
                                 path: '/flow-builder'
                             })

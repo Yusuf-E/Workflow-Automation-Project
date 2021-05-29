@@ -43,11 +43,19 @@ const adminRoutes = require('./routes/admin');
 const userRoutes = require('./routes/user');
 const accountRoutes = require('./routes/account');
 
+const storage = multer.diskStorage({
+    destination: function(req,file,cb){
+        cb(null,'./public/assets/fileimg')
+    },
+    filename: function(req,file,cb){
+        cb(null,file.fieldname+'-'+Date.now()+path.extname(file.originalname));
+    }
+})
 
-app.use(multer().single('formfile'));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.use(multer({storage:storage}).single('formfile'));
 
 app.use('/admin', adminRoutes);
 app.use(userRoutes);
