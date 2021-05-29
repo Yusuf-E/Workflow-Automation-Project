@@ -83,6 +83,8 @@ User.belongsTo(Department, {
 });
 Department.hasMany(User);
 
+Task.belongsToMany(Flow, { through: TaskItem });
+Flow.belongsToMany(Task, { through: TaskItem });
 sequelize
     //.sync({ force: true })
     .sync()

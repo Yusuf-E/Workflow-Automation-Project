@@ -168,6 +168,16 @@ module.exports.postFlowBuilder = (req, res, next) => {
         })
 
 }
+module.exports.postFlow = (req,res,next)=>{
+const image = req.body.imageUrl;
+const approverCount = req.body.approvercount;
+
+console.log(image);
+console.log(approverCount);
+
+
+
+}
 module.exports.getFormPage = (req, res, next) => {
     res.render('user/form-page',
         {

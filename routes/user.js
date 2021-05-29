@@ -27,6 +27,8 @@ router.get('/faculties', userController.getFaculties);
 router.get('/flow-builder', userController.getFlowBuilder);
 router.get('/form-page', userController.getFormPage);
 router.post('/flow-builder', userController.postFlowBuilder);
+router.post('/flow',userController.postFlow);
+
 router.get('/tasks', userController.getTasks);
 router.get('/task-detail', userController.getTask);
 router.get('/flows', userController.getFlows);
