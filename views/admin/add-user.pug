@@ -23,7 +23,7 @@ block content
                   select.form-control.input#signindepartment(name='signindepartment')
                     option(value='-1') Bölüm Seçiniz
                     each department in departments 
-                      option(value=`${department.id}`) #{department.name}
+                      option(value=`${department.name}`) #{department.name}
                 .form-group
                   label.control-label.sr-only(for='signinpersonnelId') PersonnelId
                   input.form-control#signinpersonnelId(type='text' placeholder='Personel Numarası' name='signinpersonnelId')
