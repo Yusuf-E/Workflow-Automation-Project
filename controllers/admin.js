@@ -3,11 +3,9 @@ const express = require('express');
 const app = express();
 const sequelize = require('../utility/database');
 const path = require('path');
-const bcrypt = require('bcrypt');
 const User = require('../models/user')
 const Faculty = require('../models/faculty');
 const Department = require('../models/department');
-const Sequelize = require('sequelize');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 module.exports.getAddUser = (req, res, next) => {
@@ -15,10 +13,8 @@ module.exports.getAddUser = (req, res, next) => {
     Faculty.findAll()
         .then((_faculties) => {
             faculties = _faculties;
-            Department.findAll({ order: [['name', 'ASC']], attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('name')), 'name'],] })
-            
+            Department.findAll()
                 .then((departments) => {
-                    console.log(departments);
                     res.render('admin/add-user', {
                         title: 'Add-User',
                         departments: departments,
@@ -33,17 +29,15 @@ module.exports.getAddUser = (req, res, next) => {
 
 }
 module.exports.postAddUser = (req, res, next) => {
-    let _user,_hashedPassword;
     const facultyid = req.body.signinfaculty;
-    const departmentname = req.body.signindepartment;
-    console.log(departmentname);
+    const department = req.body.signindepartment;
     const program = req.body.signinprogram;
     const personnelId = req.body.signinpersonnelId;
     const name = req.body.signinname;
     const surname = req.body.signinlastname;
     const phoneNumber = req.body.signinphone;
     const email = req.body.signinemail;
-    const password = personnelId+name+surname;
+    const password = req.body.signinpassword;
 
     User.findOne({ where: { personnelId: personnelId } })
         .then((user) => {
@@ -57,35 +51,11 @@ module.exports.postAddUser = (req, res, next) => {
                         console.log('Bu personel sisteme kayıtlı');
                         return res.redirect('/admin/add-user')
                     }
-                    return bcrypt.hash(password,10)
-                   
+                    return User.create({ personnelId: personnelId, name: name, surname: surname, email: email, password: password, facultyId: facultyid, departmentId: department, program: program, phone: phoneNumber });
                 })
-                .then((hashedPassword) => {
-                    _hashedPassword = hashedPassword;
-                    return hashedPassword;
-                   
-                })
-                .then((hashedPassword)=>{
-                    Department.findOne({ where: { name: departmentname, facultyId:facultyid}})
-                    .then((department)=>{
-                        console.log(department.id);
-                        return User.create({ personnelId: personnelId, name: name, surname: surname, email: email, password: _hashedPassword, facultyId: facultyid, departmentId: department.id, program: program, phone: phoneNumber });
-
-                    })
-                    .then((user)=>{
-                        _user = user;
-                        return user.getTask();
-                    })
-                    .then((task)=>{
-                        if(!task){
-                            return _user.createTask();
-                        }
-                        return task;
-                    })
-                    .then((result)=>{
-                        console.log('Kullanıcı Oluşturuldu.');
-                        res.redirect('/admin/add-user')
-                    })
+                .then(() => {
+                    console.log('Kullanıcı Oluşturuldu.');
+                    return res.redirect('/admin/users')
                 })
         })
 }
@@ -175,7 +145,8 @@ module.exports.getDepartmentList = (req, res, next) => {
     Faculty.findAll()
         .then((faculties) => {
             let _faculties=faculties;
-            Department.findAll()       
+            Department.findAll()
+             
                 .then((departments) => {
                     res.render('admin/departments', {
                         title: 'Kurumlar/Fakülteler',
