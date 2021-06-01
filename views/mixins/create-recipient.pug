@@ -9,9 +9,9 @@ mixin createRecipient(i,users,departments,faculties)
             select.form-control.input(id="department"+i name='department'+i)
                     option(value='-1') Bölüm Seçiniz
                     each department in departments 
-                        option(value=`${department.id}`) #{department.name}
+                        option(value=`${department.name}`) #{department.name}
         .form-group.col-sm-4                
             select.form-control.input(id="personal"+i name='personal'+i)
                     option(value='-1') Kullanıcı Seçiniz
                     each user in users 
-                        option(value=`${user.id}`) #{user.name + " " +user.surname}
+                        option(value=`${user.nameSurname}`) #{user.nameSurname}

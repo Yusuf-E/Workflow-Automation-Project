@@ -4,12 +4,11 @@ mixin createUser(user,faculties,departments)
             span #{user.id}
         td 
             img(src='/assets/img/default-user-image.png', alt="" style='width:48px;height:48px;')
-            span  &nbsp;  &nbsp; #{user.name}
         td 
             img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;')
-            span  &nbsp;  &nbsp; #{user.surname}
+            span  &nbsp;  &nbsp; #{user.nameSurname}
         td 
-            img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;')
+            img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px; margin-left:48px;')
             span  &nbsp;  &nbsp; #{user.createdAt}
   
         td

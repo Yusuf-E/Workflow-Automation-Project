@@ -6,14 +6,15 @@ const path = require('path');
 const User = require('../models/user')
 const Faculty = require('../models/faculty');
 const Department = require('../models/department');
-
+const bcrypt = require('bcrypt');
+const Sequelize = require('sequelize');
 app.use(bodyParser.urlencoded({ extended: true }));
 module.exports.getAddUser = (req, res, next) => {
     let faculties;
     Faculty.findAll()
         .then((_faculties) => {
             faculties = _faculties;
-            Department.findAll()
+            Department.findAll({ order: [['name', 'ASC']], attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('name')), 'name'],] })
                 .then((departments) => {
                     res.render('admin/add-user', {
                         title: 'Add-User',
@@ -29,15 +30,17 @@ module.exports.getAddUser = (req, res, next) => {
 
 }
 module.exports.postAddUser = (req, res, next) => {
+    let _user,_hashedPassword;
     const facultyid = req.body.signinfaculty;
-    const department = req.body.signindepartment;
+    const departmentname = req.body.signindepartment;
+    console.log(departmentname);
     const program = req.body.signinprogram;
     const personnelId = req.body.signinpersonnelId;
     const name = req.body.signinname;
     const surname = req.body.signinlastname;
     const phoneNumber = req.body.signinphone;
     const email = req.body.signinemail;
-    const password = req.body.signinpassword;
+    const password = personnelId+name+surname;
 
     User.findOne({ where: { personnelId: personnelId } })
         .then((user) => {
@@ -51,11 +54,34 @@ module.exports.postAddUser = (req, res, next) => {
                         console.log('Bu personel sisteme kayıtlı');
                         return res.redirect('/admin/add-user')
                     }
-                    return User.create({ personnelId: personnelId, name: name, surname: surname, email: email, password: password, facultyId: facultyid, departmentId: department, program: program, phone: phoneNumber });
+                    return bcrypt.hash(password,10)
                 })
-                .then(() => {
-                    console.log('Kullanıcı Oluşturuldu.');
-                    return res.redirect('/admin/users')
+                .then((hashedPassword) => {
+                    _hashedPassword = hashedPassword;
+                    return hashedPassword;
+
+                })
+                .then((hashedPassword)=>{
+                    Department.findOne({ where: { name: departmentname, facultyId:facultyid}})
+                    .then((department)=>{
+                        console.log(department.id);
+                        return User.create({ personnelId: personnelId, nameSurname: name+" "+surname, email: email, password: _hashedPassword, facultyId: facultyid, departmentId: department.id, program: program, phone: phoneNumber });
+
+                    })
+                    .then((user)=>{
+                        _user = user;
+                        return user.getTask();
+                    })
+                    .then((task)=>{
+                        if(!task){
+                            return _user.createTask();
+                        }
+                        return task;
+                    })
+                    .then((result)=>{
+                        console.log('Kullanıcı Oluşturuldu.');
+                        res.redirect('/admin/users')
+                    })
                 })
         })
 }

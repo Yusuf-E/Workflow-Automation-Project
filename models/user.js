@@ -13,11 +13,7 @@ const User = sequelize.define('user', {
         type:Sequelize.STRING,
         allowNull:false,
     },
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    surname: {
+    nameSurname: {
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -29,10 +25,6 @@ const User = sequelize.define('user', {
     password: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    program: {
-        type: Sequelize.STRING,
-        allowNull: true
     },
     phone: {
         type: Sequelize.STRING,

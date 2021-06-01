@@ -11,8 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 module.exports.getIndex = (req, res, next) => {
     console.log(req.session.isAuthenticated)
     res.render('user/index',
-        {
-            title: 'Home',
+        {   title: 'Home',
             path: '/index',
             isAuthenticated: req.session.isAuthenticated
         });
@@ -150,7 +149,7 @@ module.exports.postFlowBuilder = (req, res, next) => {
                 .then((departments) => {
                     let _departments = departments;
                     console.log(departments);
-                    User.findAll({ order: [['name', 'ASC']] })
+                    User.findAll({ order: [['nameSurname', 'ASC']], attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('nameSurname')), 'nameSurname'],] })
                         .then((users) => {
                             res.render('user/form-page', {
                                 title: 'Kurumlar/Fakülteler',
@@ -169,11 +168,19 @@ module.exports.postFlowBuilder = (req, res, next) => {
 
 }
 module.exports.postFlow = (req,res,next)=>{
-const image = req.body.imageUrl;
+const file = req.body.imageUrl;
 const approverCount = req.body.approvercount;
+let faculty,department,user,facultyid ;
+k='faculty'
+console.log(file+approverCount);
+for(var i =0;i<approverCount;i++){
+    faculty=req.body['faculty'+i]
+    department = req.body['department'+i];
+    user = req.body['personal'+i];
+    console.log(faculty+department+user);
+}
 
-console.log(image);
-console.log(approverCount);
+
 
 
 
