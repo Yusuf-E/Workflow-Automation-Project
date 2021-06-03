@@ -1,15 +1,15 @@
 mixin createRecipient(i,users,departments,faculties) 
     .row
         .form-group.col-sm-4 
-            select.form-control.input(id="faculty"+i name='faculty'+i)
-                    option(value='-1') Fakülte Seçiniz
+            select.form-control.input(id="faculty"+i name='faculty'+i onchange="filterDeps(this.options[0].value)")
+                    option(value=-1*i id='num') Fakülte Seçiniz
                     each faculty in faculties 
                         option(value=`${faculty.id}`) #{faculty.name}
         .form-group.col-sm-4 
-            select.form-control.input(id="department"+i name='department'+i)
-                    option(value='-1') Bölüm Seçiniz
+            select.form-control.input(id="department"+i name='department'+i onchange="filterUsers(this.options[0].value)")
+                    option(value=-1*i id='num') Bölüm Seçiniz
                     each department in departments 
-                        option(value=`${department.name}`) #{department.name}
+                        option(value=`${department.id}`) #{department.name}
         .form-group.col-sm-4                
             select.form-control.input(id="personal"+i name='personal'+i)
                     option(value='-1') Kullanıcı Seçiniz

@@ -30,6 +30,8 @@ html(lang="en")
               - }
 
             .form-group 
+              input#hiddenusers(type="hidden" value=users name='hiddenusers')
+              input#hiddendeps(type="hidden" value=departments name='hiddendeps')
               input#approvercount(type="hidden" value=i name='approvercount')
               input#imageUrl(type="hidden" value=image name='imageUrl')  
               button.btn.btn-primary(type='submit' style='float:right;') Gönder    
@@ -51,3 +53,48 @@ script(type="text/javascript").
         $("#hidden").hide();
     })
   });
+
+script(type='text/javascript').
+  function filterDeps( num ){
+    console.log(num);
+    var facultyid = document.getElementById("faculty"+(-1*num)).value;
+    var count = document.getElementById("approvercount").value;
+    var deps = document.getElementById("hiddendeps").value;
+    var deptselect=document.getElementById("department"+(-1*num))
+    deptselect.options.length = 1;
+    console.log(deptselect);
+    obj = JSON.parse(deps);
+    console.log(obj)
+    for( departments in obj){
+
+    console.log(obj[departments])
+    if(facultyid == obj[departments].facultyId){
+    
+    deptselect.options[deptselect.options.length]=new Option(obj[departments].name,obj[departments].id,departments)
+    }
+
+    }
+
+  }
+script(type='text/javascript').
+  function filterUsers( num ){
+    console.log(num);
+    var departmentid = document.getElementById("department"+(-1*num)).value;
+    var count = document.getElementById("approvercount").value;
+    var user = document.getElementById("hiddenusers").value;
+    var userselect=document.getElementById("personal"+(-1*num))
+    userselect.options.length = 1;
+    console.log(userselect);
+    obj = JSON.parse(user);
+    console.log(obj)
+    for( users in obj){
+
+    console.log(obj[users])
+    if(departmentid == obj[users].departmentId){
+    
+    userselect.options[userselect.options.length]=new Option(obj[users].nameSurname,obj[users].id,users)
+    }
+
+    }
+
+  }

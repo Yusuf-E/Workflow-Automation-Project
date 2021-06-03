@@ -145,11 +145,11 @@ module.exports.postFlowBuilder = (req, res, next) => {
     Faculty.findAll({ order: [['name', 'ASC']] })
         .then((faculties) => {
             let _faculties = faculties;
-            Department.findAll({ order: [['name', 'ASC']], attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('name')), 'name'],] })
+            Department.findAll({ order: [['name', 'ASC']],})
                 .then((departments) => {
                     let _departments = departments;
                     console.log(departments);
-                    User.findAll({ order: [['nameSurname', 'ASC']], attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('nameSurname')), 'nameSurname'],] })
+                    User.findAll({ order: [['nameSurname', 'ASC']],})
                         .then((users) => {
                             res.render('user/form-page', {
                                 title: 'Kurumlar/Fakülteler',
@@ -170,14 +170,29 @@ module.exports.postFlowBuilder = (req, res, next) => {
 module.exports.postFlow = (req,res,next)=>{
 const file = req.body.imageUrl;
 const approverCount = req.body.approvercount;
-let faculty,department,user,facultyid ;
+
 k='faculty'
 console.log(file+approverCount);
 for(var i =0;i<approverCount;i++){
-    faculty=req.body['faculty'+i]
-    department = req.body['department'+i];
-    user = req.body['personal'+i];
-    console.log(faculty+department+user);
+    facultyid=req.body['faculty'+i]
+    departmentname = req.body['department'+i];
+    username = req.body['personal'+i];
+    Faculty.findOne({ where: { id: facultyid } })
+        .then((faculty)=>{
+            _faculty = faculty;
+            console.log(faculty.id);
+            Department.findOne({ where: { facultyId: faculty.id, name:departmentname } })
+                .then((department)=>{
+                    console.log(department.id);
+                    _department = department;
+                    User.findOne({ where: { facultyId: _faculty.id, departmentId: department.id, nameSurname: username } })
+                        .then((user)=>{
+                            console.log(user);
+                        })
+                })
+        })
+        
+
 }
 
 
