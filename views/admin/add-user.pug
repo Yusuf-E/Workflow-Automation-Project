@@ -1,50 +1,49 @@
 <!doctype html>
-if isAuthenticated  
-  html(lang="en")
-    include ../includes/head.pug
-  // WRAPPER
-  block content
-    #wrapper
-      .vertical-align-wrap
-        .vertical-align-middle
-          .auth-box(style='height:100%;')
-            .left.text-center 
-              .content
-                .header
-                  .logo.text-center
-                    img(src='/assets/img/uni_logo.gif' alt='Logo' style='width:72px; heigth:72px;')
-                form.form-auth-small(action='/admin/add-user' method='POST')
-                  .form-group
-                    select.form-control.input#signinfaculty(name='signinfaculty')
-                      option(value='-1') Fakülte Seçiniz
-                      each faculty in faculties 
-                        option(value=`${faculty.id}`) #{faculty.name}
+html(lang="en")
+  include ../includes/head.pug
+// WRAPPER
+block content
+  #wrapper
+    .vertical-align-wrap
+      .vertical-align-middle
+        .auth-box(style='height:100%;')
+          .left.text-center 
+            .content
+              .header
+                .logo.text-center
+                  img(src='/assets/img/uni_logo.gif' alt='Logo' style='width:72px; heigth:72px;')
+              form.form-auth-small(action='/admin/add-user' method='POST')
+                .form-group
+                  select.form-control.input#signinfaculty(name='signinfaculty')
+                    option(value='-1') Fakülte Seçiniz
+                    each faculty in faculties 
+                      option(value=`${faculty.id}`) #{faculty.name}
 
-                  .form-group
-                    select.form-control.input#signindepartment(name='signindepartment')
-                      option(value='-1') Bölüm Seçiniz
-                      each department in departments 
-                        option(value=`${department.name}`) #{department.name}
-                  .form-group
-                    label.control-label.sr-only(for='signinpersonnelId') PersonnelId
-                    input.form-control#signinpersonnelId(type='text' placeholder='Personel Numarası' name='signinpersonnelId')
-                  .form-group
-                    label.control-label.sr-only(for='signinname') İsim
-                    input.form-control#signinname(type='text' value='' placeholder='İsim' name='signinname')
-                  .form-group
-                    label.control-label.sr-only(for='signinlastname') Soyisim
-                    input.form-control#signinlastname(type='text' value='' placeholder='Soyisim' name='signinlastname')
-                  .form-group
-                    label.control-label.sr-only(for='signinphone') Telefon
-                    input.form-control#signinphone(type='tel' value='' placeholder='Telefon' name='signinphone')
-                  .form-group
-                    label.control-label.sr-only(for='signinemail') Email
-                    input.form-control#signinemail(type='email' value='' placeholder='Email' name='signinemail')
-                  .form-group
-                    label.control-label.sr-only(for='signinpassword') Şifre
-                    input.form-control#signinpassword(type='password' value='itsalreadyexist' placeholder='Şifre' readonly='true' name='signinpassword')
-                  .form-group.clearfix
-                  button.btn.btn-primary.btn-lg.btn-block(type='submit') KAYDET
+                .form-group
+                  select.form-control.input#signindepartment(name='signindepartment')
+                    option(value='-1') Bölüm Seçiniz
+                    each department in departments 
+                      option(value=`${department.name}`) #{department.name}
+                .form-group
+                  label.control-label.sr-only(for='signinpersonnelId') PersonnelId
+                  input.form-control#signinpersonnelId(type='text' placeholder='Personel Numarası' name='signinpersonnelId')
+                .form-group
+                  label.control-label.sr-only(for='signinname') İsim
+                  input.form-control#signinname(type='text' value='' placeholder='İsim' name='signinname')
+                .form-group
+                  label.control-label.sr-only(for='signinlastname') Soyisim
+                  input.form-control#signinlastname(type='text' value='' placeholder='Soyisim' name='signinlastname')
+                .form-group
+                  label.control-label.sr-only(for='signinphone') Telefon
+                  input.form-control#signinphone(type='tel' value='' placeholder='Telefon' name='signinphone')
+                .form-group
+                  label.control-label.sr-only(for='signinemail') Email
+                  input.form-control#signinemail(type='email' value='' placeholder='Email' name='signinemail')
+                .form-group
+                  label.control-label.sr-only(for='signinpassword') Şifre
+                  input.form-control#signinpassword(type='password' value='itsalreadyexist' placeholder='Şifre' readonly='true' name='signinpassword')
+                .form-group.clearfix
+                button.btn.btn-primary.btn-lg.btn-block(type='submit') KAYDET
 
-            .clearfix
-  // END WRAPPER
+          .clearfix
+// END WRAPPER

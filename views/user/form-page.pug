@@ -1,48 +1,47 @@
-<!doctype html>
-if isAuthenticated  
-  include ../mixins/create-recipient.pug
-  html(lang="en")
-    include ../includes/head.pug
+<!doctype html> 
+include ../mixins/create-recipient.pug
+html(lang="en")
+  include ../includes/head.pug
 
-  // WRAPPER
-  #wrapper
-    include ../includes/navbar.pug
-    include ../includes/menu.pug
-    // END LEFT SIDEBAR
-    // MAIN
-    .main
-      // MAIN CONTENT
-      .main-content
-        .container-fluid
-          #hidden(style='z-index:9999;display:none;background-color:#fff;position:fixed;height:100%;width:100%;left: 0px;top: 0px;text-align: center;')
-            p
-            img#image.cancel.center(src=`assets/fileimg/${image.filename}`  alt="" style='width:50%; height:700px;' name='image')
-          .row(style='height:400px;')
-            .img-container-inline
-              a#imgzoom(href='#' target='_blank') 
-                img(src=`assets/fileimg/${image.filename}`   alt="" style='height:400px; width:300px; cursor: zoom-in;')
-          .row 
-            form(action="/flow" method="POST")
-              -var i = 0 
-              .form-group
-                
-                -for (;i<approvercount;++i){
-                  +createRecipient(i,users,departments,faculties)
-                - }
-
-              .form-group 
-                input#hiddenusers(type="hidden" value=users name='hiddenusers')
-                input#hiddendeps(type="hidden" value=departments name='hiddendeps')
-                input#approvercount(type="hidden" value=i name='approvercount')
-                input#imageUrl(type="hidden" value=image name='imageUrl')  
-                button.btn.btn-primary(type='submit' style='float:right;') Gönder    
-
-      // END MAIN CONTENT
-    // END MAIN
-    .clearfix
-    footer
+// WRAPPER
+#wrapper
+  include ../includes/navbar.pug
+  include ../includes/menu.pug
+  // END LEFT SIDEBAR
+  // MAIN
+  .main
+    // MAIN CONTENT
+    .main-content
       .container-fluid
-        p.copyright
+        #hidden(style='z-index:9999;display:none;background-color:#fff;position:fixed;height:100%;width:100%;left: 0px;top: 0px;text-align: center;')
+          p
+          img#image.cancel.center(src=`assets/fileimg/${image.filename}`  alt="" style='width:50%; height:700px;' name='image')
+        .row(style='height:400px;')
+          .img-container-inline
+            a#imgzoom(href='#' target='_blank') 
+              img(src=`assets/fileimg/${image.filename}`   alt="" style='height:400px; width:300px; cursor: zoom-in;')
+        .row 
+          form(action="/flow" method="POST")
+            -var i = 0 
+            .form-group
+              
+              -for (;i<approvercount;++i){
+                +createRecipient(i,users,departments,faculties)
+              - }
+
+            .form-group 
+              input#hiddenusers(type="hidden" value=users name='hiddenusers')
+              input#hiddendeps(type="hidden" value=departments name='hiddendeps')
+              input#approvercount(type="hidden" value=i name='approvercount')
+              input#imageUrl(type="hidden" value=image name='imageUrl')  
+              button.btn.btn-primary(type='submit' style='float:right;') Gönder    
+
+    // END MAIN CONTENT
+  // END MAIN
+  .clearfix
+  footer
+    .container-fluid
+      p.copyright
 
 script(type="text/javascript").
   $(document).ready(function() {

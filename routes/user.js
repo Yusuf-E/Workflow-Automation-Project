@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user');
 const bodyParser = require('body-parser');
-
+const isAuthenticated = require('../middleware/authentication');
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/index', userController.getIndex);
@@ -24,13 +24,13 @@ router.get('/add-department', userController.getAddDepartment);
 
 router.get('/delete-department', userController.getDeleteDepartment);
 router.get('/faculties', userController.getFaculties);
-router.get('/flow-builder', userController.getFlowBuilder);
-router.get('/form-page', userController.getFormPage);
-router.post('/flow-builder', userController.postFlowBuilder);
-router.post('/flow',userController.postFlow);
+router.get('/flow-builder',isAuthenticated, userController.getFlowBuilder);
+router.get('/form-page',isAuthenticated, userController.getFormPage);
+router.post('/flow-builder',isAuthenticated, userController.postFlowBuilder);
+router.post('/flow',isAuthenticated,userController.postFlow);
 
-router.get('/tasks', userController.getTasks);
-router.get('/task-detail', userController.getTask);
-router.get('/flows', userController.getFlows);
-router.get('/flow-detail', userController.getFlow);
+router.get('/tasks',isAuthenticated, userController.getTasks);
+router.get('/task-detail',isAuthenticated, userController.getTask);
+router.get('/flows',isAuthenticated, userController.getFlows);
+router.get('/flow-detail',isAuthenticated, userController.getFlow);
 module.exports = router;

@@ -1,38 +1,37 @@
 <!doctype html>
 html(lang="en")
   include ../includes/head.pug
-if isAuthenticated  
-  block content
-    #wrapper
-      include ../includes/navbar.pug
-      include ../includes/menu.pug
-      // END LEFT SIDEBAR
-      // MAIN
-      .main
-        // MAIN CONTENT
-        .main-content
-          .container-fluid
-            .row 
-                .vertical-align-wrap
-                    .vertical-align-middle
-                        .auth-box
-                            .left
-                                .content
-                                    form.form-auth-small(action='/flow-builder' method="POST" enctype="multipart/form-data")
-                                        .form-group
-                                            label.control-label.sr-only(for='formfile') Email
-                                            input.form-control#formfile(type='file' value='' placeholder='Email' name='formfile')
-                                        .form-group
-                                            label.control-label.sr-only(for='approvercount') Email
-                                            input.form-control#approvercount(type='text' value='' placeholder='Onaylayacak Kişi Sayısını Giriniz' name='approvercount')
-                                            
-                                        .form-group.clearfix
-                                        button.btn.btn-primary.btn-lg.btn-block(type='submit') Devam 
+block content
+  #wrapper
+    include ../includes/navbar.pug
+    include ../includes/menu.pug
+    // END LEFT SIDEBAR
+    // MAIN
+    .main
+      // MAIN CONTENT
+      .main-content
+        .container-fluid
+          .row 
+              .vertical-align-wrap
+                  .vertical-align-middle
+                      .auth-box
+                          .left
+                              .content
+                                  form.form-auth-small(action='/flow-builder' method="POST" enctype="multipart/form-data")
+                                      .form-group
+                                          label.control-label.sr-only(for='formfile') Email
+                                          input.form-control#formfile(type='file' value='' placeholder='Email' name='formfile')
+                                      .form-group
+                                          label.control-label.sr-only(for='approvercount') Email
+                                          input.form-control#approvercount(type='text' value='' placeholder='Onaylayacak Kişi Sayısını Giriniz' name='approvercount')
+                                          
+                                      .form-group.clearfix
+                                      button.btn.btn-primary.btn-lg.btn-block(type='submit') Devam 
 
-                            .clearfix  
-    .clearfix
-    footer
-      .container-fluid
-        p.copyright
+                          .clearfix  
+  .clearfix
+  footer
+    .container-fluid
+      p.copyright
 
-  // END WRAPPER
+// END WRAPPER

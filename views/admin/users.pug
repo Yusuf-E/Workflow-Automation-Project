@@ -1,62 +1,61 @@
 <!doctype html>
-if isAuthenticated  
-  include ../mixins/create-user.pug
-  html(lang="en")
-    include ../includes/head.pug
-  // WRAPPER
-  #wrapper
-    include ../includes/navbar.pug
-    // END NAVBAR
-    // LEFT SIDEBAR
-    include ../includes/menu.pug
-    // END LEFT SIDEBAR
-    // MAIN
-    .main
-      // MAIN CONTENT
-      .main-content
-        .container-fluid
-          .row
-            .col-sm-12
-              .row(style="height:60px;")
-                .col-sm-6
-                  #adv-search.input-group
-                    input.form-control(type='text' placeholder='Kullanıcının Adını Yazınız')
-                    .input-group-btn
-                      .btn-group(role='group')
-                        button.btn.btn-primary(type='button')
-                          i.fa.fa-search 
-                .col-sm-6 
-                  .btn-group(role='group').float-right
-                      a(href="/admin/add-user").btn.btn-primary
-                        i.fa.fa-plus-circle  
-                        span &nbsp; Yeni Kullanıcı Ekle  
-          .row
-            .col
-              // TABLE STRIPED
-              .panel
-                .panel-heading
-                  h3.panel-title Kullanıcılar 
-                .panel-body
-                  table.table.table-striped.table-hover
-                    thead
-                      tr
-                        th #
-                        th.text-center 
-                        th.text-center İsim Soyisim 
-                        th.text-center Kayıt Tarihi 
-                        th.text-center Fakülte 
-                        th.text-center Bölüm 
-                        th.text-center İşlem 
-
-                    tbody
-                      if users.length > 0
-                        each user in users 
-                          +createUser(user,faculties,departments)
-              // END TABLE STRIPED
-      // END MAIN CONTENT
-    // END MAIN
-    .clearfix
-    footer
+include ../mixins/create-user.pug
+html(lang="en")
+  include ../includes/head.pug
+// WRAPPER
+#wrapper
+  include ../includes/navbar.pug
+  // END NAVBAR
+  // LEFT SIDEBAR
+  include ../includes/menu.pug
+  // END LEFT SIDEBAR
+  // MAIN
+  .main
+    // MAIN CONTENT
+    .main-content
       .container-fluid
-  // END WRAPPER
-  // Javascript
+        .row
+          .col-sm-12
+            .row(style="height:60px;")
+              .col-sm-6
+                #adv-search.input-group
+                  input.form-control(type='text' placeholder='Kullanıcının Adını Yazınız')
+                  .input-group-btn
+                    .btn-group(role='group')
+                      button.btn.btn-primary(type='button')
+                        i.fa.fa-search 
+              .col-sm-6 
+                .btn-group(role='group').float-right
+                    a(href="/admin/add-user").btn.btn-primary
+                      i.fa.fa-plus-circle  
+                      span &nbsp; Yeni Kullanıcı Ekle  
+        .row
+          .col
+            // TABLE STRIPED
+            .panel
+              .panel-heading
+                h3.panel-title Kullanıcılar 
+              .panel-body
+                table.table.table-striped.table-hover
+                  thead
+                    tr
+                      th #
+                      th.text-center 
+                      th.text-center İsim Soyisim 
+                      th.text-center Kayıt Tarihi 
+                      th.text-center Fakülte 
+                      th.text-center Bölüm 
+                      th.text-center İşlem 
+
+                  tbody
+                    if users.length > 0
+                      each user in users 
+                        +createUser(user,faculties,departments)
+            // END TABLE STRIPED
+    // END MAIN CONTENT
+  // END MAIN
+  .clearfix
+  footer
+    .container-fluid
+// END WRAPPER
+// Javascript

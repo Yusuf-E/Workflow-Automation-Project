@@ -1,47 +1,46 @@
-<!doctype html>
-if isAuthenticated  
-  include ../mixins/create-task
-  html(lang="en")
-    include ../includes/head.pug
-  // WRAPPER
-  #wrapper
-    include ../includes/navbar.pug
-    // END NAVBAR
-    // LEFT SIDEBAR
-    include ../includes/menu.pug
-    // END LEFT SIDEBAR
-    // MAIN
-    .main
-      // MAIN CONTENT
-      .main-content
-        .container-fluid
-          .row
-            .col
-              // TABLE STRIPED
-              .panel
-                .panel-heading
-                  h3.panel-title Görevler 
-                .panel-body
-                  table.table.table-striped.table-hover
-                    thead
-                      tr
-                        th #
-                        th Düzenleyen
-                        th FormSahibi  
-                        th Tarih 
-                        th.text-center Açıklama
-                        th.text-center   
-                          span Görüntüle 
-
-                    tbody
-                      +createTask()
-                      +createTask()
-                      +createTask()
-              // END TABLE STRIPED
-      // END MAIN CONTENT
-    // END MAIN
-    .clearfix
-    footer
+<!doctype html> 
+include ../mixins/create-task
+html(lang="en")
+  include ../includes/head.pug
+// WRAPPER
+#wrapper
+  include ../includes/navbar.pug
+  // END NAVBAR
+  // LEFT SIDEBAR
+  include ../includes/menu.pug
+  // END LEFT SIDEBAR
+  // MAIN
+  .main
+    // MAIN CONTENT
+    .main-content
       .container-fluid
-  // END WRAPPER
-  // Javascript
+        .row
+          .col
+            // TABLE STRIPED
+            .panel
+              .panel-heading
+                h3.panel-title Görevler 
+              .panel-body
+                table.table.table-striped.table-hover
+                  thead
+                    tr
+                      th #
+                      th Düzenleyen
+                      th FormSahibi  
+                      th Tarih 
+                      th.text-center Açıklama
+                      th.text-center   
+                        span Görüntüle 
+
+                  tbody
+                    +createTask()
+                    +createTask()
+                    +createTask()
+            // END TABLE STRIPED
+    // END MAIN CONTENT
+  // END MAIN
+  .clearfix
+  footer
+    .container-fluid
+// END WRAPPER
+// Javascript
