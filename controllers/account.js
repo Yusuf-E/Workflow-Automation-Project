@@ -2,7 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 const User = require('../models/user');
-
+const bcrypt = require('bcrypt');
 module.exports.getLogin = (req, res, next) => {
     res.render('account/page-login',
         {
@@ -14,12 +14,27 @@ module.exports.postLogin = (req,res,next)=>{
     const email = req.body.email;
     const password = req.body.password;
     console.log(email+password);
-    if((email == 'email@gmail.com')&&(password=='1234')){
-        req.session.isAuthenticated= true;
-        res.redirect('/index');
-    }
-    else{
-        req.session.isAuthenticated=false;
-        res.redirect('/')
-    }
+    User.findOne({where:{email:email}})
+        .then((user)=>{
+            if(!user){
+                return res.redirect('/');
+            }
+            bcrypt.compare(password,user.password)
+                .then((isSuccess)=>{
+                    if(isSuccess){
+                        req.session.user = user;
+                        req.session.isAuthenticated = true;
+                        return req.session.save((err)=>{
+                            console.log(err);
+                            res.redirect('/index');
+                        })
+                    }
+                    res.redirect('/')
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
+        }).catch(function (err) {
+            console.log(err);
+        })
 }

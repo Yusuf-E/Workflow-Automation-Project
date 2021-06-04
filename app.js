@@ -40,7 +40,16 @@ app.use(session({
         maxAge: 10000000
     }
 }))
-
+app.use(function (req, res, next) {
+    if (!req.session.user) {
+        return next();
+    }
+    User.findByPk(req.session.user.id)
+        .then(function (user) {
+            req.user = user;
+            next();
+        })
+})
 const adminRoutes = require('./routes/admin');
 const userRoutes = require('./routes/user');
 const accountRoutes = require('./routes/account');

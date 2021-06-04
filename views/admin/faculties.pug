@@ -1,50 +1,51 @@
 <!doctype html>
-include ../mixins/create-faculty.pug
-html(lang="en")
-  include ../includes/head.pug
-// WRAPPER
-#wrapper
-  include ../includes/navbar.pug
-  // END NAVBAR
-  // LEFT SIDEBAR
-  include ../includes/menu.pug
-  // END LEFT SIDEBAR
-  // MAIN
-  .main
-    // MAIN CONTENT
-    .main-content
+if isAuthenticated  
+  include ../mixins/create-faculty.pug
+  html(lang="en")
+    include ../includes/head.pug
+  // WRAPPER
+  #wrapper
+    include ../includes/navbar.pug
+    // END NAVBAR
+    // LEFT SIDEBAR
+    include ../includes/menu.pug
+    // END LEFT SIDEBAR
+    // MAIN
+    .main
+      // MAIN CONTENT
+      .main-content
+        .container-fluid
+          .row
+            .col
+              // TABLE STRIPED
+              .panel
+                .panel-heading
+                  .row 
+                      .col-sm-6 
+                          h3.panel-title(style="margin-top:10px;") Fakülteler / Kurumlar
+                      .col-sm-6 
+                          .btn-group(role='group').float-right
+                              a(href="/admin/add-faculty").btn.btn-primary
+                                  i.fa.fa-plus-circle  
+                                  span &nbsp; Yeni Fakülte Ekle  
+                .panel-body
+                  table.table.table-striped.table-hover
+                    thead
+                      tr
+                        th #
+                        th 
+                        th 
+                          span(style='margin-left:30px;')  Fakülte 
+                        th İşlem 
+                    tbody
+                      if faculties.length > 0 
+                        each faculty in faculties
+                          +createFaculty(faculty)
+              // END TABLE STRIPED
+      // END MAIN CONTENT
+    // END MAIN
+    .clearfix
+    footer
       .container-fluid
-        .row
-          .col
-            // TABLE STRIPED
-            .panel
-              .panel-heading
-                .row 
-                    .col-sm-6 
-                        h3.panel-title(style="margin-top:10px;") Fakülteler / Kurumlar
-                    .col-sm-6 
-                        .btn-group(role='group').float-right
-                            a(href="/admin/add-faculty").btn.btn-primary
-                                i.fa.fa-plus-circle  
-                                span &nbsp; Yeni Fakülte Ekle  
-              .panel-body
-                table.table.table-striped.table-hover
-                  thead
-                    tr
-                      th #
-                      th 
-                      th 
-                        span(style='margin-left:30px;')  Fakülte 
-                      th İşlem 
-                  tbody
-                    if faculties.length > 0 
-                      each faculty in faculties
-                        +createFaculty(faculty)
-            // END TABLE STRIPED
-    // END MAIN CONTENT
-  // END MAIN
-  .clearfix
-  footer
-    .container-fluid
-// END WRAPPER
-// Javascript
+  // END WRAPPER
+  // Javascript

@@ -1,36 +1,37 @@
 <!doctype html>
-include ../mixins/create-recipient.pug
-html(lang="en")
-  include ../includes/head.pug
+if isAuthenticated  
+  include ../mixins/create-recipient.pug
+  html(lang="en")
+    include ../includes/head.pug
 
-// WRAPPER
-#wrapper
-  include ../includes/navbar.pug
-  include ../includes/menu.pug
-  // END LEFT SIDEBAR
-  // MAIN
-  .main
-    // MAIN CONTENT
-    .main-content
+  // WRAPPER
+  #wrapper
+    include ../includes/navbar.pug
+    include ../includes/menu.pug
+    // END LEFT SIDEBAR
+    // MAIN
+    .main
+      // MAIN CONTENT
+      .main-content
+        .container-fluid
+          #hidden(style='z-index:9999;display:none;background-color:#fff;position:fixed;height:100%;width:100%;left: 0px;top: 0px;text-align: center;')
+            p
+            img.cancel.center(src="assets/img/Biçimsel diller düzeltilmiş dilekçe.jpg"  alt="" style='width:30%; height:600px;')
+          .row(style='height:500px;')
+            .img-container-inline
+              a#imgzoom(href='#' target='_blank') 
+                img(src="assets/img/Biçimsel diller düzeltilmiş dilekçe.jpg"  alt="" style='height:500px; width:400px; cursor: zoom-in;')
+          .row(style='margin-top:15px;')
+              textarea.col-sm-5(placeholder='Açıklama' rows='2') 
+              button.btn.btn-danger.col-sm-3.btn-lg(type='submit' style='float:right;') Reddet 
+              button.btn.btn-primary.col-sm-3.btn-lg(type='submit' style='float:right;') Onayla 
+                
+      // END MAIN CONTENT
+    // END MAIN
+    .clearfix
+    footer
       .container-fluid
-        #hidden(style='z-index:9999;display:none;background-color:#fff;position:fixed;height:100%;width:100%;left: 0px;top: 0px;text-align: center;')
-          p
-           img.cancel.center(src="assets/img/Biçimsel diller düzeltilmiş dilekçe.jpg"  alt="" style='width:30%; height:600px;')
-        .row(style='height:500px;')
-          .img-container-inline
-            a#imgzoom(href='#' target='_blank') 
-              img(src="assets/img/Biçimsel diller düzeltilmiş dilekçe.jpg"  alt="" style='height:500px; width:400px; cursor: zoom-in;')
-        .row(style='margin-top:15px;')
-            textarea.col-sm-5(placeholder='Açıklama' rows='2') 
-            button.btn.btn-danger.col-sm-3.btn-lg(type='submit' style='float:right;') Reddet 
-            button.btn.btn-primary.col-sm-3.btn-lg(type='submit' style='float:right;') Onayla 
-              
-    // END MAIN CONTENT
-  // END MAIN
-  .clearfix
-  footer
-    .container-fluid
-      p.copyright
+        p.copyright
 
 script(type="text/javascript").
   $(document).ready(function() {

@@ -1,24 +1,25 @@
 <!doctype html>
-html(lang="en")
-  include ../includes/head.pug
-// WRAPPER
-#wrapper
-  .vertical-align-wrap
-    .vertical-align-middle
-      .auth-box.lockscreen.clearfix
-        .content
-          .logo.text-center
-            i.fa.fa-building(style="font-size:100px;")
-          form(action='/admin/add-department' method='POST')
-            .row(style="height:60px;margin-top:20px;")
-                    .form-group
-                      select.form-control.input#facultyname(name='facultyname')
-                        option(value='-1') Fakülte Seçiniz
-                        each faculty in faculties 
-                          option(value=`${faculty.id}`) #{faculty.name}
-            .row 
-                .input-group
-                  input.form-control#departmentname(type='text' placeholder='Bölüm Adını giriniz' name='departmentname')
-                  span.input-group-btn
-                    button.btn.btn-primary(type='submit') Kaydet      
-// END WRAPPER
+if isAuthenticated  
+  html(lang="en")
+    include ../includes/head.pug
+  // WRAPPER
+  #wrapper
+    .vertical-align-wrap
+      .vertical-align-middle
+        .auth-box.lockscreen.clearfix
+          .content
+            .logo.text-center
+              i.fa.fa-building(style="font-size:100px;")
+            form(action='/admin/add-department' method='POST')
+              .row(style="height:60px;margin-top:20px;")
+                      .form-group
+                        select.form-control.input#facultyname(name='facultyname')
+                          option(value='-1') Fakülte Seçiniz
+                          each faculty in faculties 
+                            option(value=`${faculty.id}`) #{faculty.name}
+              .row 
+                  .input-group
+                    input.form-control#departmentname(type='text' placeholder='Bölüm Adını giriniz' name='departmentname')
+                    span.input-group-btn
+                      button.btn.btn-primary(type='submit') Kaydet      
+  // END WRAPPER

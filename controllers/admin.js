@@ -19,6 +19,7 @@ module.exports.getAddUser = (req, res, next) => {
                     res.render('admin/add-user', {
                         title: 'Add-User',
                         departments: departments,
+                        isAuthenticated:req.session.isAuthenticated,
                         faculties: faculties,
                         path: '/admin/add-user',
 
@@ -98,6 +99,7 @@ module.exports.getUserList = (req, res, next) => {
                                 title: 'Kullanıcılar',
                                 users: _users,
                                 departments: departments,
+                                isAuthenticated:req.session.isAuthenticated,
                                 faculties: _faculties,
                                 path: '/admin/users'
                             })
@@ -111,6 +113,7 @@ module.exports.getAddFaculty = (req, res, next) => {
     res.render('admin/add-faculty',
         {
             title: 'Reset | İş Akışları Otomasyon Sistemi',
+            isAuthenticated:req.session.isAuthenticated,
             path: '/admin/add-faculty'
         });
 }
@@ -134,6 +137,7 @@ module.exports.getFacultyList = (req, res, next) => {
             res.render('admin/faculties', {
                 title: 'Kurumlar/Fakülteler',
                 faculties: faculties,
+                isAuthenticated:req.session.isAuthenticated,
                 path: '/admin/faculties'
             })
         }).catch((err) => {
@@ -147,6 +151,7 @@ module.exports.getAddDepartment = (req, res, next) => {
                 {
                     title: 'Bölüm Ekle',
                     faculties: faculties,
+                    isAuthenticated:req.session.isAuthenticated,
                     path: '/admin/add-department'
                 });
         })
@@ -178,6 +183,7 @@ module.exports.getDepartmentList = (req, res, next) => {
                         title: 'Kurumlar/Fakülteler',
                         departments: departments,
                         faculties: _faculties,
+                        isAuthenticated:req.session.isAuthenticated,
                         deps:JSON.stringify(departments),
                         path: '/admin/departments'
                     })
@@ -198,6 +204,7 @@ module.exports.postSearchDepartment = (req,res,next)=>{
                 res.render('admin/departments', {
                     title: 'Kurumlar/Fakülteler',
                     departments: departments,
+                    isAuthenticated:req.session.isAuthenticated,
                     faculties: _faculties,
                     path: '/admin/departments'
                 })

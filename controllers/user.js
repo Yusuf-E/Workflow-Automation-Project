@@ -62,7 +62,7 @@ module.exports.getProfile = (req, res, next) => {
     res.render('user/profile',
         {
             title: 'Reset | İş Akışları Otomasyon Sistemi',
-
+            isAuthenticated:req.session.isAuthenticated,
             path: '/page-profile'
         });
 }
@@ -134,6 +134,7 @@ module.exports.getFlowBuilder = (req, res, next) => {
     res.render('user/form',
         {
             title: 'Reset | İş Akışları Otomasyon Sistemi',
+            isAuthenticated:req.session.isAuthenticated,
             path: '/flow-builder'
         });
 }
@@ -155,6 +156,7 @@ module.exports.postFlowBuilder = (req, res, next) => {
                                 title: 'Kurumlar/Fakülteler',
                                 departments: _departments,
                                 faculties: _faculties,
+                                isAuthenticated:req.session.isAuthenticated,
                                 users: users,
                                 image: file,
                                 approvercount: approvercount,
@@ -204,27 +206,32 @@ module.exports.getFormPage = (req, res, next) => {
     res.render('user/form-page',
         {
             title: 'Form',
-            path: '/form-page'
+            isAuthenticated:req.session.isAuthenticated,
+            path: '/form-page',
+           
         })
 }
 module.exports.getTasks = (req, res, next) => {
     res.render('user/tasks',
         {
             title: 'Form',
+            isAuthenticated:req.session.isAuthenticated,
             path: '/tasks'
         })
 }
 module.exports.getTask = (req, res, next) => {
     res.render('user/task-detail',
-        { title: 'Task', path: '/task-detail' })
+        { title: 'Task', isAuthenticated:req.session.isAuthenticated, path: '/task-detail' })
 }
 module.exports.getFlows = (req, res, next) => {
     res.render('user/flows', {
-        title: 'Flows', path: '/flows'
+        title: 'Flows',
+        isAuthenticated:req.session.isAuthenticated,
+         path: '/flows'
     })
 }
 module.exports.getFlow = (req, res, next) => {
     res.render('user/flow-detail', {
-        title: 'Flows', path: '/flow'
+        title: 'Flows', isAuthenticated:req.session.isAuthenticated, path: '/flow'
     })
 }
