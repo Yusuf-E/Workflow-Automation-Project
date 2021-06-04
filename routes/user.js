@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const isAuthenticated = require('../middleware/authentication');
 router.use(bodyParser.urlencoded({ extended: true }));
 
-router.get('/index', userController.getIndex);
+router.get('/index',isAuthenticated, userController.getIndex);
 
 
 router.get('/reset-password', userController.getResetPassword);

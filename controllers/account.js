@@ -25,8 +25,9 @@ module.exports.postLogin = (req,res,next)=>{
                         req.session.user = user;
                         req.session.isAuthenticated = true;
                         return req.session.save((err)=>{
-                            console.log(err);
-                            res.redirect('/index');
+                            var url = req.session.redirectTo || '/index'
+                            delete req.session.redirectTo;
+                            res.redirect(url);
                         })
                     }
                     res.redirect('/')
