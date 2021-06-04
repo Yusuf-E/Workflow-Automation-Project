@@ -39,3 +39,8 @@ module.exports.postLogin = (req,res,next)=>{
             console.log(err);
         })
 }
+module.exports.getLogout = (req,res,next)=>{
+    req.session.destroy((err)=>{
+        res.redirect('/');
+    })
+}
