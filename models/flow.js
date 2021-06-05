@@ -17,6 +17,11 @@ const Flow = sequelize.define('flow', {
     imageUrl: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    approverCount:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        autoIncrement:false,
     }
 });
 module.exports = Flow;

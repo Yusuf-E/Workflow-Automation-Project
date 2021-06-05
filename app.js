@@ -60,6 +60,7 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+
     }
 })
 
@@ -91,6 +92,9 @@ User.belongsTo(Department, {
     }
 });
 Department.hasMany(User);
+
+Flow.belongsTo(User);
+User.hasMany(Flow);
 
 User.hasOne(Task);
 Task.belongsTo(User);

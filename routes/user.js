@@ -14,7 +14,7 @@ router.get('/charts', userController.getCharts);
 router.get('/panels', userController.getPanels);
 router.get('/notifications', userController.getNotifications);
 router.get('/pages', userController.getPages);
-router.get('/profile', userController.getProfile);
+
 router.get('/lock-screen', userController.getLockScreen);
 router.get('/tables', userController.getTables);
 router.get('/typography', userController.getTypography);
@@ -29,6 +29,7 @@ router.get('/form-page',isAuthenticated, userController.getFormPage);
 router.post('/flow-builder',isAuthenticated, userController.postFlowBuilder);
 router.post('/flow',isAuthenticated,userController.postFlow);
 
+router.get('/profile',isAuthenticated, userController.getProfile);
 router.get('/tasks',isAuthenticated, userController.getTasks);
 router.get('/task-detail',isAuthenticated, userController.getTask);
 router.get('/flows',isAuthenticated, userController.getFlows);

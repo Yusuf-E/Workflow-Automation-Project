@@ -5,7 +5,7 @@ const User = require('../models/user')
 const Faculty = require('../models/faculty');
 const Department = require('../models/department');
 const Sequelize = require('sequelize');
-
+const Flow = require('../models/flow');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 module.exports.getIndex = (req, res, next) => {
@@ -166,32 +166,21 @@ module.exports.postFlowBuilder = (req, res, next) => {
 
 }
 module.exports.postFlow = (req,res,next)=>{
-const file = req.body.imageUrl;
+
+const file =JSON.parse( req.body.imageUrl);
 const approverCount = req.body.approvercount;
+const user = req.user;
+const number = 0;
+let _flow;
+console.log(user);
+user.createFlow({
+    number:number,
+    imageUrl:file.filename,
+    approverCount:approverCount,
+})
 
-k='faculty'
-console.log(file+approverCount);
-for(var i =0;i<approverCount;i++){
-    facultyid=req.body['faculty'+i]
-    departmentname = req.body['department'+i];
-    username = req.body['personal'+i];
-    Faculty.findOne({ where: { id: facultyid } })
-        .then((faculty)=>{
-            _faculty = faculty;
-            console.log(faculty.id);
-            Department.findOne({ where: { facultyId: faculty.id, name:departmentname } })
-                .then((department)=>{
-                    console.log(department.id);
-                    _department = department;
-                    User.findOne({ where: { facultyId: _faculty.id, departmentId: department.id, nameSurname: username } })
-                        .then((user)=>{
-                            console.log(user);
-                        })
-                })
-        })
-        
 
-}
+
 
 
 
