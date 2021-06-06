@@ -1,11 +1,19 @@
-mixin createTask()
+mixin createTask(flow,i,users)
     tr
-        td 1
-        td  Yusuf Efe
-        td 170290065
-        td 17.04.2021
+        td #{i}
+        if users.length > 0
+            each user in users
+                if flow.userId===user.id
+                    td #{user.nameSurname}
+        td #{flow.ownerId}
+        td #{flow.createdAt}
         td 
-            textarea.col-sm-12(placeholder='Açıklama' rows='1') 
+            if flow.taskitem.confirmation === null
+                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#0000FF ;') ONAY BEKLİYOR
+            if flow.taskitem.confirmation === false
+                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#FF0000;') REDDEDİLDİ
+            if flow.taskitem.confirmation === true
+                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#00FF00;') ONAYLANDI
         td.text-center    
             a(href="task-detail")                       
                 i.fa.fa-file(style='font-size:24px;')     

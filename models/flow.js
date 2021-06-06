@@ -26,6 +26,10 @@ const Flow = sequelize.define('flow', {
     status:{
         type:Sequelize.BOOLEAN,
         allowNull:true,
+    },
+    ownerId:{
+        type: Sequelize.STRING,
+        allowNull:false
     }
 });
 module.exports = Flow;

@@ -138,6 +138,7 @@ module.exports.getFlowBuilder = (req, res, next) => {
 module.exports.postFlowBuilder = (req, res, next) => {
     const approvercount = req.body.approvercount;
     const file = req.file;
+    const ownerId = req.body.owner;
     console.log(file)
     console.log(file.filename)
     Faculty.findAll({ order: [['name', 'ASC']] })
@@ -156,6 +157,7 @@ module.exports.postFlowBuilder = (req, res, next) => {
                                 users: users,
                                 image: file,
                                 approvercount: approvercount,
+                                ownerId:ownerId,
                                 path: '/flow-builder'
                             })
                         })
@@ -171,6 +173,7 @@ const file =JSON.parse( req.body.imageUrl);
 const approverCount = req.body.approvercount;
 const user = req.user;
 const number = 0;
+const ownerId = req.body.ownerId;
 let _flow;
 var personal;
 console.log(user);
@@ -178,6 +181,7 @@ user.createFlow({
     number:number,
     imageUrl:file.filename,
     approverCount:approverCount,
+    ownerId:ownerId,
 })
 .then(()=>{
     Flow.findOne({where:{imageUrl:file.filename}})
@@ -210,13 +214,34 @@ module.exports.getFormPage = (req, res, next) => {
         })
 }
 module.exports.getTasks = (req, res, next) => {
-    res.render('user/tasks',
-        {
-            title: 'Form',
-            path: '/tasks'
+    let _users;
+User.findAll()
+    .then((users)=>{
+        _users = users
+    })
+    .then(()=>{
+        req.user
+        .getTask()
+        .then((task)=> {
+            console.log(task);
+            return task.getFlows()
+            .then( (flows)=> {
+                console.log(flows)
+                res.render('user/tasks', {
+                    title: 'Görevler',
+                    path: '/tasks',
+                    flows:flows,
+                    users:_users,
+                    isAuthenticated:req.session.isAuthenticated,
+                });
+            })
+        }).catch(function (err) {
+            console.log(err)
         })
+    })
 }
 module.exports.getTask = (req, res, next) => {
+
     res.render('user/task-detail',
         { title: 'Task', isAuthenticated:req.session.isAuthenticated, path: '/task-detail' })
 }

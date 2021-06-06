@@ -33,9 +33,11 @@ html(lang="en")
                         span Görüntüle 
 
                   tbody
-                    +createTask()
-                    +createTask()
-                    +createTask()
+                    -var i = 0;
+                    if flows.length > 0 
+                      each flow in flows
+                        - ++i;
+                        +createTask(flow,i,users)
             // END TABLE STRIPED
     // END MAIN CONTENT
   // END MAIN
