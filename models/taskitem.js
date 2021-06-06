@@ -8,5 +8,9 @@ const TaskItem = sequelize.define('taskitem', {
         allowNull: false,
         primaryKey: true
     },
+    confirmation:{
+        type:Sequelize.BOOLEAN,
+        allowNull:true,
+    }
 });
 module.exports = TaskItem;

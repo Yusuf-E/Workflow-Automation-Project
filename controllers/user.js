@@ -172,19 +172,33 @@ const approverCount = req.body.approvercount;
 const user = req.user;
 const number = 0;
 let _flow;
+var personal;
 console.log(user);
 user.createFlow({
     number:number,
     imageUrl:file.filename,
     approverCount:approverCount,
 })
-
-
-
-
-
-
-
+.then(()=>{
+    Flow.findOne({where:{imageUrl:file.filename}})
+    .then((flow)=>{
+        _flow = flow;
+        for(var i = 0;i<approverCount;i++){
+            personal = req.body['personal'+i]
+            console.log(personal);
+            User.findOne({where:{id:personal}})
+                .then((personal)=>{
+                    personal
+                    .getTask()
+                        .then((task)=>{
+                           task.addFlow(_flow,{through:{
+                            confirmation:null
+                        }})
+                        })
+                })
+        }
+    })
+})
 
 }
 module.exports.getFormPage = (req, res, next) => {

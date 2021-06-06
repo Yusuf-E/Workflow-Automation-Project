@@ -22,6 +22,10 @@ const Flow = sequelize.define('flow', {
         type: Sequelize.INTEGER,
         allowNull:false,
         autoIncrement:false,
+    },
+    status:{
+        type:Sequelize.BOOLEAN,
+        allowNull:true,
     }
 });
 module.exports = Flow;
