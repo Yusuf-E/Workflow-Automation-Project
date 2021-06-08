@@ -11,6 +11,10 @@ const TaskItem = sequelize.define('taskitem', {
     confirmation:{
         type:Sequelize.BOOLEAN,
         allowNull:true,
+    },
+    explanation:{
+        type:Sequelize.TEXT,
+        allowNull:true,
     }
 });
 module.exports = TaskItem;

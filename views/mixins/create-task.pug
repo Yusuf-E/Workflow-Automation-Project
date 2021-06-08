@@ -15,5 +15,5 @@ mixin createTask(flow,i,users)
             if flow.taskitem.confirmation === true
                 textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#00FF00;') ONAYLANDI
         td.text-center    
-            a(href="task-detail")                       
+            a(href=`/task-detail/${flow.id}`)                       
                 i.fa.fa-file(style='font-size:24px;')     

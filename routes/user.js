@@ -31,7 +31,9 @@ router.post('/flow',isAuthenticated,userController.postFlow);
 
 router.get('/profile',isAuthenticated, userController.getProfile);
 router.get('/tasks',isAuthenticated, userController.getTasks);
-router.get('/task-detail',isAuthenticated, userController.getTask);
+router.get('/task-detail/:flowid',isAuthenticated, userController.getTask);
 router.get('/flows',isAuthenticated, userController.getFlows);
 router.get('/flow-detail',isAuthenticated, userController.getFlow);
+router.post('/desicion-accept',isAuthenticated,userController.postDesicionAccept);
+router.post('/desicion-deny',isAuthenticated,userController.postDesicionDeny);
 module.exports = router;
