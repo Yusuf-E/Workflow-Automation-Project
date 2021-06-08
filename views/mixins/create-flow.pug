@@ -1,14 +1,41 @@
-mixin createFlow()
+mixin createFlow(flow,item,i,users)
     tr
-        td 1
-        td  Yusuf Efe
-        td 170290065
-        td 17.04.2021
-        td 
-            textarea.col-sm-12(placeholder='Açıklama' rows='1') 
+        td #{i}
+        -var status;
+        each user in users 
+            if flow.userId === user.id
+                td   #{user.nameSurname}
+                td    #{flow.ownerId}
+                td #{flow.createdAt}
+
+                each taskItem in item
+                    if taskItem.flowId === flow.id 
+                        if taskItem.confirmation == false 
+                            - status = -1;
+                            td 
+                                textarea.col-sm-12(placeholder='Açıklama' rows='1' style='text-align: center; color:#FF0000; font-weight:bold;' disabled) REDDEDİLDİ
+                            -break
+                        else if taskItem.confirmation == null 
+                            - status = 0 ;            
+                        else 
+                            if !(status === 0)
+                                -status =1;
+                if(status === 0)
+                    td 
+                        textarea.col-sm-12(placeholder='Açıklama' rows='1' style='text-align: center; color:#0000FF; font-weight:bold;' disabled) ONAY BEKLİYOR
+                if(status === 1)
+                    td 
+                        textarea.col-sm-12.greeniconcolor(placeholder='Açıklama' rows='1' style='text-align: center; font-weight:bold;' disabled) ONAYLANDI
         td.text-center    
             a(href="flow-detail")                       
                 i.fa.fa-file(style='font-size:24px;')    
-        td.text-center                      
-            i.delete.fa.fa-circle.rediconcolor     
-        
+        if (status === -1)
+            td.text-center                      
+                i.delete.fa.fa-circle.rediconcolor     
+        if (status === 0)
+            td.text-center                      
+                i.delete.fa.fa-circle.blueiconcolor   
+        if (status === 1)
+            td.text-center                      
+                i.delete.fa.fa-circle.greeniconcolor   
+            

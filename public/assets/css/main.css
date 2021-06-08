@@ -1773,6 +1773,12 @@ ul.activity-timeline > li {
 .rediconcolor{
   color: red;
 }
+.greeniconcolor{
+  color: rgb(4, 219, 51);
+}
+.blueiconcolor{
+  color: blue;
+}
 .float-right{
   float:right;
 }

@@ -6,6 +6,7 @@ const Faculty = require('../models/faculty');
 const Department = require('../models/department');
 const Sequelize = require('sequelize');
 const Flow = require('../models/flow');
+const TaskItem = require('../models/taskitem');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 module.exports.getIndex = (req, res, next) => {
@@ -227,7 +228,7 @@ module.exports.getTasks = (req, res, next) => {
                 .getTask()
                 .then((task) => {
                     console.log(task);
-                    return task.getFlows()
+                    return task.getFlows({ order: [['id', 'DESC']], })
                         .then((flows) => {
                             console.log(flows)
                             res.render('user/tasks', {
@@ -260,10 +261,30 @@ module.exports.getTask = (req, res, next) => {
         })
 }
 module.exports.getFlows = (req, res, next) => {
-    res.render('user/flows', {
-        title: 'Flows',
-        path: '/flows'
-    })
+    let _flows, _items;
+    Flow.findAll({ order: [['id', 'DESC']], })
+        .then((flows) => {
+            _flows = flows;
+            User.findAll()
+                .then((users) => {
+                    _users = users;
+                    TaskItem.findAll()
+                        .then((items) => {
+                            _items = items
+                            console.log(_flows);
+                            console.log(_items);
+                            res.render('user/flows', {
+                                title: 'Flows',
+                                flows: _flows,
+                                items: _items,
+                                users: _users,
+                                path: '/flows'
+                            })
+                        })
+
+                })
+
+        })
 }
 module.exports.getFlow = (req, res, next) => {
     res.render('user/flow-detail', {
@@ -311,4 +332,32 @@ module.exports.postDesicionDeny = (req, res, next) => {
         .then((result) => {
             res.redirect('/tasks');
         })
+}
+module.exports.postSearchUser = (req, res, next) => {
+    const formowner = req.body.searchBar;
+    let _flows, _items;
+    Flow.findAll({ where: { ownerId: formowner }, order: [['id', 'DESC']], })
+        .then((flows) => {
+            _flows = flows;
+            User.findAll()
+                .then((users) => {
+                    _users = users;
+                    TaskItem.findAll()
+                        .then((items) => {
+                            _items = items
+                            console.log(_flows);
+                            console.log(_items);
+                            res.render('user/flows', {
+                                title: 'Flows',
+                                flows: _flows,
+                                items: _items,
+                                users: _users,
+                                path: '/flows'
+                            })
+                        })
+
+                })
+
+        })
+
 }

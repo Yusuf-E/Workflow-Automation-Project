@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const isAuthenticated = require('../middleware/authentication');
 router.use(bodyParser.urlencoded({ extended: true }));
 
-router.get('/index',isAuthenticated, userController.getIndex);
+router.get('/index', isAuthenticated, userController.getIndex);
 
 
 router.get('/reset-password', userController.getResetPassword);
@@ -24,16 +24,17 @@ router.get('/add-department', userController.getAddDepartment);
 
 router.get('/delete-department', userController.getDeleteDepartment);
 router.get('/faculties', userController.getFaculties);
-router.get('/flow-builder',isAuthenticated, userController.getFlowBuilder);
-router.get('/form-page',isAuthenticated, userController.getFormPage);
-router.post('/flow-builder',isAuthenticated, userController.postFlowBuilder);
-router.post('/flow',isAuthenticated,userController.postFlow);
+router.get('/flow-builder', isAuthenticated, userController.getFlowBuilder);
+router.get('/form-page', isAuthenticated, userController.getFormPage);
+router.post('/flow-builder', isAuthenticated, userController.postFlowBuilder);
+router.post('/flow', isAuthenticated, userController.postFlow);
 
-router.get('/profile',isAuthenticated, userController.getProfile);
-router.get('/tasks',isAuthenticated, userController.getTasks);
-router.get('/task-detail/:flowid',isAuthenticated, userController.getTask);
-router.get('/flows',isAuthenticated, userController.getFlows);
-router.get('/flow-detail',isAuthenticated, userController.getFlow);
-router.post('/desicion-accept',isAuthenticated,userController.postDesicionAccept);
-router.post('/desicion-deny',isAuthenticated,userController.postDesicionDeny);
+router.get('/profile', isAuthenticated, userController.getProfile);
+router.get('/tasks', isAuthenticated, userController.getTasks);
+router.get('/task-detail/:flowid', isAuthenticated, userController.getTask);
+router.get('/flows', isAuthenticated, userController.getFlows);
+router.get('/flow-detail', isAuthenticated, userController.getFlow);
+router.post('/desicion-accept', isAuthenticated, userController.postDesicionAccept);
+router.post('/desicion-deny', isAuthenticated, userController.postDesicionDeny);
+router.post('/search-user', isAuthenticated, userController.postSearchUser);
 module.exports = router;

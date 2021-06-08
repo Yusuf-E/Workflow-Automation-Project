@@ -9,11 +9,18 @@ mixin createTask(flow,i,users)
         td #{flow.createdAt}
         td 
             if flow.taskitem.confirmation === null
-                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#0000FF ;') ONAY BEKLİYOR
+                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#0000FF ;font-weight:bold;') ONAY BEKLİYOR
             if flow.taskitem.confirmation === false
-                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#FF0000;') REDDEDİLDİ
+                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#FF0000;font-weight:bold;') REDDEDİLDİ
             if flow.taskitem.confirmation === true
-                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#00FF00;') ONAYLANDI
-        td.text-center    
-            a(href=`/task-detail/${flow.id}`)                       
-                i.fa.fa-file(style='font-size:24px;')     
+                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#00FF00;font-weight:bold;') ONAYLANDI
+        td.text-center
+            if flow.taskitem.confirmation === null
+                a(href=`/task-detail/${flow.id}`)                       
+                    i.fa.fa-file(style='font-size:24px;')  
+            if flow.taskitem.confirmation === false
+                a(href=`/flow-detail/`)                       
+                    i.fa.fa-file(style='font-size:24px;')              
+            if flow.taskitem.confirmation === true   
+                a(href=`/flow-detail`)                       
+                    i.fa.fa-file(style='font-size:24px;')  
