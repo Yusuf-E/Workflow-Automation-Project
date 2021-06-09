@@ -9,5 +9,5 @@ mixin createDepartment(department,faculties,i)
                 if faculty.id === department.facultyId
                     span  &nbsp;  &nbsp; #{faculty.name} 
         td 
-            a(href="")  &nbsp;                            &nbsp;
+            a(href=`/admin/delete-department/${department.id}`)  &nbsp;                            &nbsp;
                 i.delete.fa.fa-times-circle.rediconcolor 

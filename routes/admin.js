@@ -29,5 +29,6 @@ router.get('/update-user/:userid',adminController.getUpdateUser);
 
 router.get('/delete-user/:userid',adminController.postDeleteUser);
 router.get('/delete-faculty/:facultyid',adminController.postDeleteFaculty);
+router.get('/delete-department/:departmentid',adminController.postDeleteDepartment);
 module.exports = router;
 

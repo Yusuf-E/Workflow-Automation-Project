@@ -265,7 +265,7 @@ module.exports.postUpdateUser = (req, res, next) => {
                 })
         })
 }
-module.exports.postDeleteUser = function (req, res, next) {
+module.exports.postDeleteUser =  (req, res, next) => {
     const userid = req.params.userid
     User.findOne({where:{ id: userid}})
         .then( (user)=> {
@@ -277,13 +277,25 @@ module.exports.postDeleteUser = function (req, res, next) {
             console.log(err);
         })
 }
-module.exports.postDeleteFaculty = function (req, res, next) {
+module.exports.postDeleteFaculty =  (req, res, next)=> {
     const facultyid = req.params.facultyid
     Faculty.findOne({where:{ id: facultyid}})
         .then( (faculty)=> {
             return faculty.destroy()
         }).then(function (result) {
             res.redirect('/admin/faculties')
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+}
+module.exports.postDeleteDepartment =  (req, res, next)=> {
+    const departmentid = req.params.departmentid
+    Department.findOne({where:{ id: departmentid}})
+        .then( (department)=> {
+            return department.destroy()
+        }).then(function (result) {
+            res.redirect('/admin/departments')
         })
         .catch(function (err) {
             console.log(err);
