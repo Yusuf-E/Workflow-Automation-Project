@@ -11,11 +11,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 module.exports.getIndex = (req, res, next) => {
     console.log(req.session.isAuthenticated)
-    res.render('user/index',
-        {
-            title: 'Home',
-            path: '/index',
-        });
+    Faculty.findOne({where:{id:req.user.facultyId}})
+        .then((faculty)=>{
+            _faculty = faculty;
+            Department.findOne({where:{id:req.user.departmentId}})
+                .then((department)=>{
+                    res.render('user/index',
+                    {
+                        title: 'Home',
+                        requser:req.user,
+                        department:department,
+                        faculty:_faculty,
+                        path: '/index',
+                    });
+                })
+        })
+    
+
 }
 module.exports.getResetPassword = (req, res, next) => {
     res.render('account/page-reset-password',

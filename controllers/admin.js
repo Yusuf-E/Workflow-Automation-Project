@@ -19,7 +19,7 @@ module.exports.getAddUser = (req, res, next) => {
                     res.render('admin/add-user', {
                         title: 'Add-User',
                         departments: departments,
-                        isAuthenticated:req.session.isAuthenticated,
+                        isAuthenticated: req.session.isAuthenticated,
                         faculties: faculties,
                         path: '/admin/add-user',
 
@@ -31,7 +31,7 @@ module.exports.getAddUser = (req, res, next) => {
 
 }
 module.exports.postAddUser = (req, res, next) => {
-    let _user,_hashedPassword;
+    let _user, _hashedPassword;
     const facultyid = req.body.signinfaculty;
     const departmentname = req.body.signindepartment;
     console.log(departmentname);
@@ -41,7 +41,7 @@ module.exports.postAddUser = (req, res, next) => {
     const surname = req.body.signinlastname;
     const phoneNumber = req.body.signinphone;
     const email = req.body.signinemail;
-    const password = personnelId+name+surname;
+    const password = personnelId + name + surname;
 
     User.findOne({ where: { personnelId: personnelId } })
         .then((user) => {
@@ -55,34 +55,34 @@ module.exports.postAddUser = (req, res, next) => {
                         console.log('Bu personel sisteme kayıtlı');
                         return res.redirect('/admin/add-user')
                     }
-                    return bcrypt.hash(password,10)
+                    return bcrypt.hash(password, 10)
                 })
                 .then((hashedPassword) => {
                     _hashedPassword = hashedPassword;
                     return hashedPassword;
 
                 })
-                .then((hashedPassword)=>{
-                    Department.findOne({ where: { name: departmentname, facultyId:facultyid}})
-                    .then((department)=>{
-                        console.log(department.id);
-                        return User.create({ personnelId: personnelId, nameSurname: name+" "+surname, email: email, password: _hashedPassword, facultyId: facultyid, departmentId: department.id, program: program, phone: phoneNumber,imageUrl:'default-user-image.png'});
+                .then((hashedPassword) => {
+                    Department.findOne({ where: { name: departmentname, facultyId: facultyid } })
+                        .then((department) => {
+                            console.log(department.id);
+                            return User.create({ personnelId: personnelId, nameSurname: name + " " + surname, email: email, password: _hashedPassword, facultyId: facultyid, departmentId: department.id, program: program, phone: phoneNumber, imageUrl: 'default-user-image.png' });
 
-                    })
-                    .then((user)=>{
-                        _user = user;
-                        return user.getTask();
-                    })
-                    .then((task)=>{
-                        if(!task){
-                            return _user.createTask();
-                        }
-                        return task;
-                    })
-                    .then((result)=>{
-                        console.log('Kullanıcı Oluşturuldu.');
-                        res.redirect('/admin/users')
-                    })
+                        })
+                        .then((user) => {
+                            _user = user;
+                            return user.getTask();
+                        })
+                        .then((task) => {
+                            if (!task) {
+                                return _user.createTask();
+                            }
+                            return task;
+                        })
+                        .then((result) => {
+                            console.log('Kullanıcı Oluşturuldu.');
+                            res.redirect('/admin/users')
+                        })
                 })
         })
 }
@@ -98,8 +98,9 @@ module.exports.getUserList = (req, res, next) => {
                             res.render('admin/users', {
                                 title: 'Kullanıcılar',
                                 users: _users,
+                                requser:req.user,
                                 departments: departments,
-                                isAuthenticated:req.session.isAuthenticated,
+                                isAuthenticated: req.session.isAuthenticated,
                                 faculties: _faculties,
                                 path: '/admin/users'
                             })
@@ -113,7 +114,7 @@ module.exports.getAddFaculty = (req, res, next) => {
     res.render('admin/add-faculty',
         {
             title: 'Reset | İş Akışları Otomasyon Sistemi',
-            isAuthenticated:req.session.isAuthenticated,
+            isAuthenticated: req.session.isAuthenticated,
             path: '/admin/add-faculty'
         });
 }
@@ -137,7 +138,7 @@ module.exports.getFacultyList = (req, res, next) => {
             res.render('admin/faculties', {
                 title: 'Kurumlar/Fakülteler',
                 faculties: faculties,
-                isAuthenticated:req.session.isAuthenticated,
+                isAuthenticated: req.session.isAuthenticated,
                 path: '/admin/faculties'
             })
         }).catch((err) => {
@@ -151,7 +152,7 @@ module.exports.getAddDepartment = (req, res, next) => {
                 {
                     title: 'Bölüm Ekle',
                     faculties: faculties,
-                    isAuthenticated:req.session.isAuthenticated,
+                    isAuthenticated: req.session.isAuthenticated,
                     path: '/admin/add-department'
                 });
         })
@@ -160,7 +161,7 @@ module.exports.getAddDepartment = (req, res, next) => {
 module.exports.postAddDepartment = (req, res, next) => {
     const facultyid = req.body.facultyname;
     const departmentname = req.body.departmentname;
-    Department.findOne({ where: { name: departmentname, facultyId:facultyid } })
+    Department.findOne({ where: { name: departmentname, facultyId: facultyid } })
         .then((department) => {
             if (department) {
                 console.log('Bu departman sistemde kayıtlı');
@@ -175,16 +176,16 @@ module.exports.postAddDepartment = (req, res, next) => {
 module.exports.getDepartmentList = (req, res, next) => {
     Faculty.findAll()
         .then((faculties) => {
-            let _faculties=faculties;
+            let _faculties = faculties;
             Department.findAll()
-             
+
                 .then((departments) => {
                     res.render('admin/departments', {
                         title: 'Kurumlar/Fakülteler',
                         departments: departments,
                         faculties: _faculties,
-                        isAuthenticated:req.session.isAuthenticated,
-                        deps:JSON.stringify(departments),
+                        isAuthenticated: req.session.isAuthenticated,
+                        deps: JSON.stringify(departments),
                         path: '/admin/departments'
                     })
                 })
@@ -192,53 +193,52 @@ module.exports.getDepartmentList = (req, res, next) => {
             console.log(err);
         })
 }
-module.exports.postSearchDepartment = (req,res,next)=>{
+module.exports.postSearchDepartment = (req, res, next) => {
     const departmentName = req.body.searchBar;
     console.log(departmentName);
     Faculty.findAll()
-    .then((faculties) => {
-        let _faculties=faculties;
-        Department.findAll({where:{name:departmentName}})
-         
-            .then((departments) => {
-                res.render('admin/departments', {
-                    title: 'Kurumlar/Fakülteler',
-                    departments: departments,
-                    isAuthenticated:req.session.isAuthenticated,
-                    faculties: _faculties,
-                    path: '/admin/departments'
-                })
-            })
-    }).catch((err) => {
-        console.log(err);
-    })
-}
-module.exports.getUpdateUser = (req,res,next)=>{
-    const userid = req.params.userid;
-    let faculty,_user;
-    User.findOne({where:{id:userid}})
-        .then((user)=>{
-            _user = user;
-            Faculty.findAll()
-            .then((_faculty) => {
-                faculty = _faculty;
-                Department.findAll()
-                    .then((department) => {
-                        res.render('admin/update-user', {
-                            title: 'Kullanıcı Güncelle',
-                            faculty:faculty,
-                            user:_user,
-                            department:department,
-                            path: '/admin/update-user'
-                        })
+        .then((faculties) => {
+            let _faculties = faculties;
+            Department.findAll({ where: { name: departmentName } })
+
+                .then((departments) => {
+                    res.render('admin/departments', {
+                        title: 'Kurumlar/Fakülteler',
+                        departments: departments,
+                        isAuthenticated: req.session.isAuthenticated,
+                        faculties: _faculties,
+                        path: '/admin/departments'
                     })
-            }).catch((err) => {
-                console.log(err)
-            })
+                })
+        }).catch((err) => {
+            console.log(err);
         })
 }
-module.exports.postUpdateUser = (req,res,next)=>{
-    let _user,_hashedPassword;
+module.exports.getUpdateUser = (req, res, next) => {
+    const userid = req.params.userid;
+    let faculty, _user;
+    User.findOne({ where: { id: userid } })
+        .then((user) => {
+            _user = user;
+            Faculty.findAll()
+                .then((_faculty) => {
+                    faculty = _faculty;
+                    Department.findAll()
+                        .then((department) => {
+                            res.render('admin/update-user', {
+                                title: 'Kullanıcı Güncelle',
+                                faculty: faculty,
+                                user: _user,
+                                department: department,
+                                path: '/admin/update-user'
+                            })
+                        })
+                }).catch((err) => {
+                    console.log(err)
+                })
+        })
+}
+module.exports.postUpdateUser = (req, res, next) => {
     const userid = JSON.parse(req.body.userid);
     const facultyid = req.body.signinfaculty;
     const departmentname = req.body.signindepartment;
@@ -246,11 +246,11 @@ module.exports.postUpdateUser = (req,res,next)=>{
     const name = req.body.signinname;
     const phoneNumber = req.body.signinphone;
     const email = req.body.signinemail;
-    User.findOne({where:{id:userid}})
-        .then((user)=>{
+    User.findOne({ where: { id: userid } })
+        .then((user) => {
             _user = user;
-            Department.findOne({where:{facultyId:facultyid ,name:departmentname}})
-                .then((department)=>{
+            Department.findOne({ where: { facultyId: facultyid, name: departmentname } })
+                .then((department) => {
                     _user.facultyId = facultyid;
                     _user.departmentId = department.id;
                     _user.personnelId = personnelId;
@@ -259,9 +259,33 @@ module.exports.postUpdateUser = (req,res,next)=>{
                     _user.email = email;
                     return _user
                 })
-                .then((userUpdate)=>{
+                .then((userUpdate) => {
                     userUpdate.save();
                     res.redirect('/admin/users');
                 })
+        })
+}
+module.exports.postDeleteUser = function (req, res, next) {
+    const userid = req.params.userid
+    User.findOne({where:{ id: userid}})
+        .then( (user)=> {
+            return user.destroy()
+        }).then(function (result) {
+            res.redirect('/admin/users')
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+}
+module.exports.postDeleteFaculty = function (req, res, next) {
+    const facultyid = req.params.facultyid
+    Faculty.findOne({where:{ id: facultyid}})
+        .then( (faculty)=> {
+            return faculty.destroy()
+        }).then(function (result) {
+            res.redirect('/admin/faculties')
+        })
+        .catch(function (err) {
+            console.log(err);
         })
 }

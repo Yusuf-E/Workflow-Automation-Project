@@ -26,5 +26,8 @@ router.post('/search-department',adminController.postSearchDepartment);
 
 router.post('/update-user',adminController.postUpdateUser);
 router.get('/update-user/:userid',adminController.getUpdateUser);
+
+router.get('/delete-user/:userid',adminController.postDeleteUser);
+router.get('/delete-faculty/:facultyid',adminController.postDeleteFaculty);
 module.exports = router;
 
