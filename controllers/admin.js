@@ -213,3 +213,55 @@ module.exports.postSearchDepartment = (req,res,next)=>{
         console.log(err);
     })
 }
+module.exports.getUpdateUser = (req,res,next)=>{
+    const userid = req.params.userid;
+    let faculty,_user;
+    User.findOne({where:{id:userid}})
+        .then((user)=>{
+            _user = user;
+            Faculty.findAll()
+            .then((_faculty) => {
+                faculty = _faculty;
+                Department.findAll()
+                    .then((department) => {
+                        res.render('admin/update-user', {
+                            title: 'Kullanıcı Güncelle',
+                            faculty:faculty,
+                            user:_user,
+                            department:department,
+                            path: '/admin/update-user'
+                        })
+                    })
+            }).catch((err) => {
+                console.log(err)
+            })
+        })
+}
+module.exports.postUpdateUser = (req,res,next)=>{
+    let _user,_hashedPassword;
+    const userid = JSON.parse(req.body.userid);
+    const facultyid = req.body.signinfaculty;
+    const departmentname = req.body.signindepartment;
+    const personnelId = req.body.signinpersonnelId;
+    const name = req.body.signinname;
+    const phoneNumber = req.body.signinphone;
+    const email = req.body.signinemail;
+    User.findOne({where:{id:userid}})
+        .then((user)=>{
+            _user = user;
+            Department.findOne({where:{facultyId:facultyid ,name:departmentname}})
+                .then((department)=>{
+                    _user.facultyId = facultyid;
+                    _user.departmentId = department.id;
+                    _user.personnelId = personnelId;
+                    _user.nameSurname = name;
+                    _user.phone = phoneNumber;
+                    _user.email = email;
+                    return _user
+                })
+                .then((userUpdate)=>{
+                    userUpdate.save();
+                    res.redirect('/admin/users');
+                })
+        })
+}

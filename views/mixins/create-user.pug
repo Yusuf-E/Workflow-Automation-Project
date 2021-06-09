@@ -22,10 +22,9 @@ mixin createUser(user,faculties,departments)
             each department in departments 
                 if department.id === user.departmentId
                     span  &nbsp;  &nbsp; #{department.name} 
-        
-        td
+        td 
             img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;') 
-            a(href="")                           
-                i.fa.fa-cog.primary  
-            a(href="")  &nbsp;                            &nbsp;
+            a(href=`/admin/update-user/${user.id}`)                           
+                    i.fa.fa-cog.primary  
+            a(href=`/admin/delete-user/${user.id}`)  &nbsp;                            &nbsp;
                 i.delete.fa.fa-times-circle.rediconcolor 

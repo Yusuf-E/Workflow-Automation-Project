@@ -47,9 +47,11 @@ html(lang="en")
                       th İşlem 
 
                   tbody
+                    - var i =0;
                     if departments.length > 0 
                       each department in departments
-                        +createDepartment(department,faculties)
+                        - ++i;
+                        +createDepartment(department,faculties,i)
             // END TABLE STRIPED
     // END MAIN CONTENT
   // END MAIN

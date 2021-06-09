@@ -1,0 +1,47 @@
+<!doctype html>
+html(lang="en")
+  include ../includes/head.pug
+// WRAPPER
+block content
+  #wrapper
+    .vertical-align-wrap
+      .vertical-align-middle
+        .auth-box(style='height:100%;')
+          .left.text-center 
+            .content
+              .header
+                .logo.text-center
+                  img(src='/assets/img/uni_logo.gif' alt='Logo' style='width:72px; heigth:72px;')
+              form.form-auth-small(action='/admin/update-user' method='POST')
+                input#userid(type="hidden" value=user.id name='userid')
+                .form-group
+                  select.form-control.input#signinfaculty(name='signinfaculty')
+                    option(value='-1') Fakülte Seçiniz
+                    each fac in faculty 
+                      option(value=`${fac.id}` selected=fac.id===user.facultyId) #{fac.name}
+
+                .form-group
+                  select.form-control.input#signindepartment(name='signindepartment')
+                    option(value='-1') Bölüm Seçiniz
+                    each dep in department 
+                      option(value=`${dep.name}` selected=dep.id===user.departmentId) #{dep.name}
+                .form-group
+                  label.control-label.sr-only(for='signinpersonnelId') PersonnelId
+                  input.form-control#signinpersonnelId(type='text' placeholder='Personel Numarası' name='signinpersonnelId' value=`${user.personnelId}`)
+                .form-group
+                  label.control-label.sr-only(for='signinname') İsim
+                  input.form-control#signinname(type='text'  placeholder='İsim' name='signinname'  value=`${user.nameSurname}`)
+                .form-group
+                  label.control-label.sr-only(for='signinphone') Telefon
+                  input.form-control#signinphone(type='tel'  placeholder='Telefon' name='signinphone'  value=`${user.phone}`)
+                .form-group
+                  label.control-label.sr-only(for='signinemail') Email
+                  input.form-control#signinemail(type='email' placeholder='Email' name='signinemail'  value=`${user.email}`)
+                .form-group
+                  label.control-label.sr-only(for='signinpassword') Şifre
+                  input.form-control#signinpassword(type='password' value='itsalreadyexist' placeholder='Şifre' readonly='true' name='signinpassword')
+                .form-group.clearfix
+                button.btn.btn-primary.btn-lg.btn-block(type='submit') KAYDET
+
+          .clearfix
+// END WRAPPER

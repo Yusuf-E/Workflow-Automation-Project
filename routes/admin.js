@@ -23,5 +23,8 @@ router.get('/add-department',adminController.getAddDepartment);
 router.post('/add-department',adminController.postAddDepartment);
 
 router.post('/search-department',adminController.postSearchDepartment);
+
+router.post('/update-user',adminController.postUpdateUser);
+router.get('/update-user/:userid',adminController.getUpdateUser);
 module.exports = router;
 
