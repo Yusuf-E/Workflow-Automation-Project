@@ -287,9 +287,22 @@ module.exports.getFlows = (req, res, next) => {
         })
 }
 module.exports.getFlow = (req, res, next) => {
-    res.render('user/flow-detail', {
-        title: 'Flows', path: '/flow'
-    })
+    let _flow,_users;
+    const flowid = req.params.flowid;
+    Flow.findOne({ where: {id: flowid}})
+        .then((flow)=>{
+            _flow = flow;
+            User.findAll()
+                .then((users)=>{
+                    _users=users;
+                    TaskItem.findAll({ where: {flowId: flowid}})
+                    .then((taskItem)=>{
+                        res.render('user/flow-detail', {
+                            title: 'Flows',items:taskItem,flow:_flow,users:_users, path: '/flow'
+                        })
+                    })
+                })
+        })
 }
 module.exports.postDesicionAccept = (req, res, next) => {
     const flow = JSON.parse(req.body.flow);

@@ -9,11 +9,11 @@ mixin createTask(flow,i,users)
         td #{flow.createdAt}
         td 
             if flow.taskitem.confirmation === null
-                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#0000FF ;font-weight:bold;') ONAY BEKLİYOR
+                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#0000FF ;font-weight:bold;resize:none;') ONAY BEKLİYOR
             if flow.taskitem.confirmation === false
-                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#FF0000;font-weight:bold;') REDDEDİLDİ
+                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#FF0000;font-weight:bold;resize:none;') REDDEDİLDİ
             if flow.taskitem.confirmation === true
-                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#00FF00;font-weight:bold;') ONAYLANDI
+                textarea.col-sm-12(placeholder='' rows='1' style='text-align: center; color:#00FF00;font-weight:bold;resize:none;') ONAYLANDI
         td.text-center
             if flow.taskitem.confirmation === null
                 a(href=`/task-detail/${flow.id}`)                       

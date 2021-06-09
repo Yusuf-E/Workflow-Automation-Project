@@ -13,7 +13,7 @@ mixin createFlow(flow,item,i,users)
                         if taskItem.confirmation == false 
                             - status = -1;
                             td 
-                                textarea.col-sm-12(placeholder='Açıklama' rows='1' style='text-align: center; color:#FF0000; font-weight:bold;' disabled) REDDEDİLDİ
+                                textarea.col-sm-12(placeholder='Açıklama' rows='1' style='text-align: center; color:#FF0000; font-weight:bold;resize:none;' disabled) REDDEDİLDİ
                             -break
                         else if taskItem.confirmation == null 
                             - status = 0 ;            
@@ -22,12 +22,12 @@ mixin createFlow(flow,item,i,users)
                                 -status =1;
                 if(status === 0)
                     td 
-                        textarea.col-sm-12(placeholder='Açıklama' rows='1' style='text-align: center; color:#0000FF; font-weight:bold;' disabled) ONAY BEKLİYOR
+                        textarea.col-sm-12(placeholder='Açıklama' rows='1' style='text-align: center; color:#0000FF; font-weight:bold;resize:none;' disabled) ONAY BEKLİYOR
                 if(status === 1)
                     td 
-                        textarea.col-sm-12.greeniconcolor(placeholder='Açıklama' rows='1' style='text-align: center; font-weight:bold;' disabled) ONAYLANDI
+                        textarea.col-sm-12.greeniconcolor(placeholder='Açıklama' rows='1' style='text-align: center; font-weight:bold;resize:none;' disabled) ONAYLANDI
         td.text-center    
-            a(href="flow-detail")                       
+            a(href=`/flow-detail/${flow.id}`)                       
                 i.fa.fa-file(style='font-size:24px;')    
         if (status === -1)
             td.text-center                      

@@ -15,7 +15,7 @@ html(lang="en")
       .container-fluid
         .row(style='height:500px;')
             .img-container-inline(style='float:left; display:inline-block;')
-                img(src="assets/img/Biçimsel diller düzeltilmiş dilekçe.jpg"  alt="" style='height:500px; width:400px;')
+                img(src=`/assets/fileimg/${flow.imageUrl}`  alt="" style='height:500px; width:400px;')
             div(style='float:right;').col-sm-7
                 .row 
                     table.table.table-striped.table-hover
@@ -28,12 +28,11 @@ html(lang="en")
                                     span Açıklama 
 
                         tbody
-                          +createApprover()
-                          +createApprover()
-                          +createApprover()
-
-
-              
+                          -var i = 0;
+                          if items.length > 0
+                            each item in items 
+                              - ++i;
+                              +createApprover(item,i,users)
     // END MAIN CONTENT
   // END MAIN
   .clearfix

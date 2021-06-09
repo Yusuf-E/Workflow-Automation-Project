@@ -33,7 +33,7 @@ router.get('/profile', isAuthenticated, userController.getProfile);
 router.get('/tasks', isAuthenticated, userController.getTasks);
 router.get('/task-detail/:flowid', isAuthenticated, userController.getTask);
 router.get('/flows', isAuthenticated, userController.getFlows);
-router.get('/flow-detail', isAuthenticated, userController.getFlow);
+router.get('/flow-detail/:flowid', isAuthenticated, userController.getFlow);
 router.post('/desicion-accept', isAuthenticated, userController.postDesicionAccept);
 router.post('/desicion-deny', isAuthenticated, userController.postDesicionDeny);
 router.post('/search-user', isAuthenticated, userController.postSearchUser);

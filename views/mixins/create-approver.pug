@@ -1,9 +1,19 @@
-mixin createApprover()
+mixin createApprover(item,i,users)
     tr
-        td.col-sm-1(rows='2') 1
-        td.col-sm-3 Muhammed Emre Çolak
-        td.col-sm-3 
-            textarea.col-sm-12(placeholder='Durum' rows='1') 
-        td.text-center.col-sm-4    
-            textarea.col-sm-12(placeholder='Açıklama' rows='2')                    
+        td.col-sm-1(rows='2') #{i}
+        if users.length > 0
+            each user in users
+                if item.taskId===user.id
+                    td.col-sm-3  #{user.nameSurname}
+        if item.confirmation === null
+            td.col-sm-3 
+                textarea.col-sm-12(placeholder='Durum' rows='1' disabled style='text-align: center; color:#0000FF ;font-weight:bold;resize:none;') ONAY BEKLİYOR
+        if item.confirmation === false
+            td.col-sm-3 
+                textarea.col-sm-12(placeholder='Durum' rows='1' disabled style='text-align: center; color:#FF0000;font-weight:bold;resize:none;') REDDEDİLDİ
+        if item.confirmation === true
+            td.col-sm-3 
+                textarea.col-sm-12(placeholder='Durum' rows='1' disabled style='text-align: center; color:#00FF00;font-weight:bold;resize:none;') ONAYLANDI
+        td.text-center.col-sm-4   
+            textarea.col-sm-12(placeholder='Açıklama' rows='2' disabled style='resize:none;') #{item.explanation}                   
         
