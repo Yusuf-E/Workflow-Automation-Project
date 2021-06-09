@@ -66,7 +66,7 @@ module.exports.postAddUser = (req, res, next) => {
                     Department.findOne({ where: { name: departmentname, facultyId:facultyid}})
                     .then((department)=>{
                         console.log(department.id);
-                        return User.create({ personnelId: personnelId, nameSurname: name+" "+surname, email: email, password: _hashedPassword, facultyId: facultyid, departmentId: department.id, program: program, phone: phoneNumber });
+                        return User.create({ personnelId: personnelId, nameSurname: name+" "+surname, email: email, password: _hashedPassword, facultyId: facultyid, departmentId: department.id, program: program, phone: phoneNumber,imageUrl:'default-user-image.png'});
 
                     })
                     .then((user)=>{

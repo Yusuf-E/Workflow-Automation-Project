@@ -24,7 +24,7 @@ html(lang="en")
                   .profile-main
                     .image-upload 
                       label(for='formfile')
-                        img.img-circle(src='assets/img/default-user-image.png' alt='Avatar' style='width:48px;height:48px;')
+                        img.img-circle(src=`/assets/fileimg/${user.imageUrl}` alt='Avatar' style='width:48px;height:48px;')
                       input.form-control#formfile(type='file' value='' placeholder='Email' name='formfile') 
                     h3.name #{user.nameSurname}
                 // END PROFILE HEADER
@@ -35,7 +35,7 @@ html(lang="en")
                     ul.list-unstyled.list-justify
                       li
                         | Doğum Tarihi
-                        span #{user.birthdate}
+                        span #{birthdate}
                       li
                         |Telefon 
                         span #{user.phone}
@@ -51,8 +51,9 @@ html(lang="en")
                             i.fa.fa-facebook
                       if !(user.twitter ===null)
                         li
-                          i.fa.fa-twitter
-                            a.twitter-bg(href=`${user.twitter}` target="_blank")      
+                          a.twitter-bg(href=`${user.twitter}` target="_blank") 
+                            i.fa.fa-twitter
+                                 
                       if !(user.instagram ===null)
                         li
                           a.google-plus-bg(href=`mailto:${user.email}` target="_blank")
@@ -144,7 +145,7 @@ html(lang="en")
                               span Dogum Tarihi
                             td
                               span
-                                input#birthdate.form-control(type='date' value=`${user.birthdate}` name='birthdate')
+                                input#birthdate.form-control(type='date' value=`${birthdate}` name='birthdate')
                             td
                               span Facebook
                             td

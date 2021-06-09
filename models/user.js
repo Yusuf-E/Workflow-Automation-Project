@@ -72,7 +72,7 @@ const User = sequelize.define('user', {
     },
     imageUrl:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     isAdmin: {
         type: Sequelize.BOOLEAN,

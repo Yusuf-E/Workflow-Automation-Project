@@ -3,7 +3,7 @@ mixin createUser(user,faculties,departments)
         td 
             span #{user.id}
         td 
-            img(src='/assets/img/default-user-image.png', alt="" style='width:48px;height:48px;')
+            img(src=`/assets/fileimg/${user.imageUrl}`, alt="" style='width:48px;height:48px;')
         td 
             img(src='/assets/img/default-user-image.png', alt="" style='height:48px;width:0px;')
             span  &nbsp;  &nbsp; #{user.nameSurname}
