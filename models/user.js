@@ -70,6 +70,10 @@ const User = sequelize.define('user', {
         type: Sequelize.DATE,
         allowNull: true,
     },
+    imageUrl:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     isAdmin: {
         type: Sequelize.BOOLEAN,
         defaultValue: false

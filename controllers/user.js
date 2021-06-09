@@ -60,11 +60,27 @@ module.exports.getPages = (req, res, next) => {
         });
 }
 module.exports.getProfile = (req, res, next) => {
-    res.render('user/profile',
-        {
-            title: 'Reset | İş Akışları Otomasyon Sistemi',
-            path: '/page-profile'
-        });
+    const date = require('moment')(req.user.createdAt).format('DD.MM.YYYY');
+    let _department;
+    Department.findOne({ where: { id: req.user.departmentId } })
+        .then((department) => {
+            console.log(department);
+            _department = department;
+            Faculty.findOne({ where: { id: _department.facultyId } })
+                .then((faculty) => {
+                    console.log(faculty);
+                    res.render('user/profile',
+                        {
+                            title: 'Reset | İş Akışları Otomasyon Sistemi',
+                            user: req.user,
+                            faculty: faculty,
+                            department: _department,
+                            date: date,
+                            path: '/page-profile'
+                        });
+                })
+        })
+
 }
 
 module.exports.getLockScreen = (req, res, next) => {
@@ -287,20 +303,20 @@ module.exports.getFlows = (req, res, next) => {
         })
 }
 module.exports.getFlow = (req, res, next) => {
-    let _flow,_users;
+    let _flow, _users;
     const flowid = req.params.flowid;
-    Flow.findOne({ where: {id: flowid}})
-        .then((flow)=>{
+    Flow.findOne({ where: { id: flowid } })
+        .then((flow) => {
             _flow = flow;
             User.findAll()
-                .then((users)=>{
-                    _users=users;
-                    TaskItem.findAll({ where: {flowId: flowid}})
-                    .then((taskItem)=>{
-                        res.render('user/flow-detail', {
-                            title: 'Flows',items:taskItem,flow:_flow,users:_users, path: '/flow'
+                .then((users) => {
+                    _users = users;
+                    TaskItem.findAll({ where: { flowId: flowid } })
+                        .then((taskItem) => {
+                            res.render('user/flow-detail', {
+                                title: 'Flows', items: taskItem, flow: _flow, users: _users, path: '/flow'
+                            })
                         })
-                    })
                 })
         })
 }
@@ -372,5 +388,10 @@ module.exports.postSearchUser = (req, res, next) => {
                 })
 
         })
+
+}
+module.exports.postProfile = (req,res,next)=>{
+
+
 
 }

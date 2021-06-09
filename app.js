@@ -64,7 +64,6 @@ const storage = multer.diskStorage({
     }
 })
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(multer({ storage: storage }).single('formfile'));

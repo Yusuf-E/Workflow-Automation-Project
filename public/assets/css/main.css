@@ -1782,7 +1782,9 @@ ul.activity-timeline > li {
 .float-right{
   float:right;
 }
-
+.image-upload>input {
+  display: none;
+}
 
 .user-form {
   padding: 15px;

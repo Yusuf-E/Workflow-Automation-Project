@@ -37,4 +37,5 @@ router.get('/flow-detail/:flowid', isAuthenticated, userController.getFlow);
 router.post('/desicion-accept', isAuthenticated, userController.postDesicionAccept);
 router.post('/desicion-deny', isAuthenticated, userController.postDesicionDeny);
 router.post('/search-user', isAuthenticated, userController.postSearchUser);
+router.post('/profile',isAuthenticated,userController.postProfile);
 module.exports = router;
