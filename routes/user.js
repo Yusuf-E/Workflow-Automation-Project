@@ -8,22 +8,6 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/index', isAuthenticated,csrf, userController.getIndex);
 
-router.get('/elements', userController.getElements);
-router.get('/charts', userController.getCharts);
-router.get('/panels', userController.getPanels);
-router.get('/notifications', userController.getNotifications);
-router.get('/pages', userController.getPages);
-
-router.get('/lock-screen', userController.getLockScreen);
-router.get('/tables', userController.getTables);
-router.get('/typography', userController.getTypography);
-router.get('/icons', userController.getIcons);
-router.get('/delete-faculty',csrf, userController.getDeleteFaculty);
-router.get('/add-department',csrf, userController.getAddDepartment);
-
-router.get('/delete-department', userController.getDeleteDepartment);
-router.get('/faculties', userController.getFaculties);
-
 router.get('/flow-builder', isAuthenticated, csrf,userController.getFlowBuilder);
 router.get('/form-page', isAuthenticated, csrf,userController.getFormPage);
 router.post('/flow-builder', isAuthenticated,csrf, userController.postFlowBuilder);
