@@ -19,8 +19,8 @@ mixin createTask(flow,i,users)
                 a(href=`/task-detail/${flow.id}`)                       
                     i.fa.fa-file(style='font-size:24px;')  
             if flow.taskitem.confirmation === false
-                a(href=`/flow-detail/`)                       
+                a(href=`/flow-detail/${flow.id}`)                       
                     i.fa.fa-file(style='font-size:24px;')              
             if flow.taskitem.confirmation === true   
-                a(href=`/flow-detail`)                       
+                a(href=`/flow-detail/${flow.id}`)                       
                     i.fa.fa-file(style='font-size:24px;')  

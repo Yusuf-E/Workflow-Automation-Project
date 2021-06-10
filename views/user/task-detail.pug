@@ -21,8 +21,9 @@ html(lang="en")
             a#imgzoom(href='#' target='_blank') 
               img(src=`/assets/fileimg/${flow.imageUrl}`  alt="" style='height:500px; width:400px; cursor: zoom-in;')
         .row(style='margin-top:15px;')
-          textarea#explanation.col-sm-5(placeholder='Açıklama' rows='2' name='explanation' style='resize:none;')
           form(action="/desicion-deny" method="POST")
+            .form-group
+            textarea#explanation.col-sm-5(placeholder='Açıklama' rows='2' name='explanation' style='resize:none;')
             .form-group  
               input#flow(type="hidden" value=flow name='flow')
               button.btn.btn-danger.col-sm-3.btn-lg(type='submit' style='float:right;') Reddet 

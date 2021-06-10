@@ -30,13 +30,6 @@ module.exports.getIndex = (req, res, next) => {
     
 
 }
-module.exports.getResetPassword = (req, res, next) => {
-    res.render('account/page-reset-password',
-        {
-            title: 'Reset | İş Akışları Otomasyon Sistemi',
-            path: '/reset-password'
-        });
-}
 module.exports.getElements = (req, res, next) => {
     res.render('elements',
         {
@@ -236,6 +229,7 @@ module.exports.postFlow = (req, res, next) => {
                                     })
                             })
                     }
+                    res.redirect('/index');
                 })
         })
 
@@ -358,6 +352,8 @@ module.exports.postDesicionAccept = (req, res, next) => {
 }
 module.exports.postDesicionDeny = (req, res, next) => {
     const flow = JSON.parse(req.body.flow);
+    const explanation = req.body.explanation;
+    console.log(explanation);
     let _flow;
     req.user
         .getTask()
@@ -371,6 +367,7 @@ module.exports.postDesicionDeny = (req, res, next) => {
                 _flow = flow;
             }
             flow.taskitem.confirmation = false;
+            flow.taskitem.explanation = explanation;
             return flow.taskitem.save();
         })
         .then((result) => {

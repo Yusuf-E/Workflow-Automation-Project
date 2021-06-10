@@ -7,8 +7,6 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/index', isAuthenticated, userController.getIndex);
 
-
-router.get('/reset-password', userController.getResetPassword);
 router.get('/elements', userController.getElements);
 router.get('/charts', userController.getCharts);
 router.get('/panels', userController.getPanels);
