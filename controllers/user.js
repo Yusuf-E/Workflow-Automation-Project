@@ -12,22 +12,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 module.exports.getIndex = (req, res, next) => {
     console.log(req.session.isAuthenticated)
-    Faculty.findOne({where:{id:req.user.facultyId}})
-        .then((faculty)=>{
+    Faculty.findOne({ where: { id: req.user.facultyId } })
+        .then((faculty) => {
             _faculty = faculty;
-            Department.findOne({where:{id:req.user.departmentId}})
-                .then((department)=>{
+            Department.findOne({ where: { id: req.user.departmentId } })
+                .then((department) => {
                     res.render('user/index',
-                    {
-                        title: 'Home',
-                        requser:req.user,
-                        department:department,
-                        faculty:_faculty,
-                        path: '/index',
-                    });
+                        {
+                            title: 'Home',
+                            requser: req.user,
+                            department: department,
+                            faculty: _faculty,
+                            path: '/index',
+                        });
                 })
         })
-    
+
 
 }
 module.exports.getElements = (req, res, next) => {
@@ -83,7 +83,7 @@ module.exports.getProfile = (req, res, next) => {
                             faculty: faculty,
                             department: _department,
                             date: date,
-                            birthdate:birthdate,
+                            birthdate: birthdate,
                             path: '/page-profile'
                         });
                 })
@@ -402,49 +402,52 @@ module.exports.postSearchUser = (req, res, next) => {
         })
 
 }
-module.exports.postProfile = (req,res,next)=>{
-   const userimage= req.file;
-   const adress= req.body.adress;
-   const city= req.body.city;
-   const phone= req.body.phone;
-   const district= req.body.district;
-   const secondemail= req.body.secondmail;
-   const birthdate= req.body.birthdate;
-   const facebook= req.body.facebook;
-   const twitter= req.body.twitter;
-   const instagram= req.body.instagram;
-   console.log(req.user.email)
-   if(userimage!== undefined){
-       req.user.imageUrl= userimage.filename;
-   }
-   req.user.adress= adress;
-   req.user.city= city;
-   req.user.phone= phone;
-   req.user.district= district;
-   req.user.secondemail= secondemail;
-   req.user.birthdate= birthdate;
-   req.user.facebook= facebook;
-   req.user.twitter= twitter;
-   req.user.instagram= instagram;
-   req.user.save();
-   res.redirect('/profile')
+module.exports.postProfile = (req, res, next) => {
+    const userimage = req.file;
+    const adress = req.body.adress;
+    const city = req.body.city;
+    const phone = req.body.phone;
+    const district = req.body.district;
+    const secondemail = req.body.secondmail;
+    const birthdate = req.body.birthdate;
+    const facebook = req.body.facebook;
+    const twitter = req.body.twitter;
+    const instagram = req.body.instagram;
+    if ((userimage !== undefined) && (userimage.filename !== undefined)) {
+        req.user.imageUrl = userimage.filename;
+    }
+    req.user.birthdate = birthdate;
+    console.log(birthdate);
+    req.user.adress = adress;
+    req.user.city = city;
+    req.user.phone = phone;
+    req.user.district = district;
+    req.user.secondemail = secondemail;
+    req.user.facebook = facebook;
+    req.user.twitter = twitter;
+    req.user.instagram = instagram;
+    req.user.save()
+        .then(() => {
+            res.redirect('/profile')
+        })
+
 }
-module.exports.getSettings =(req,res,next)=>{
+module.exports.getSettings = (req, res, next) => {
     res.render('user/settings', {
         title: 'Şifre Değiştir',
         path: '/settings'
     })
 }
-module.exports.postSettings = (req,res,next)=>{
+module.exports.postSettings = (req, res, next) => {
     const oldPassword = req.body.password;
     const newPassword = req.body.password1;
     const newPasswordVerify = req.body.password2;
-        bcrypt.compare(oldPassword,req.user.password)
-        .then((isSuccess)=>{
-            if(isSuccess){
-                if(newPassword === newPasswordVerify){
-                    bcrypt.hash(newPassword,10)
-                        .then((hashedPass)=>{
+    bcrypt.compare(oldPassword, req.user.password)
+        .then((isSuccess) => {
+            if (isSuccess) {
+                if (newPassword === newPasswordVerify) {
+                    bcrypt.hash(newPassword, 10)
+                        .then((hashedPass) => {
                             req.user.password = hashedPass;
                             req.user.save();
                             console.log('şifre değişti.')
@@ -452,14 +455,14 @@ module.exports.postSettings = (req,res,next)=>{
 
                         })
                 }
-                else{
+                else {
                     res.redirect('/settings');
                 }
             }
-            else{
+            else {
                 res.redirect('/settings')
             }
 
-})
+        })
 
 }

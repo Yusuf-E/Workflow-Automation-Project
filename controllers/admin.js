@@ -9,6 +9,7 @@ const Department = require('../models/department');
 const bcrypt = require('bcrypt');
 const Sequelize = require('sequelize');
 const nodemailer = require('nodemailer');
+const { DATE } = require('sequelize');
 let _transporter;
 app.use(bodyParser.urlencoded({ extended: true }));
 module.exports.getAddUser = (req, res, next) => {
@@ -85,7 +86,7 @@ module.exports.postAddUser = (req, res, next) => {
                     Department.findOne({ where: { name: departmentname, facultyId: facultyid } })
                         .then((department) => {
                             console.log(department.id);
-                            return User.create({ personnelId: personnelId, nameSurname: name + " " + surname, email: email, password: _hashedPassword, facultyId: facultyid, departmentId: department.id, program: program, phone: phoneNumber, imageUrl: 'default-user-image.png' });
+                            return User.create({ personnelId: personnelId, nameSurname: name + " " + surname, email: email, password: _hashedPassword, facultyId: facultyid, departmentId: department.id, program: program, phone: phoneNumber, imageUrl: 'default-user-image.png' ,birthdate: Date.now()});
 
                         })
                         .then((user) => {

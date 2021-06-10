@@ -12,21 +12,21 @@ module.exports.getLogin = (req, res, next) => {
             path: '/'
         });
 }
-module.exports.postLogin = (req,res,next)=>{
+module.exports.postLogin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
-    console.log(email+password);
-    User.findOne({where:{email:email}})
-        .then((user)=>{
-            if(!user){
+    console.log(email + password);
+    User.findOne({ where: { email: email } })
+        .then((user) => {
+            if (!user) {
                 return res.redirect('/');
             }
-            bcrypt.compare(password,user.password)
-                .then((isSuccess)=>{
-                    if(isSuccess){
+            bcrypt.compare(password, user.password)
+                .then((isSuccess) => {
+                    if (isSuccess) {
                         req.session.user = user;
                         req.session.isAuthenticated = true;
-                        return req.session.save((err)=>{
+                        return req.session.save((err) => {
                             var url = req.session.redirectTo || '/index'
                             delete req.session.redirectTo;
                             res.redirect(url);
@@ -41,8 +41,8 @@ module.exports.postLogin = (req,res,next)=>{
             console.log(err);
         })
 }
-module.exports.getLogout = (req,res,next)=>{
-    req.session.destroy((err)=>{
+module.exports.getLogout = (req, res, next) => {
+    req.session.destroy((err) => {
         res.redirect('/');
     })
 }
@@ -59,48 +59,44 @@ module.exports.postForgotPassword = (req, res, next) => {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: '', // Your Mail here
-          pass: '' // Your Mail Password Here
+            user: '', // Your Mail here
+            pass: '' // Your Mail Password Here
         }
-      });
-      transporter.verify(function (error, success) {
+    });
+    transporter.verify(function (error, success) {
 
         if (error) throw error;
-      
+
         console.log('Bağlantı başarıyla sağlandı');
         _transporter = transporter;
-        User.findOne({where:{email:email}})
-        .then((user)=>{
-            if(user){
-                password = bcrypt.hash(randomstring,10)
-                .then((hashedPassword)=>{
-                    user.password = hashedPassword;
-                    user.save();
-                    const msg = {
-                        to: user.email,
-                        from: 'Yusuf EFE <kafkasyusuf1999@gmail.com>',
-                        subject: 'Hesap Oluşturuldu',
-                        text: 'Şifreniz: '+randomstring +' \n Uyarı: '+'Giriş Yaptıktan sonra lütfen şifrenizi değiştirin',
-                    }
-                    _transporter.sendMail(msg)
-                        .then(() => {
-                            console.log('Email sent')
-                            res.redirect('/')
+        User.findOne({ where: { email: email } })
+            .then((user) => {
+                if (user) {
+                    password = bcrypt.hash(randomstring, 10)
+                        .then((hashedPassword) => {
+                            user.password = hashedPassword;
+                            user.save();
+                            const msg = {
+                                to: user.email,
+                                from: 'Yusuf EFE <kafkasyusuf1999@gmail.com>',
+                                subject: 'Hesap Oluşturuldu',
+                                text: 'Şifreniz: ' + randomstring + ' \n Uyarı: ' + 'Giriş Yaptıktan sonra lütfen şifrenizi değiştirin',
+                            }
+                            _transporter.sendMail(msg)
+                                .then(() => {
+                                    console.log('Email sent')
+                                    res.redirect('/')
+                                })
+                                .catch((error) => {
+                                    console.error(error)
+                                })
                         })
-                        .catch((error) => {
-                            console.error(error)
-                        })
-                })
-         
-            }
-            else{
-                res.redirect('/forgot-password')
-            }
 
-        })
+                }
+                else {
+                    res.redirect('/forgot-password')
+                }
+
+            })
     })
-
-
-  
-  
 }

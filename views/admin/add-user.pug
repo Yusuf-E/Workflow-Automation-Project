@@ -19,7 +19,6 @@ block content
                     option(value='-1') Fakülte Seçiniz
                     each faculty in faculties 
                       option(value=`${faculty.id}`) #{faculty.name}
-
                 .form-group
                   select.form-control.input#signindepartment(name='signindepartment')
                     option(value='-1') Bölüm Seçiniz

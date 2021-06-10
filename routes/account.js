@@ -5,9 +5,9 @@ const bodyParser = require('body-parser');
 const csrf = require('../middleware/csrf')
 
 router.get('/',csrf,accountController.getLogin);
-router.post('/login',accountController.postLogin);
+router.post('/login',csrf,accountController.postLogin);
 
-router.get('/logout',accountController.getLogout);
+router.get('/logout',csrf,accountController.getLogout);
 router.get('/forgot-password',csrf,accountController.getForgotPassword)
 router.post('/forgot-password',accountController.postForgotPassword)
 
