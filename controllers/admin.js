@@ -8,26 +8,45 @@ const Faculty = require('../models/faculty');
 const Department = require('../models/department');
 const bcrypt = require('bcrypt');
 const Sequelize = require('sequelize');
+const nodemailer = require('nodemailer');
+let _transporter;
 app.use(bodyParser.urlencoded({ extended: true }));
 module.exports.getAddUser = (req, res, next) => {
-    let faculties;
-    Faculty.findAll()
-        .then((_faculties) => {
-            faculties = _faculties;
-            Department.findAll({ order: [['name', 'ASC']], attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('name')), 'name'],] })
-                .then((departments) => {
-                    res.render('admin/add-user', {
-                        title: 'Add-User',
-                        departments: departments,
-                        isAuthenticated: req.session.isAuthenticated,
-                        faculties: faculties,
-                        path: '/admin/add-user',
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: req.user.email,
+          pass: '' // Your Mail Password Here
+        }
+      });
+      transporter.verify(function (error, success) {
 
+        if (error) throw error;
+      
+        console.log('Bağlantı başarıyla sağlandı');
+        _transporter = transporter;
+        let faculties;
+        Faculty.findAll()
+            .then((_faculties) => {
+                faculties = _faculties;
+                Department.findAll({ order: [['name', 'ASC']], attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('name')), 'name'],] })
+                    .then((departments) => {
+                        res.render('admin/add-user', {
+                            title: 'Add-User',
+                            departments: departments,
+                            isAuthenticated: req.session.isAuthenticated,
+                            faculties: faculties,
+                            path: '/admin/add-user',
+    
+                        })
                     })
-                })
-        }).catch((err) => {
-            console.log(err)
-        })
+            }).catch((err) => {
+                console.log(err)
+            })
+      
+      });
+
+
 
 }
 module.exports.postAddUser = (req, res, next) => {
@@ -81,7 +100,20 @@ module.exports.postAddUser = (req, res, next) => {
                         })
                         .then((result) => {
                             console.log('Kullanıcı Oluşturuldu.');
-                            res.redirect('/admin/users')
+                            const msg = {
+                                to: email,
+                                from: 'Yusuf EFE <kafkasyusuf1999@gmail.com>',
+                                subject: 'Hesap Oluşturuldu',
+                                text: 'Hesap Oluşturuldu Şifreniz:'+personnelId+name+surname,
+                            }
+                            _transporter.sendMail(msg)
+                                .then(() => {
+                                    console.log('Email sent')
+                                    res.redirect('/admin/users')
+                                })
+                                .catch((error) => {
+                                    console.error(error)
+                                })
                         })
                 })
         })
