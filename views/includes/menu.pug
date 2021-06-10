@@ -27,43 +27,44 @@ div
                   a(href='/flows')
                     i.lnr.lnr-file-empty 
                     span Akışlar
-          li
-            a.collapsed(href='#subPages' data-toggle='collapse')
-              i.lnr.lnr-lock
-              span Yetkili İşlemleri
-              i.icon-submenu.lnr.lnr-chevron-left
-            #subPages.collapse
-              ul.nav
-                li
-                  a.collapsed(href='#userPages' data-toggle='collapse')
-                    i.fa.fa-user
-                    span Kullanıcı İşlemleri
-                    i.icon-submenu.lnr.lnr-chevron-left
-                  #userPages.collapse
-                    ul.nav
-                      li
-                        a(href='/admin/add-user')
-                          i.fa.fa-user-plus 
-                          span Kullanıcı Ekle
-                      li
-                        a(href='/admin/users')
-                          i.fa.fa-user-times  
-                          span Kullanıcı Güncelle/Sil
-                li
-                  a.collapsed(href='#universityPages' data-toggle='collapse')
-                    i.fa.fa-university
-                    span Kurum İşlemleri
-                    i.icon-submenu.lnr.lnr-chevron-left
-                  #universityPages.collapse
-                    ul.nav
-                      li
-                        a(href='/admin/faculties')
-                          i.fa.fa-edit 
-                          span Fakülte Ekle/Sil
-                      li
-                        a(href='/admin/departments')
-                          i.fa.fa-edit 
-                          span Bölüm Ekle/Sil
+          if isAdmin
+            li
+              a.collapsed(href='#subPages' data-toggle='collapse')
+                i.lnr.lnr-lock
+                span Yetkili İşlemleri
+                i.icon-submenu.lnr.lnr-chevron-left
+              #subPages.collapse
+                ul.nav
+                  li
+                    a.collapsed(href='#userPages' data-toggle='collapse')
+                      i.fa.fa-user
+                      span Kullanıcı İşlemleri
+                      i.icon-submenu.lnr.lnr-chevron-left
+                    #userPages.collapse
+                      ul.nav
+                        li
+                          a(href='/admin/add-user')
+                            i.fa.fa-user-plus 
+                            span Kullanıcı Ekle
+                        li
+                          a(href='/admin/users')
+                            i.fa.fa-user-times  
+                            span Kullanıcı Güncelle/Sil
+                  li
+                    a.collapsed(href='#universityPages' data-toggle='collapse')
+                      i.fa.fa-university
+                      span Kurum İşlemleri
+                      i.icon-submenu.lnr.lnr-chevron-left
+                    #universityPages.collapse
+                      ul.nav
+                        li
+                          a(href='/admin/faculties')
+                            i.fa.fa-edit 
+                            span Fakülte Ekle/Sil
+                        li
+                          a(href='/admin/departments')
+                            i.fa.fa-edit 
+                            span Bölüm Ekle/Sil
           li
             a(href='/profile')
               i.lnr.lnr-user

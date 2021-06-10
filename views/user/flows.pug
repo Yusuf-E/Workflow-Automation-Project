@@ -19,6 +19,7 @@ html(lang="en")
             .row(style="height:60px;")
               .col-sm-6
                 form(action='/search-user' method='POST')
+                  input(type="hidden" name='_csrf' value=`${csrfToken}`) 
                   #adv-search.input-group
                     input.form-control#searchBar(type='text' placeholder='Dilekçe Sahibinin Numarasını Yazın' name='searchBar')
                     .input-group-btn

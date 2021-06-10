@@ -18,6 +18,7 @@ block content
                           .left
                               .content
                                   form.form-auth-small(action='/flow-builder' method="POST" enctype="multipart/form-data")
+                                      input(type="hidden" name='_csrf' value=`${csrfToken}`) 
                                       .form-group
                                           label.control-label.sr-only(for='formfile') Email
                                           input.form-control#formfile(type='file' value='' placeholder='Email' name='formfile')

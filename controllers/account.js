@@ -59,8 +59,8 @@ module.exports.postForgotPassword = (req, res, next) => {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'kafkasyusuf1999@gmail.com',
-          pass: 'Y741852963' // Your Mail Password Here
+          user: '', // Your Mail here
+          pass: '' // Your Mail Password Here
         }
       });
       transporter.verify(function (error, success) {

@@ -10,6 +10,7 @@ html(lang="en")
           .logo.text-center
             i.fa.fa-building(style="font-size:100px;")
           form(action='/admin/add-department' method='POST')
+            input(type="hidden" name='_csrf' value=`${csrfToken}`) 
             .row(style="height:60px;margin-top:20px;")
                     .form-group
                       select.form-control.input#facultyname(name='facultyname')

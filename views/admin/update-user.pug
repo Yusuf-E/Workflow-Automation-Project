@@ -13,6 +13,7 @@ block content
                 .logo.text-center
                   img(src='/assets/img/uni_logo.gif' alt='Logo' style='width:72px; heigth:72px;')
               form.form-auth-small(action='/admin/update-user' method='POST')
+                input(type="hidden" name='_csrf' value=`${csrfToken}`) 
                 input#userid(type="hidden" value=user.id name='userid')
                 .form-group
                   select.form-control.input#signinfaculty(name='signinfaculty')

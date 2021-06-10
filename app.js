@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const session = require('express-session');
 const multer = require('multer');
+const csurf = require('csurf');
 const mysqlDbStore = require('express-mysql-session')(session);
 
 
@@ -67,6 +68,8 @@ const storage = multer.diskStorage({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(multer({ storage: storage }).single('formfile'));
+
+app.use(csurf());
 
 app.use('/admin', adminRoutes);
 app.use(userRoutes);

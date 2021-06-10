@@ -17,6 +17,7 @@ html(lang="en")
           .clearfix
             // LEFT COLUMN
             form.form-auth-small(action='/profile' method="POST" enctype="multipart/form-data")
+              input(type="hidden" name='_csrf' value=`${csrfToken}`) 
               .profile-left
                 // PROFILE HEADER
                 .profile-header

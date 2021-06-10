@@ -13,6 +13,7 @@ html(lang="en")
                 img(src='assets/img/uni_logo.gif' alt='Logo')
               p.lead Şifrenizi Değiştirin
             form.form-auth-small(action='/settings' method='POST')
+              input(type="hidden" name='_csrf' value=`${csrfToken}`) 
               .form-group
                 label.control-label.sr-only(for='password') Eski Şifre
                 input#password.form-control(type='password' value='' placeholder='Eski Şifre' name='password')
