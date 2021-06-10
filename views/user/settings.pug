@@ -1,0 +1,30 @@
+<!doctype html>
+html(lang="en")
+  include ../includes/head.pug
+// WRAPPER
+#wrapper
+  .vertical-align-wrap
+    .vertical-align-middle
+      .auth-box
+        .left.text-center 
+          .content
+            .header
+              .logo.text-center
+                img(src='assets/img/uni_logo.gif' alt='Logo')
+              p.lead Şifrenizi Değiştirin
+            form.form-auth-small(action='/settings' method='POST')
+              .form-group
+                label.control-label.sr-only(for='password') Eski Şifre
+                input#password.form-control(type='password' value='' placeholder='Eski Şifre' name='password')
+              .form-group
+                label.control-label.sr-only(for='password1') Yeni Şifre
+                input#password1.form-control(type='password' value='' placeholder='Yeni Şifre' name='password1')
+              .form-group
+                label.control-label.sr-only(for='password2') Yeni Şifre
+                input#password2.form-control(type='password' value='' placeholder='Yeni Şifre' name='password2')
+              .form-group.clearfix
+              button.btn.btn-primary.btn-lg.btn-block(type='submit') Değiştir
+
+
+        .clearfix
+// END WRAPPER

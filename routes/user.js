@@ -30,6 +30,8 @@ router.post('/flow-builder', isAuthenticated, userController.postFlowBuilder);
 router.post('/flow', isAuthenticated, userController.postFlow);
 
 router.get('/profile', isAuthenticated, userController.getProfile);
+router.get('/settings', isAuthenticated, userController.getSettings);
+router.post('/settings', isAuthenticated, userController.postSettings);
 router.get('/tasks', isAuthenticated, userController.getTasks);
 router.get('/task-detail/:flowid', isAuthenticated, userController.getTask);
 router.get('/flows', isAuthenticated, userController.getFlows);

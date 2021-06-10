@@ -7,6 +7,7 @@ const Department = require('../models/department');
 const Sequelize = require('sequelize');
 const Flow = require('../models/flow');
 const TaskItem = require('../models/taskitem');
+const bcrypt = require('bcrypt');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 module.exports.getIndex = (req, res, next) => {
@@ -430,6 +431,38 @@ module.exports.postProfile = (req,res,next)=>{
    req.user.instagram= instagram;
    req.user.save();
    res.redirect('/profile')
+}
+module.exports.getSettings =(req,res,next)=>{
+    res.render('user/settings', {
+        title: 'Şifre Değiştir',
+        path: '/settings'
+    })
+}
+module.exports.postSettings = (req,res,next)=>{
+    const oldPassword = req.body.password;
+    const newPassword = req.body.password1;
+    const newPasswordVerify = req.body.password2;
+        bcrypt.compare(oldPassword,req.user.password)
+        .then((isSuccess)=>{
+            if(isSuccess){
+                if(newPassword === newPasswordVerify){
+                    bcrypt.hash(newPassword,10)
+                        .then((hashedPass)=>{
+                            req.user.password = hashedPass;
+                            req.user.save();
+                            console.log('şifre değişti.')
+                            res.redirect('/index')
 
+                        })
+                }
+                else{
+                    res.redirect('/settings');
+                }
+            }
+            else{
+                res.redirect('/settings')
+            }
+
+})
 
 }
